@@ -6,7 +6,12 @@ use CodeIgniter\Model;
 
 class UsersModel extends Model
 {
-    protected $table = 'user';
+    protected $DBGroup = 'default';
+    protected $table = 'users';
+    protected $primaryKey = 'id';
+    protected $useAutoIncrement = true;
+    protected $insertID = 0;
+    protected $returnType = 'array';
 
     public function getUsers()
     {
