@@ -2,14 +2,14 @@
 
 namespace App\Controllers;
 
-use App\Models\EtudiantsModel;
+use App\Models\UsersModel;
 use CodeIgniter\Controller;
 
-class Etudiants extends Controller
+class Users extends Controller
 {
     public function index()
     {
-        $model = model(EtudiantsModel::class);
+        $model = model(UsersModel::class);
 
         $data = [
 
