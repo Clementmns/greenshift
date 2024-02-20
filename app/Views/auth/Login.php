@@ -7,6 +7,8 @@
     <link rel="stylesheet" type="text/css" href="<?= base_url() ?>css/style.css">
 </head>
 <body>
-    
+    <h1>
+        hello
+    </h1>
 </body>
 </html>
