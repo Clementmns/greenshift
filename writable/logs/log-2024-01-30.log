@@ -1,0 +1,9 @@
+CRITICAL - 2024-01-30 08:56:20 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "groupes/view.php"
+in SYSTEMPATH/Exceptions/FrameworkException.php on line 39.
+ 1 SYSTEMPATH/View/View.php(216): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('groupes/view.php')
+ 2 SYSTEMPATH/Common.php(1178): CodeIgniter\View\View->render('groupes/view', [], true)
+ 3 APPPATH/Controllers/Groupes.php(22): view('groupes/view', [...])
+ 4 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Groupes->index()
+ 5 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Groupes))
+ 6 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
