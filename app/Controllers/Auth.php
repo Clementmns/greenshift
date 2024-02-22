@@ -99,4 +99,37 @@ class Auth extends BaseController
          }
       }
    }
+
+   public function uploadImage()
+   {
+      $loggedInUserId = session()->get('loggedInUser');
+
+      $config['upload_path'] = getcwd() . '/images';
+      $imageName = $this->request->getFile('userImage')->getName();
+
+      // if Directory not present then create
+
+      if (!is_dir($config['upload_path'], 077)) {
+         mkdir($config['upload_path'], 0777);
+      }
+
+      // Get image
+
+      $img = $this->request->getFile('userImage');
+
+      if (!$img->hasMoved() && $loggedInUserId) {
+         $img->move($config['upload_path'], $imageName);
+
+         $data = [
+            'avatar' => $imageName,
+         ];
+
+         $userModel = new UserModel();
+         $userModel->updata($loggedInUserId, $data);
+
+         return redirect()->to('dashboard/index')->with('notification', 'Image uploaded successfully');
+      } else {
+         return redirect()->to('dashboard/index')->with('notification', 'Image uploaded failed');
+      }
+   }
 }
