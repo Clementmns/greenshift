@@ -36,7 +36,7 @@
         </div>
     </form>
     <br>
-    <a href="<?= base_url('login'); ?>">Vous avez déjà un compte ? Se connecter</a>
+    <a href="<?= base_url('auth'); ?>">Vous avez déjà un compte ? Se connecter</a>
 </body>
 
 </html>
