@@ -23,6 +23,7 @@
             <input type="submit" value="Sign In">
         </div>
     </form>
+    <a href="<?= site_url('public/register'); ?>">Créer un compte</a>
 </body>
 
 </html>
