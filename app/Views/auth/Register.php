@@ -9,34 +9,34 @@
 </head>
 
 <body>
-    <form action="" method="post">
-        <?=csrf_field();?>
+    <form action="<?= base_url('auth/registerUser') ?>" method="post">
+        <?= csrf_field(); ?>
         <div>
-            <label for="">Prénom</label>
-            <input type="text" name="prenom" placeholder="Prénom here">
+            <label for="prenom">Prénom</label>
+            <input id="prenom" type="text" name="prenom" placeholder="Prénom here">
         </div>
         <div>
-            <label for="">Nom</label>
-            <input type="text" name="name" placeholder="Nom de famille here">
+            <label for="name">Nom</label>
+            <input id="name" type="text" name="name" placeholder="Nom de famille here">
         </div>
         <div>
-            <label for="">Pseudo</label>
-            <input type="text" name="pseudo" placeholder="Pseudo here">
+            <label for="pseudo">Pseudo</label>
+            <input id="pseudo" type="text" name="pseudo" placeholder="Pseudo here">
         </div>
         <div>
-            <label for="">Password</label>
-            <input type="password" name="password" placeholder="Password here">
+            <label for="password">Password</label>
+            <input id="password" type="password" name="password" placeholder="Password here">
         </div>
         <div>
-            <label for="">Confirm Password</label>
-            <input type="password" name="passwordConf" placeholder="Confirm Password here">
+            <label for="passwordConf">Confirm Password</label>
+            <input id="passwordConf" type="password" name="passwordConf" placeholder="Confirm Password here">
         </div>
         <div>
             <input type="submit" value="Sign Up">
         </div>
     </form>
     <br>
-    <a href="<?= base_url('login'); ?>">Vous avez déjà un compte ? Se connecter</a>
+    <a href="<?= base_url('auth'); ?>">Vous avez déjà un compte ? Se connecter</a>
 </body>
 
 </html>
