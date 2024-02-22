@@ -26,7 +26,7 @@
             <input type="submit" value="Sign In">
         </div>
     </form>
-    <a href="<?= base_url('register'); ?>">Créer un compte</a>
+    <a href="<?= base_url('auth/register'); ?>">Créer un compte</a>
 </body>
 
 </html>
