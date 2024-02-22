@@ -1,0 +1,140 @@
+INFO - 2024-02-22 09:54:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2024-02-22 09:54:39 --> mysqli_sql_exception: Table 'greenshift.users' doesn't exist in /Applications/MAMP/htdocs/S4/greenshift/system/Database/MySQLi/Connection.php:306
+Stack trace:
+#0 /Applications/MAMP/htdocs/S4/greenshift/system/Database/MySQLi/Connection.php(306): mysqli->query('SELECT *\nFROM `...', 0)
+#1 /Applications/MAMP/htdocs/S4/greenshift/system/Database/BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 /Applications/MAMP/htdocs/S4/greenshift/system/Database/BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 /Applications/MAMP/htdocs/S4/greenshift/system/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 /Applications/MAMP/htdocs/S4/greenshift/system/Model.php(202): CodeIgniter\Database\BaseBuilder->get()
+#5 /Applications/MAMP/htdocs/S4/greenshift/system/BaseModel.php(577): CodeIgniter\Model->doFind(false, NULL)
+#6 /Applications/MAMP/htdocs/S4/greenshift/app/Controllers/Dashboard.php(14): CodeIgniter\BaseModel->find(NULL)
+#7 /Applications/MAMP/htdocs/S4/greenshift/system/CodeIgniter.php(941): App\Controllers\Dashboard->index()
+#8 /Applications/MAMP/htdocs/S4/greenshift/system/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+#9 /Applications/MAMP/htdocs/S4/greenshift/system/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 /Applications/MAMP/htdocs/S4/greenshift/public/index.php(79): CodeIgniter\CodeIgniter->run()
+#11 {main}
+CRITICAL - 2024-02-22 09:54:39 --> CodeIgniter\Database\Exceptions\DatabaseException: Table 'greenshift.users' doesn't exist
+in SYSTEMPATH/Database/BaseConnection.php on line 647.
+ 1 SYSTEMPATH/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `users`', [], false)
+ 2 SYSTEMPATH/Model.php(202): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH/BaseModel.php(577): CodeIgniter\Model->doFind(false, null)
+ 4 APPPATH/Controllers/Dashboard.php(14): CodeIgniter\BaseModel->find(null)
+ 5 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Dashboard->index()
+ 6 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 7 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2024-02-22 09:54:39 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Table 'greenshift.users' doesn't exist
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 311.
+ 1 SYSTEMPATH/Database/BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `users`')
+ 2 SYSTEMPATH/Database/BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `users`')
+ 3 SYSTEMPATH/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `users`', [], false)
+ 4 SYSTEMPATH/Model.php(202): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH/BaseModel.php(577): CodeIgniter\Model->doFind(false, null)
+ 6 APPPATH/Controllers/Dashboard.php(14): CodeIgniter\BaseModel->find(null)
+ 7 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Dashboard->index()
+ 8 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 9 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2024-02-22 09:54:39 --> [Caused by] mysqli_sql_exception: Table 'greenshift.users' doesn't exist
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 306.
+ 1 SYSTEMPATH/Database/MySQLi/Connection.php(306): mysqli->query('SELECT *
+FROM `users`', 0)
+ 2 SYSTEMPATH/Database/BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `users`')
+ 3 SYSTEMPATH/Database/BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `users`')
+ 4 SYSTEMPATH/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `users`', [], false)
+ 5 SYSTEMPATH/Model.php(202): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH/BaseModel.php(577): CodeIgniter\Model->doFind(false, null)
+ 7 APPPATH/Controllers/Dashboard.php(14): CodeIgniter\BaseModel->find(null)
+ 8 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Dashboard->index()
+ 9 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+10 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+INFO - 2024-02-22 09:56:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-02-22 09:56:01 --> ErrorException: Undefined index: pseudo
+in APPPATH/Views/dashboard/index.php on line 20.
+ 1 APPPATH/Views/dashboard/index.php(20): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined index: pseudo', '/Applications/MAMP/htdocs/S4/greenshift/app/Views/dashboard/index.php', 20, [...])
+ 2 SYSTEMPATH/View/View.php(228): include('/Applications/MAMP/htdocs/S4/greenshift/app/Views/dashboard/index.php')
+ 3 SYSTEMPATH/View/View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1178): CodeIgniter\View\View->render('dashboard/index', [], true)
+ 5 APPPATH/Controllers/Dashboard.php(23): view('dashboard/index', [...])
+ 6 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Dashboard->index()
+ 7 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 8 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+INFO - 2024-02-22 09:56:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2024-02-22 09:56:33 --> mysqli_sql_exception: Table 'greenshift.users' doesn't exist in /Applications/MAMP/htdocs/S4/greenshift/system/Database/MySQLi/Connection.php:306
+Stack trace:
+#0 /Applications/MAMP/htdocs/S4/greenshift/system/Database/MySQLi/Connection.php(306): mysqli->query('SELECT *\nFROM `...', 0)
+#1 /Applications/MAMP/htdocs/S4/greenshift/system/Database/BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 /Applications/MAMP/htdocs/S4/greenshift/system/Database/BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 /Applications/MAMP/htdocs/S4/greenshift/system/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 /Applications/MAMP/htdocs/S4/greenshift/system/Model.php(202): CodeIgniter\Database\BaseBuilder->get()
+#5 /Applications/MAMP/htdocs/S4/greenshift/system/BaseModel.php(577): CodeIgniter\Model->doFind(false, NULL)
+#6 /Applications/MAMP/htdocs/S4/greenshift/app/Controllers/Dashboard.php(14): CodeIgniter\BaseModel->find(NULL)
+#7 /Applications/MAMP/htdocs/S4/greenshift/system/CodeIgniter.php(941): App\Controllers\Dashboard->index()
+#8 /Applications/MAMP/htdocs/S4/greenshift/system/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+#9 /Applications/MAMP/htdocs/S4/greenshift/system/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 /Applications/MAMP/htdocs/S4/greenshift/public/index.php(79): CodeIgniter\CodeIgniter->run()
+#11 {main}
+CRITICAL - 2024-02-22 09:56:33 --> CodeIgniter\Database\Exceptions\DatabaseException: Table 'greenshift.users' doesn't exist
+in SYSTEMPATH/Database/BaseConnection.php on line 647.
+ 1 SYSTEMPATH/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `users`', [], false)
+ 2 SYSTEMPATH/Model.php(202): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH/BaseModel.php(577): CodeIgniter\Model->doFind(false, null)
+ 4 APPPATH/Controllers/Dashboard.php(14): CodeIgniter\BaseModel->find(null)
+ 5 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Dashboard->index()
+ 6 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 7 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2024-02-22 09:56:33 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Table 'greenshift.users' doesn't exist
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 311.
+ 1 SYSTEMPATH/Database/BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `users`')
+ 2 SYSTEMPATH/Database/BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `users`')
+ 3 SYSTEMPATH/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `users`', [], false)
+ 4 SYSTEMPATH/Model.php(202): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH/BaseModel.php(577): CodeIgniter\Model->doFind(false, null)
+ 6 APPPATH/Controllers/Dashboard.php(14): CodeIgniter\BaseModel->find(null)
+ 7 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Dashboard->index()
+ 8 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 9 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2024-02-22 09:56:33 --> [Caused by] mysqli_sql_exception: Table 'greenshift.users' doesn't exist
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 306.
+ 1 SYSTEMPATH/Database/MySQLi/Connection.php(306): mysqli->query('SELECT *
+FROM `users`', 0)
+ 2 SYSTEMPATH/Database/BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `users`')
+ 3 SYSTEMPATH/Database/BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `users`')
+ 4 SYSTEMPATH/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `users`', [], false)
+ 5 SYSTEMPATH/Model.php(202): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH/BaseModel.php(577): CodeIgniter\Model->doFind(false, null)
+ 7 APPPATH/Controllers/Dashboard.php(14): CodeIgniter\BaseModel->find(null)
+ 8 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Dashboard->index()
+ 9 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+10 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+INFO - 2024-02-22 09:57:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-02-22 09:57:27 --> ErrorException: Undefined index: pseudo
+in APPPATH/Views/dashboard/index.php on line 20.
+ 1 APPPATH/Views/dashboard/index.php(20): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined index: pseudo', '/Applications/MAMP/htdocs/S4/greenshift/app/Views/dashboard/index.php', 20, [...])
+ 2 SYSTEMPATH/View/View.php(228): include('/Applications/MAMP/htdocs/S4/greenshift/app/Views/dashboard/index.php')
+ 3 SYSTEMPATH/View/View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1178): CodeIgniter\View\View->render('dashboard/index', [], true)
+ 5 APPPATH/Controllers/Dashboard.php(23): view('dashboard/index', [...])
+ 6 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Dashboard->index()
+ 7 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+ 8 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()

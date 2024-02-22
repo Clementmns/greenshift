@@ -62,4 +62,82 @@ class Auth extends BaseController
          return redirect()->back()->with('succes', 'User added successfully');
       }
    }
+
+   public function loginUser()
+   {
+      // Validating user input
+
+      $validated = $this->validate([
+         'pseudo' => ['rules' => 'required', 'errors' => ['required' => 'Your full pseudo is required',]],
+         'password' => ['rules' => 'required|min_length[5]|max_length[20]', 'errors' => ['required' => 'Your full password is required', 'min_length' => 'Password must be 5 characters long', 'max_length' => 'Password must be under 20 characters long']],
+      ]);
+
+      if (!$validated) {
+         return view('auth/login', ['validation' => $this->validator]);
+      } else {
+         // Checking user details in database
+
+         $pseudo = $this->request->getPost('pseudo');
+         $password = $this->request->getPost('password');
+
+         $userModel = new UserModel();
+         $userInfo = $userModel->where('pseudo', $pseudo)->first();
+
+         // Check user password with db password
+         $checkPassword = Hash::check($password, $userInfo['password']);
+
+         if (!$checkPassword) {
+            session()->setFlashdata('fail', 'Incorrect password provided');
+            return redirect()->to('auth');
+         } else {
+            // Process user info
+
+            $userId = $userInfo['id'];
+
+            session()->set('loggedInUser', $userId);
+            return redirect()->to('/dashboard');
+         }
+      }
+   }
+
+   public function uploadImage()
+   {
+      $loggedInUserId = session()->get('loggedInUser');
+
+      $config['upload_path'] = getcwd() . '/images';
+      $imageName = $this->request->getFile('userImage')->getName();
+
+      // if Directory not present then create
+
+      if (!is_dir($config['upload_path'], 077)) {
+         mkdir($config['upload_path'], 0777);
+      }
+
+      // Get image
+
+      $img = $this->request->getFile('userImage');
+
+      if (!$img->hasMoved() && $loggedInUserId) {
+         $img->move($config['upload_path'], $imageName);
+
+         $data = [
+            'avatar' => $imageName,
+         ];
+
+         $userModel = new UserModel();
+         $userModel->updata($loggedInUserId, $data);
+
+         return redirect()->to('dashboard/index')->with('notification', 'Image uploaded successfully');
+      } else {
+         return redirect()->to('dashboard/index')->with('notification', 'Image uploaded failed');
+      }
+   }
+
+   public function logOut()
+   {
+      if (session()->has('loggedInUser')) {
+         session()->remove('loggedInUser');
+      }
+      return redirect()->to('/auth?access=loggedout')->with('fail', 'You are logged out');
+   }
 }

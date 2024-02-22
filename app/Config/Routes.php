@@ -11,5 +11,7 @@ $routes->get('register', 'Auth::register');
 $routes->get('etu', 'Etudiants::index');
 $routes->get('grp', 'Groupes::index');
 $routes->get('grpchoose', 'Groupes::choose');
-$routes->get('login', 'Auth::login');
-$routes->get('register', 'Auth::register');
+
+$routes->group('', ['filter' => 'AuthCheck'], function ($routes) {
+   $routes->get('/dashboard', 'Dashboard::index');
+});
