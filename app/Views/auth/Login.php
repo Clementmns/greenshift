@@ -9,15 +9,18 @@
 </head>
 
 <body>
-    <form action="" method="post">
-        <?=csrf_field();?>
+    <form action="<?= base_url('auth/loginUser') ?>" method="post">
+        <?= csrf_field(); ?>
         <div>
-            <label for="">Pseudo</label>
-            <input type="text" name="pseudo" placeholder="Pseudo here">
+            <label for="pseudo">Pseudo</label>
+            <input value="<?= set_value('pseudo'); ?>" id="pseudo" type="text" name="pseudo" placeholder="Pseudo here">
+            <span><?= isset($validation) ? display_form_errors($validation, 'pseudo') : ''; ?></span>
         </div>
         <div>
-            <label for="">Password</label>
-            <input type="password" name="password" placeholder="Password here">
+            <label for="password">Password</label>
+            <input value="<?= set_value('password'); ?>" id="password" type="password" name="password" placeholder="Password here">
+            <span><?= isset($validation) ? display_form_errors($validation, 'password') : ''; ?></span>
+
         </div>
         <div>
             <input type="submit" value="Sign In">

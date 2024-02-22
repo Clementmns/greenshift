@@ -140,3 +140,41 @@ in APPPATH/Views/dashboard/index.php on line 20.
  9 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
 INFO - 2024-02-22 10:11:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
 INFO - 2024-02-22 10:21:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-02-22 10:27:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-02-22 10:28:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-02-22 10:30:43 --> ErrorException: Trying to access array offset on value of type null
+in APPPATH/Controllers/Auth.php on line 87.
+ 1 APPPATH/Controllers/Auth.php(87): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Trying to access array offset on value of type null', '/Applications/MAMP/htdocs/S4/greenshift/app/Controllers/Auth.php', 87, [...])
+ 2 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Auth->loginUser()
+ 3 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+ 4 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2024-02-22 10:30:59 --> ErrorException: Trying to access array offset on value of type null
+in APPPATH/Controllers/Auth.php on line 87.
+ 1 APPPATH/Controllers/Auth.php(87): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Trying to access array offset on value of type null', '/Applications/MAMP/htdocs/S4/greenshift/app/Controllers/Auth.php', 87, [...])
+ 2 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Auth->loginUser()
+ 3 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+ 4 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2024-02-22 10:31:03 --> ErrorException: Trying to access array offset on value of type null
+in APPPATH/Controllers/Auth.php on line 87.
+ 1 APPPATH/Controllers/Auth.php(87): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Trying to access array offset on value of type null', '/Applications/MAMP/htdocs/S4/greenshift/app/Controllers/Auth.php', 87, [...])
+ 2 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Auth->loginUser()
+ 3 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+ 4 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2024-02-22 10:33:29 --> ErrorException: Trying to access array offset on value of type null
+in APPPATH/Controllers/Auth.php on line 87.
+ 1 APPPATH/Controllers/Auth.php(87): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Trying to access array offset on value of type null', '/Applications/MAMP/htdocs/S4/greenshift/app/Controllers/Auth.php', 87, [...])
+ 2 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Auth->loginUser()
+ 3 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+ 4 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2024-02-22 10:34:22 --> ErrorException: Trying to access array offset on value of type null
+in APPPATH/Controllers/Auth.php on line 87.
+ 1 APPPATH/Controllers/Auth.php(87): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Trying to access array offset on value of type null', '/Applications/MAMP/htdocs/S4/greenshift/app/Controllers/Auth.php', 87, [...])
+ 2 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Auth->loginUser()
+ 3 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+ 4 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+INFO - 2024-02-22 10:34:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
