@@ -2,6 +2,10 @@
 
 namespace App\Controllers;
 
+use App\Controllers\BaseController;
+use App\Libraries\Hash;
+use App\Models\UserModel;
+
 class Auth extends BaseController
 {
    public function __construct()
@@ -21,12 +25,6 @@ class Auth extends BaseController
 
    public function registerUser()
    {
-      // Validate user input
-      // 'firstname' => 'required',
-      // 'lastname' => 'required',
-      // 'pseudo' => 'required',
-      // 'password' => 'required|min_length[5]|max_length[20]',
-      // 'passwordConf' => 'required|min_length[5]|max_length[20]|matched[password]',
 
       $validated = $this->validate([
          'firstname' => ['rules' => 'required', 'errors' => ['required' => 'Your full firstname is required',]],
@@ -52,5 +50,16 @@ class Auth extends BaseController
          'pseudo' => $pseudo,
          'password' => Hash::encrypt($password)
       ];
+
+      // Storing data
+
+      $userModel = new \App\Models\UserModel();
+      $query = $userModel->insert($data);
+
+      if (!$query) {
+         return redirect()->back()->with('fail', 'Saving user failed');
+      } else {
+         return redirect()->back()->with('succes', 'User added successfully');
+      }
    }
 }
