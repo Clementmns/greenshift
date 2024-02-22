@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Controllers\BaseController;
 use App\Libraries\Hash;
 use App\Models\UserModel;
+use Exception;
 
 class Auth extends BaseController
 {
@@ -15,12 +16,12 @@ class Auth extends BaseController
 
    public function index()
    {
-      echo view('auth/login');
+      return view('auth/login');
    }
 
    public function register()
    {
-      echo view('auth/register');
+      return view('auth/register');
    }
 
    public function registerUser()
@@ -42,7 +43,7 @@ class Auth extends BaseController
       $lastname = $this->request->getPost('lastname');
       $pseudo = $this->request->getPost('pseudo');
       $password = $this->request->getPost('password');
-      $passwordConf = $this->request->getPost('password');
+      $passwordConf = $this->request->getPost('passwordConf');
 
       $data = [
          'firstname' => $firstname,
@@ -56,10 +57,11 @@ class Auth extends BaseController
       $userModel = new \App\Models\UserModel();
       $query = $userModel->insert($data);
 
+
       if (!$query) {
          return redirect()->back()->with('fail', 'Saving user failed');
       } else {
-         return redirect()->back()->with('succes', 'User added successfully');
+         return redirect()->back()->with('success', 'Registered successfully');
       }
    }
 
@@ -92,7 +94,9 @@ class Auth extends BaseController
          } else {
             // Process user info
 
-            $userId = $userInfo['id'];
+            print_r($userInfo);
+
+            $userId = $userInfo['id_user'];
 
             session()->set('loggedInUser', $userId);
             return redirect()->to('/dashboard');
@@ -102,34 +106,38 @@ class Auth extends BaseController
 
    public function uploadImage()
    {
-      $loggedInUserId = session()->get('loggedInUser');
+      try {
+         $loggedInUserId = session()->get('loggedInUser');
 
-      $config['upload_path'] = getcwd() . '/images';
-      $imageName = $this->request->getFile('userImage')->getName();
+         $config['upload_path'] = getcwd() . '/assets/avatar';
+         $imageName = $this->request->getFile('userImage')->getName();
 
-      // if Directory not present then create
+         // if Directory not present then create
 
-      if (!is_dir($config['upload_path'], 077)) {
-         mkdir($config['upload_path'], 0777);
-      }
+         if (!is_dir($config['upload_path'])) {
+            mkdir($config['upload_path'], 0777);
+         }
 
-      // Get image
+         // Get image
 
-      $img = $this->request->getFile('userImage');
+         $img = $this->request->getFile('userImage');
 
-      if (!$img->hasMoved() && $loggedInUserId) {
-         $img->move($config['upload_path'], $imageName);
+         if (!$img->hasMoved() && $loggedInUserId) {
+            $img->move($config['upload_path'], $imageName);
 
-         $data = [
-            'avatar' => $imageName,
-         ];
+            $data = [
+               'avatar' => $imageName,
+            ];
 
-         $userModel = new UserModel();
-         $userModel->updata($loggedInUserId, $data);
+            $userModel = new UserModel();
+            $userModel->update($loggedInUserId, $data);
 
-         return redirect()->to('dashboard/index')->with('notification', 'Image uploaded successfully');
-      } else {
-         return redirect()->to('dashboard/index')->with('notification', 'Image uploaded failed');
+            return redirect()->to('dashboard')->with('notification', 'Image uploaded successfully');
+         } else {
+            return redirect()->to('dashboard')->with('notification', 'Image uploaded failed');
+         }
+      } catch (Exception $e) {
+         echo $e->getMessage();
       }
    }
 

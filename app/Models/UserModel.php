@@ -7,12 +7,12 @@ use CodeIgniter\Model;
 class UserModel extends Model
 {
     protected $table            = 'greenshift_users';
-    protected $primaryKey       = 'id';
+    protected $primaryKey       = 'id_user';
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['firstname', 'lastname', 'avatar', 'password', 'pseudo', 'goals', 'points', 'level', 'exp'];
+    protected $allowedFields    = ['lastname', 'firstname', 'password', 'pseudo', 'avatar', 'goals', 'points', 'exp', 'level'];
 
     protected bool $allowEmptyInserts = false;
 
