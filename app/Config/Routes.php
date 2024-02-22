@@ -11,3 +11,4 @@ $routes->get('register', 'Auth::register');
 $routes->get('etu', 'Etudiants::index');
 $routes->get('grp', 'Groupes::index');
 $routes->get('grpchoose', 'Groupes::choose');
+$routes->get('dashboard', 'Dashboard::index');

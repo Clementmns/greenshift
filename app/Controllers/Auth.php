@@ -62,4 +62,41 @@ class Auth extends BaseController
          return redirect()->back()->with('succes', 'User added successfully');
       }
    }
+
+   public function loginUser()
+   {
+      // Validating user input
+
+      $validated = $this->validate([
+         'pseudo' => ['rules' => 'required', 'errors' => ['required' => 'Your full pseudo is required',]],
+         'password' => ['rules' => 'required|min_length[5]|max_length[20]', 'errors' => ['required' => 'Your full password is required', 'min_length' => 'Password must be 5 characters long', 'max_length' => 'Password must be under 20 characters long']],
+      ]);
+
+      if (!$validated) {
+         return view('auth/login', ['validation' => $this->validator]);
+      } else {
+         // Checking user details in database
+
+         $pseudo = $this->request->getPost('pseudo');
+         $password = $this->request->getPost('password');
+
+         $userModel = new UserModel();
+         $userInfo = $userModel->where('pseudo', $pseudo)->first();
+
+         // Check user password with db password
+         $checkPassword = Hash::check($password, $userInfo['password']);
+
+         if (!$checkPassword) {
+            session()->setFlashdata('fail', 'Incorrect password provided');
+            return redirect()->to('auth');
+         } else {
+            // Process user info
+
+            $userId = $userInfo['id'];
+
+            session()->set('loggedInUser', $userId);
+            return redirect()->to('/dashboard');
+         }
+      }
+   }
 }
