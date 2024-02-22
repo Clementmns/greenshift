@@ -19,6 +19,7 @@
    <div>
       <p><?= $userInfo['pseudo']; ?></p>
       <p><?= $userInfo['']; ?></p>
+      <a href="<?= site_url('auth/logOut'); ?>">Déconnexion</a>
    </div>
 </body>
 

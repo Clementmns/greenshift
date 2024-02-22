@@ -132,4 +132,12 @@ class Auth extends BaseController
          return redirect()->to('dashboard/index')->with('notification', 'Image uploaded failed');
       }
    }
+
+   public function logOut()
+   {
+      if (session()->has('loggedInUser')) {
+         session()->remove('loggedInUser');
+      }
+      return redirect()->to('/auth?access=loggedout')->with('fail', 'You are logged out');
+   }
 }
