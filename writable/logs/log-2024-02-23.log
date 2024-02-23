@@ -767,5 +767,3 @@ INFO - 2024-02-23 09:52:44 --> Session: Class initialized using 'CodeIgniter\Ses
 INFO - 2024-02-23 09:52:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
 INFO - 2024-02-23 09:52:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
 INFO - 2024-02-23 09:52:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
->>>>>>> 119b9cc3a6991c98a14979c130388fa46ff78065
-INFO - 2024-02-23 10:03:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.

@@ -17,16 +17,12 @@ class Auth extends BaseController
 
    public function index()
    {
-      echo view('templates/header');
-      echo view('auth/login');
-      echo view('templates/footer');
+      return view('auth/login');
    }
 
    public function register()
    {
-      echo view('templates/header');
-      echo view('auth/register');
-      echo view('templates/footer');
+      return view('auth/register');
    }
 
    public function registerUser()
@@ -41,9 +37,7 @@ class Auth extends BaseController
       ]);
 
       if (!$validated) {
-         echo view('templates/header');
-         echo view('auth/register', ['validation' => $this->validator]);
-         echo view('templates/footer');
+         return view('auth/register', ['validation' => $this->validator]);
       }
 
       $firstname = $this->request->getPost('firstname');
@@ -63,6 +57,8 @@ class Auth extends BaseController
 
       $userModel = new \App\Models\UserModel();
       $query = $userModel->insert($data);
+
+      return redirect()->to('dashboard');
    }
 
    public function loginUser()
@@ -75,9 +71,7 @@ class Auth extends BaseController
       ]);
 
       if (!$validated) {
-         echo view('templates/header');
-         echo view('auth/login', ['validation' => $this->validator]);
-         echo view('templates/footer');
+         return view('auth/login', ['validation' => $this->validator]);
       } else {
          // Checking user details in database
 
