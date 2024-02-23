@@ -8,4 +8,5 @@
 
 <body>
 
-    <h1><?= esc($title) ?></h1>
+    <h1>Test</h1>
+    <hr>
