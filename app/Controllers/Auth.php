@@ -17,12 +17,16 @@ class Auth extends BaseController
 
    public function index()
    {
-      return view('auth/login');
+      echo view('templates/header');
+      echo view('auth/login');
+      echo view('templates/footer');
    }
 
    public function register()
    {
-      return view('auth/register');
+      echo view('templates/header');
+      echo view('auth/register');
+      echo view('templates/footer');
    }
 
    public function registerUser()
