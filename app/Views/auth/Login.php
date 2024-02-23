@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Greenshift - Connexion</title>
-    <link rel="stylesheet" type="text/css" href="<?= base_url() ?>css/style.css">
+    <link rel="stylesheet" type="text/css" href="<?= base_url() ?>css/output.css">
 </head>
 
 <body>
@@ -25,15 +25,17 @@
             <span><?= isset($validation) ? display_form_errors($validation, 'pseudo') : ''; ?></span>
         </div>
         <div>
-            <label for="password">Password</label>
+            <label for="password">Mot de passe</label>
             <input value="<?= set_value('password'); ?>" id="password" type="password" name="password" placeholder="Password here">
             <span><?= isset($validation) ? display_form_errors($validation, 'password') : ''; ?></span>
         </div>
+        <br>
         <div>
-            <input type="submit" value="Sign In">
+            <button class="bg-blue-400 text-white p-2 rounded-md">Se connecter</button>
         </div>
     </form>
-    <a href="<?= base_url('auth/register'); ?>">Créer un compte</a>
+    <br><br>
+    <a href="<?= base_url('auth/register'); ?>">Vous n'avez toujours pas de compte ? Créer un compte</a>
 </body>
 
 </html>

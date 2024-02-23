@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Greenshift - Inscription</title>
-    <link rel="stylesheet" type="text/css" href="<?= base_url() ?>css/style.css">
+    <link rel="stylesheet" type="text/css" href="<?= base_url() ?>css/output.css">
 </head>
 
 <body>
@@ -30,21 +30,23 @@
 
         </div>
         <div>
-            <label for="password">Password</label>
+            <label for="password">Mot de passe</label>
             <input value="<?= set_value('password'); ?>" id="password" type="password" name="password" placeholder="Password here">
             <span><?= isset($validation) ? display_form_errors($validation, 'password') : ''; ?></span>
 
         </div>
         <div>
-            <label for="passwordConf">Confirm Password</label>
+            <label for="passwordConf">Confirmation du mot de passe</label>
             <input value="<?= set_value('passwordConf'); ?>" id="passwordConf" type="password" name="passwordConf" placeholder="Confirm Password here">
             <span><?= isset($validation) ? display_form_errors($validation, 'passwordConf') : ''; ?></span>
 
         </div>
+        <br>
         <div>
-            <input type="submit" value="Sign Up">
+            <button class="bg-blue-400 text-white p-2 rounded-md">S'inscrire</button>
         </div>
     </form>
+    <br>
     <br>
     <a href="<?= base_url('auth'); ?>">Vous avez déjà un compte ? Se connecter</a>
 </body>

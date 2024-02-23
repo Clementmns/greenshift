@@ -63,13 +63,6 @@ class Auth extends BaseController
 
       $userModel = new \App\Models\UserModel();
       $query = $userModel->insert($data);
-
-
-      if (!$query) {
-         return redirect()->back()->with('fail', 'Saving user failed');
-      } else {
-         return redirect()->back()->with('success', 'Registered successfully');
-      }
    }
 
    public function loginUser()
