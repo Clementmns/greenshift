@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
+use App\Libraries\Extension;
 use App\Libraries\Hash;
 use App\Models\UserModel;
 use Exception;
@@ -16,12 +17,16 @@ class Auth extends BaseController
 
    public function index()
    {
-      return view('auth/login');
+      echo view('templates/header');
+      echo view('auth/login');
+      echo view('templates/footer');
    }
 
    public function register()
    {
-      return view('auth/register');
+      echo view('templates/header');
+      echo view('auth/register');
+      echo view('templates/footer');
    }
 
    public function registerUser()
@@ -128,10 +133,13 @@ class Auth extends BaseController
          $img = $this->request->getFile('userImage');
 
          if (!$img->hasMoved() && $loggedInUserId) {
-            $img->move($config['upload_path'], $imageName);
+
+            $imageNewName = time() . rand(0, 999999) . Extension::getExtension($imageName);
+
+            $img->move($config['upload_path'], $imageNewName);
 
             $data = [
-               'avatar' => $imageName,
+               'avatar' => $imageNewName,
             ];
 
             $userModel = new UserModel();
