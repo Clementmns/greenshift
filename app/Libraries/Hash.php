@@ -21,9 +21,8 @@ class Hash
    {
       if (password_verify($userPassword, $dbUserPassword)) {
          return true;
+      } else {
+         return false;
       }
-
-
-      return false;
    }
 }

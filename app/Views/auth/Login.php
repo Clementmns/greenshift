@@ -9,8 +9,16 @@
 </head>
 
 <body>
+    <?php $failMessage = session()->getFlashdata('fail'); ?>
+    <?php if ($failMessage) : ?>
+        <div style="color: red;">
+            <?= esc($failMessage) ?>
+        </div>
+    <?php endif; ?>
+
     <form action="<?= base_url('auth/loginUser') ?>" method="post">
         <?= csrf_field(); ?>
+        <span></span>
         <div>
             <label for="pseudo">Pseudo</label>
             <input value="<?= set_value('pseudo'); ?>" id="pseudo" type="text" name="pseudo" placeholder="Pseudo here">
@@ -20,7 +28,6 @@
             <label for="password">Password</label>
             <input value="<?= set_value('password'); ?>" id="password" type="password" name="password" placeholder="Password here">
             <span><?= isset($validation) ? display_form_errors($validation, 'password') : ''; ?></span>
-
         </div>
         <div>
             <input type="submit" value="Sign In">

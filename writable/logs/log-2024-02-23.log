@@ -1,4 +1,19 @@
+<<<<<<< HEAD
 CRITICAL - 2024-02-23 07:38:42 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "auth.php"
+=======
+INFO - 2024-02-23 07:37:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-02-23 07:37:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-02-23 07:37:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-02-23 07:38:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-02-23 07:38:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-02-23 07:39:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-02-23 07:39:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-02-23 07:46:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-02-23 07:46:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-02-23 07:46:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-02-23 07:46:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-02-23 07:53:43 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "auth.php"
+>>>>>>> 89e1d4ab60eaf395c49e41344f03e3b2bad1d39d
 in SYSTEMPATH/Exceptions/FrameworkException.php on line 39.
  1 SYSTEMPATH/View/View.php(216): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('auth.php')
  2 SYSTEMPATH/Common.php(1178): CodeIgniter\View\View->render('auth', [], true)
@@ -7,33 +22,58 @@ in SYSTEMPATH/Exceptions/FrameworkException.php on line 39.
  5 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
  6 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
  7 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+<<<<<<< HEAD
 CRITICAL - 2024-02-23 07:38:52 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "login.php"
 in SYSTEMPATH/Exceptions/FrameworkException.php on line 39.
  1 SYSTEMPATH/View/View.php(216): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('login.php')
  2 SYSTEMPATH/Common.php(1178): CodeIgniter\View\View->render('login', [], true)
  3 APPPATH/Controllers/Home.php(9): view('login')
+=======
+CRITICAL - 2024-02-23 07:54:09 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "index.php"
+in SYSTEMPATH/Exceptions/FrameworkException.php on line 39.
+ 1 SYSTEMPATH/View/View.php(216): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('index.php')
+ 2 SYSTEMPATH/Common.php(1178): CodeIgniter\View\View->render('index', [], true)
+ 3 APPPATH/Controllers/Home.php(9): view('index')
+>>>>>>> 89e1d4ab60eaf395c49e41344f03e3b2bad1d39d
  4 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Home->index()
  5 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
  6 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
  7 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+<<<<<<< HEAD
 CRITICAL - 2024-02-23 07:45:02 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "auth.php"
 in SYSTEMPATH/Exceptions/FrameworkException.php on line 39.
  1 SYSTEMPATH/View/View.php(216): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('auth.php')
  2 SYSTEMPATH/Common.php(1178): CodeIgniter\View\View->render('auth', [], true)
  3 APPPATH/Controllers/Home.php(9): view('auth')
+=======
+CRITICAL - 2024-02-23 07:54:36 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "/auth.php"
+in SYSTEMPATH/Exceptions/FrameworkException.php on line 39.
+ 1 SYSTEMPATH/View/View.php(216): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('/auth.php')
+ 2 SYSTEMPATH/Common.php(1178): CodeIgniter\View\View->render('/auth', [], true)
+ 3 APPPATH/Controllers/Home.php(9): view('/auth')
+>>>>>>> 89e1d4ab60eaf395c49e41344f03e3b2bad1d39d
  4 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Home->index()
  5 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
  6 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
  7 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+<<<<<<< HEAD
 CRITICAL - 2024-02-23 07:45:19 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "auth.php"
 in SYSTEMPATH/Exceptions/FrameworkException.php on line 39.
  1 SYSTEMPATH/View/View.php(216): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('auth.php')
  2 SYSTEMPATH/Common.php(1178): CodeIgniter\View\View->render('auth', [], true)
  3 APPPATH/Controllers/Home.php(9): view('auth')
+=======
+CRITICAL - 2024-02-23 07:54:45 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "index/auth.php"
+in SYSTEMPATH/Exceptions/FrameworkException.php on line 39.
+ 1 SYSTEMPATH/View/View.php(216): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('index/auth.php')
+ 2 SYSTEMPATH/Common.php(1178): CodeIgniter\View\View->render('index/auth', [], true)
+ 3 APPPATH/Controllers/Home.php(9): view('index/auth')
+>>>>>>> 89e1d4ab60eaf395c49e41344f03e3b2bad1d39d
  4 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Home->index()
  5 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
  6 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
  7 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+<<<<<<< HEAD
 CRITICAL - 2024-02-23 07:45:34 --> Error: Call to undefined function set_value()
 in APPPATH/Views/auth/login.php on line 16.
  1 SYSTEMPATH/View/View.php(228): include()
@@ -69,10 +109,18 @@ in SYSTEMPATH/Exceptions/FrameworkException.php on line 39.
  1 SYSTEMPATH/View/View.php(216): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('auth.php')
  2 SYSTEMPATH/Common.php(1178): CodeIgniter\View\View->render('auth', [], true)
  3 APPPATH/Controllers/Home.php(9): view('auth')
+=======
+CRITICAL - 2024-02-23 07:54:48 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "index/auth.php"
+in SYSTEMPATH/Exceptions/FrameworkException.php on line 39.
+ 1 SYSTEMPATH/View/View.php(216): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('index/auth.php')
+ 2 SYSTEMPATH/Common.php(1178): CodeIgniter\View\View->render('index/auth', [], true)
+ 3 APPPATH/Controllers/Home.php(9): view('index/auth')
+>>>>>>> 89e1d4ab60eaf395c49e41344f03e3b2bad1d39d
  4 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Home->index()
  5 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
  6 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
  7 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+<<<<<<< HEAD
 CRITICAL - 2024-02-23 07:53:29 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "auth.php"
 in SYSTEMPATH/Exceptions/FrameworkException.php on line 39.
  1 SYSTEMPATH/View/View.php(216): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('auth.php')
@@ -123,7 +171,21 @@ in SYSTEMPATH/Exceptions/FrameworkException.php on line 39.
  1 SYSTEMPATH/View/View.php(216): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('auth.php')
  2 SYSTEMPATH/Common.php(1178): CodeIgniter\View\View->render('auth', [], true)
  3 APPPATH/Controllers/Home.php(9): view('auth')
+=======
+CRITICAL - 2024-02-23 07:54:56 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "welcome/auth.php"
+in SYSTEMPATH/Exceptions/FrameworkException.php on line 39.
+ 1 SYSTEMPATH/View/View.php(216): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('welcome/auth.php')
+ 2 SYSTEMPATH/Common.php(1178): CodeIgniter\View\View->render('welcome/auth', [], true)
+ 3 APPPATH/Controllers/Home.php(9): view('welcome/auth')
+>>>>>>> 89e1d4ab60eaf395c49e41344f03e3b2bad1d39d
  4 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Home->index()
  5 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
  6 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
  7 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+<<<<<<< HEAD
+=======
+INFO - 2024-02-23 07:55:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-02-23 07:55:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-02-23 07:56:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-02-23 07:56:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+>>>>>>> 89e1d4ab60eaf395c49e41344f03e3b2bad1d39d

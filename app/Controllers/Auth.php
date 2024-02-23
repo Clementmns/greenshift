@@ -85,12 +85,17 @@ class Auth extends BaseController
          $userModel = new UserModel();
          $userInfo = $userModel->where('pseudo', $pseudo)->first();
 
+         if (!$userInfo) {
+            session()->setFlashdata('fail', 'User not found');
+            return redirect()->to('auth')->withInput();
+         }
+
          // Check user password with db password
          $checkPassword = Hash::check($password, $userInfo['password']);
 
          if (!$checkPassword) {
             session()->setFlashdata('fail', 'Incorrect password provided');
-            return redirect()->to('auth');
+            return redirect()->to('auth')->withInput();
          } else {
             // Process user info
 
