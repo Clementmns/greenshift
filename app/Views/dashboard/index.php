@@ -10,7 +10,7 @@
 <body>
    <div>
       <form action="<?= base_url('auth/uploadImage'); ?>" enctype="multipart/form-data" method="post">
-         <img src="" alt="">
+         <img src="<?= base_url() ?>/assets/avatar/<?= $userInfo['avatar']; ?>" alt="">
          <input type="file" name="userImage">
          <hr>
          <input type="submit">
@@ -18,9 +18,21 @@
    </div>
    <div>
       <p><?= $userInfo['pseudo']; ?></p>
-      <p><?= $userInfo['']; ?></p>
+      <p><?= $userInfo['firstname']; ?></p>
       <a href="<?= site_url('auth/logOut'); ?>">Déconnexion</a>
    </div>
+
+   <?php
+   if (!empty(session()->getFlashdata('notification'))) {
+   ?>
+      <div>
+         <?=
+         session()->getFlashdata('success');
+         ?>
+      </div>
+   <?php
+   }
+   ?>
 </body>
 
 </html>

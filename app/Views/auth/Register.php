@@ -9,27 +9,37 @@
 </head>
 
 <body>
-    <form action="" method="post">
-        <?=csrf_field();?>
+    <form action="<?= base_url('auth/registerUser') ?>" method="post">
+        <?= csrf_field(); ?>
         <div>
-            <label for="">Prénom</label>
-            <input type="text" name="prenom" placeholder="Prénom here">
+            <label for="firstname">Prénom</label>
+            <input value="<?= set_value('firstname'); ?>" id="firstname" type="text" name="firstname" placeholder="Prénom here">
+            <span><?= isset($validation) ? display_form_errors($validation, 'firstname') : ''; ?></span>
+
         </div>
         <div>
-            <label for="">Nom</label>
-            <input type="text" name="name" placeholder="Nom de famille here">
+            <label for="lastname">Nom</label>
+            <input value="<?= set_value('lastname'); ?>" id="lastname" type="text" name="lastname" placeholder="Nom de famille here">
+            <span><?= isset($validation) ? display_form_errors($validation, 'lastname') : ''; ?></span>
+
         </div>
         <div>
-            <label for="">Pseudo</label>
-            <input type="text" name="pseudo" placeholder="Pseudo here">
+            <label for="pseudo">Pseudo</label>
+            <input value="<?= set_value('pseudo'); ?>" id="pseudo" type="text" name="pseudo" placeholder="Pseudo here">
+            <span><?= isset($validation) ? display_form_errors($validation, 'pseudo') : ''; ?></span>
+
         </div>
         <div>
-            <label for="">Password</label>
-            <input type="password" name="password" placeholder="Password here">
+            <label for="password">Password</label>
+            <input value="<?= set_value('password'); ?>" id="password" type="password" name="password" placeholder="Password here">
+            <span><?= isset($validation) ? display_form_errors($validation, 'password') : ''; ?></span>
+
         </div>
         <div>
-            <label for="">Confirm Password</label>
-            <input type="password" name="passwordConf" placeholder="Confirm Password here">
+            <label for="passwordConf">Confirm Password</label>
+            <input value="<?= set_value('passwordConf'); ?>" id="passwordConf" type="password" name="passwordConf" placeholder="Confirm Password here">
+            <span><?= isset($validation) ? display_form_errors($validation, 'passwordConf') : ''; ?></span>
+
         </div>
         <div>
             <input type="submit" value="Sign Up">
