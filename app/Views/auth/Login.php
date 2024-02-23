@@ -21,12 +21,12 @@
         <span></span>
         <div>
             <label for="pseudo">Pseudo</label>
-            <input value="<?= set_value('pseudo'); ?>" id="pseudo" type="text" name="pseudo" placeholder="Pseudo here">
+            <input value="<?= set_value('pseudo'); ?>" id="pseudo" type="text" name="pseudo" placeholder="Ex: titlah">
             <span><?= isset($validation) ? display_form_errors($validation, 'pseudo') : ''; ?></span>
         </div>
         <div>
             <label for="password">Mot de passe</label>
-            <input value="<?= set_value('password'); ?>" id="password" type="password" name="password" placeholder="Password here">
+            <input value="<?= set_value('password'); ?>" id="password" type="password" name="password" placeholder="Ex: motdepasse1234">
             <span><?= isset($validation) ? display_form_errors($validation, 'password') : ''; ?></span>
         </div>
         <br>
