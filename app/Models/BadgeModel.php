@@ -4,15 +4,15 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class UserModel extends Model
+class BadgeModel extends Model
 {
-    protected $table            = 'greenshift_greenshift_users';
-    protected $primaryKey       = 'id_user';
+    protected $table            = 'greenshift_badges';
+    protected $primaryKey       = 'id_badge';
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['lastname', 'firstname', 'password', 'pseudo', 'avatar', 'goals', 'points', 'exp', 'level'];
+    protected $allowedFields    = ['title', 'price', 'link'];
 
     protected bool $allowEmptyInserts = false;
 
@@ -45,22 +45,6 @@ class UserModel extends Model
     // 
 
     // Le classement de l'utilisateur amical (ex : 1 parmi ses amis) -> requête SQL
-
-public function getFriendsRanking($id_user) {
-    $builder = $this->db->table('greenshift_goalsrelized as gr');
-    $builder->select('g.id_user, u.firstname, u.lastname, COUNT(gr.id_goalrealised) as total');
-    $builder->join('greenshift_goals as g', 'g.id_goal = gr.fk_goal');
-    $builder->join('greenshift_users as u', 'u.id_user = gr.fk_user');
-    $builder->join('greenshift_relation as r', 'r.fk_userfollowed = u.id_user', 'left');
-    $builder->where('r.fk_user', $id_user);
-    $builder->groupBy('g.id_user, u.firstname, u.lastname');
-    $builder->orderBy('COUNT(gr.id_goalrealised)', 'DESC');
-
-    $query = $builder->get();
-
-    return $query->getResultArray();
-}
-
 
     // Le classement de l'utilisateur mondial (ex : 34 / le nb total d'utilisateur)
 
