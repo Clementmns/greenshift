@@ -7,8 +7,9 @@ namespace App\Libraries;
 class Extension
 {
 
-   public static function encrypt($password)
+   public static function getExtension($imageName)
    {
-      return password_hash($password, PASSWORD_BCRYPT);
+      $pathInfo = pathinfo($imageName);
+      return "." . $pathInfo['extension'];
    }
 }
