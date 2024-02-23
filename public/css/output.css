@@ -594,12 +594,24 @@ video {
   display: block;
 }
 
+.inline-block {
+  display: inline-block;
+}
+
 .table {
   display: table;
 }
 
+.border-collapse {
+  border-collapse: collapse;
+}
+
 .border {
   border-width: 1px;
+}
+
+.border-2 {
+  border-width: 2px;
 }
 
 .text-center {
@@ -609,6 +621,16 @@ video {
 .text-blue-500 {
   --tw-text-opacity: 1;
   color: rgb(59 130 246 / var(--tw-text-opacity));
+}
+
+.text-orange-600 {
+  --tw-text-opacity: 1;
+  color: rgb(234 88 12 / var(--tw-text-opacity));
+}
+
+.text-red-600 {
+  --tw-text-opacity: 1;
+  color: rgb(220 38 38 / var(--tw-text-opacity));
 }
 
 .hover\:text-blue-200:hover {

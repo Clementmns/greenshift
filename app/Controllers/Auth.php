@@ -33,15 +33,17 @@ class Auth extends BaseController
    {
 
       $validated = $this->validate([
-         'firstname' => ['rules' => 'required', 'errors' => ['required' => 'Your full firstname is required',]],
-         'lastname' => ['rules' => 'required', 'errors' => ['required' => 'Your full lastname is required',]],
-         'pseudo' => ['rules' => 'required', 'errors' => ['required' => 'Your full pseudo is required',]],
-         'password' => ['rules' => 'required|min_length[5]|max_length[20]', 'errors' => ['required' => 'Your full password is required', 'min_length' => 'Password must be 5 characters long', 'max_length' => 'Password must be under 20 characters long']],
-         'passwordConf' => ['rules' => 'required|min_length[5]|max_length[20]', 'errors' => ['required' => 'Your full password is required', 'min_length' => 'Password must be 5 characters long', 'max_length' => 'Password must be under 20 characters long', 'matches' => 'Confirm password must match to the password']],
+         'firstname' => ['rules' => 'required', 'errors' => ['required' => 'Le prénom est requis',]],
+         'lastname' => ['rules' => 'required', 'errors' => ['required' => 'Le nom de famille est requis',]],
+         'pseudo' => ['rules' => 'required', 'errors' => ['required' => 'Le pseudo complet est requis',]],
+         'password' => ['rules' => 'required|min_length[5]|max_length[30]', 'errors' => ['required' => 'Le mot de passe est requis', 'min_length' => 'Le mot de passe doit faire au moins 5 charactères', 'max_length' => 'Le mot de passe ne doit pas dépasser 30 charactères']],
+         'passwordConf' => ['rules' => 'required|min_length[5]|max_length[30]', 'errors' => ['required' => 'Le mot de passe est requis', 'min_length' => 'Le mot de passe doit faire au moins 5 charactères', 'max_length' => 'Le mot de passe ne doit pas dépasser 30 charactères', 'matches' => 'Les mots de passe doivent être identiques']],
       ]);
 
       if (!$validated) {
-         return view('auth/register', ['validation' => $this->validator]);
+         echo view('templates/header');
+         echo view('auth/register', ['validation' => $this->validator]);
+         echo view('templates/footer');
       }
 
       $firstname = $this->request->getPost('firstname');
@@ -61,13 +63,6 @@ class Auth extends BaseController
 
       $userModel = new \App\Models\UserModel();
       $query = $userModel->insert($data);
-
-
-      if (!$query) {
-         return redirect()->back()->with('fail', 'Saving user failed');
-      } else {
-         return redirect()->back()->with('success', 'Registered successfully');
-      }
    }
 
    public function loginUser()
@@ -75,12 +70,14 @@ class Auth extends BaseController
       // Validating user input
 
       $validated = $this->validate([
-         'pseudo' => ['rules' => 'required', 'errors' => ['required' => 'Your full pseudo is required',]],
-         'password' => ['rules' => 'required|min_length[5]|max_length[20]', 'errors' => ['required' => 'Your full password is required', 'min_length' => 'Password must be 5 characters long', 'max_length' => 'Password must be under 20 characters long']],
+         'pseudo' => ['rules' => 'required', 'errors' => ['required' => 'Le pseudo complet est requis',]],
+         'password' => ['rules' => 'required|min_length[5]|max_length[30]', 'errors' => ['required' => 'Le mot de passe est requis', 'min_length' => 'Le mot de passe doit faire au moins 5 charactères', 'max_length' => 'Le mot de passe ne doit pas dépasser 30 charactères']],
       ]);
 
       if (!$validated) {
-         return view('auth/login', ['validation' => $this->validator]);
+         echo view('templates/header');
+         echo view('auth/login', ['validation' => $this->validator]);
+         echo view('templates/footer');
       } else {
          // Checking user details in database
 
@@ -91,7 +88,7 @@ class Auth extends BaseController
          $userInfo = $userModel->where('pseudo', $pseudo)->first();
 
          if (!$userInfo) {
-            session()->setFlashdata('fail', 'User not found');
+            session()->setFlashdata('fail', 'Utilisateur introuvable');
             return redirect()->to('auth')->withInput();
          }
 
@@ -99,7 +96,7 @@ class Auth extends BaseController
          $checkPassword = Hash::check($password, $userInfo['password']);
 
          if (!$checkPassword) {
-            session()->setFlashdata('fail', 'Incorrect password provided');
+            session()->setFlashdata('fail', 'Mot de passe incorrect');
             return redirect()->to('auth')->withInput();
          } else {
             // Process user info
@@ -119,40 +116,68 @@ class Auth extends BaseController
       try {
          $loggedInUserId = session()->get('loggedInUser');
 
-         $config['upload_path'] = getcwd() . '/assets/avatar';
-         $imageName = $this->request->getFile('userImage')->getName();
-
-         // if Directory not present then create
-
-         if (!is_dir($config['upload_path'])) {
-            mkdir($config['upload_path'], 0777);
-         }
-
-         // Get image
-
+         // Obtenir l'image
          $img = $this->request->getFile('userImage');
 
-         if (!$img->hasMoved() && $loggedInUserId) {
+         if ($loggedInUserId && $img && $img->isValid() && !$img->hasMoved()) {
 
-            $imageNewName = time() . rand(0, 999999) . Extension::getExtension($imageName);
+            $config['upload_path'] = getcwd() . '/assets/avatar';
+            $imageName = $img->getName();
+            $imageExtension = Extension::getExtension($imageName);
 
-            $img->move($config['upload_path'], $imageNewName);
+            // Si le répertoire n'est pas présent, le créer
+            if (!is_dir($config['upload_path'])) {
+               mkdir($config['upload_path'], 0777);
+            }
 
-            $data = [
-               'avatar' => $imageNewName,
-            ];
-
+            // Récupérer l'ancien nom de fichier depuis la base de données
             $userModel = new UserModel();
-            $userModel->update($loggedInUserId, $data);
+            $oldAvatar = $userModel->find($loggedInUserId)['avatar'];
 
-            return redirect()->to('dashboard')->with('notification', 'Image uploaded successfully');
+            $errors = [];
+
+            // Vérifier si le fichier est une image
+            if (!Extension::verifyExtension($imageExtension)) {
+               return redirect()->to('dashboard')->with('notification', 'Erreur: format non supporté.');
+            }
+
+            // Vérifier si le fichier est une image et la taille est inférieure à 2 Mo
+            if (!in_array($img->getMimeType(), ['image/jpeg', 'image/png'])) {
+               return redirect()->to('dashboard')->with('notification', 'Erreur: fichier non image.');
+            }
+
+            if ($img->getSize() > 2097152) {
+               return redirect()->to('dashboard')->with('notification', 'Erreur: taille du fichier supérieure à 2 Mo.');
+            }
+
+            if (empty($errors)) {
+               // Supprimer l'ancienne image s'il existe
+               if ($oldAvatar && file_exists($config['upload_path'] . '/' . $oldAvatar)) {
+                  unlink($config['upload_path'] . '/' . $oldAvatar);
+               }
+
+               $imageNewName = time() . rand(0, 999999) . Extension::getExtension($imageName);
+
+               $img->move($config['upload_path'], $imageNewName);
+
+               $data = [
+                  'avatar' => $imageNewName,
+               ];
+
+               $userModel->update($loggedInUserId, $data);
+
+               // Utilisez with pour passer la notification lors de la redirection
+               return redirect()->to('dashboard')->with('notification', 'Image correctement importée');
+            }
          } else {
-            return redirect()->to('dashboard')->with('notification', 'Image uploaded failed');
+            return redirect()->to('dashboard')->with('notification', 'Erreur: Fichier non supporté');
          }
       } catch (Exception $e) {
          echo $e->getMessage();
       }
    }
+
+
 
    public function logOut()
    {
