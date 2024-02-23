@@ -257,3 +257,153 @@ INFO - 2024-02-23 08:15:09 --> Session: Class initialized using 'CodeIgniter\Ses
 INFO - 2024-02-23 08:15:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
 INFO - 2024-02-23 08:15:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
 INFO - 2024-02-23 08:15:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-02-23 08:21:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-02-23 08:21:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-02-23 08:24:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-02-23 08:24:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2024-02-23 08:24:12 --> mysqli_sql_exception: Table 'greenshift.greenshift_greenshift_users' doesn't exist in /Applications/MAMP/htdocs/S4/greenshift/system/Database/MySQLi/Connection.php:306
+Stack trace:
+#0 /Applications/MAMP/htdocs/S4/greenshift/system/Database/MySQLi/Connection.php(306): mysqli->query('SELECT *\nFROM `...', 0)
+#1 /Applications/MAMP/htdocs/S4/greenshift/system/Database/BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 /Applications/MAMP/htdocs/S4/greenshift/system/Database/BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 /Applications/MAMP/htdocs/S4/greenshift/system/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 /Applications/MAMP/htdocs/S4/greenshift/system/Model.php(270): CodeIgniter\Database\BaseBuilder->get()
+#5 /Applications/MAMP/htdocs/S4/greenshift/system/BaseModel.php(676): CodeIgniter\Model->doFirst()
+#6 /Applications/MAMP/htdocs/S4/greenshift/app/Controllers/Auth.php(95): CodeIgniter\BaseModel->first()
+#7 /Applications/MAMP/htdocs/S4/greenshift/system/CodeIgniter.php(941): App\Controllers\Auth->loginUser()
+#8 /Applications/MAMP/htdocs/S4/greenshift/system/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+#9 /Applications/MAMP/htdocs/S4/greenshift/system/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 /Applications/MAMP/htdocs/S4/greenshift/public/index.php(79): CodeIgniter\CodeIgniter->run()
+#11 {main}
+CRITICAL - 2024-02-23 08:24:12 --> CodeIgniter\Database\Exceptions\DatabaseException: Table 'greenshift.greenshift_greenshift_users' doesn't exist
+in SYSTEMPATH/Database/BaseConnection.php on line 647.
+ 1 SYSTEMPATH/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `greenshift_greenshift_users`
+WHERE `pseudo` = :pseudo:
+ LIMIT 1', [...], false)
+ 2 SYSTEMPATH/Model.php(270): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH/BaseModel.php(676): CodeIgniter\Model->doFirst()
+ 4 APPPATH/Controllers/Auth.php(95): CodeIgniter\BaseModel->first()
+ 5 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Auth->loginUser()
+ 6 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+ 7 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2024-02-23 08:24:12 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Table 'greenshift.greenshift_greenshift_users' doesn't exist
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 311.
+ 1 SYSTEMPATH/Database/BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `greenshift_greenshift_users`
+WHERE `pseudo` = \'testqsdqsd\'
+ LIMIT 1')
+ 2 SYSTEMPATH/Database/BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `greenshift_greenshift_users`
+WHERE `pseudo` = \'testqsdqsd\'
+ LIMIT 1')
+ 3 SYSTEMPATH/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `greenshift_greenshift_users`
+WHERE `pseudo` = :pseudo:
+ LIMIT 1', [...], false)
+ 4 SYSTEMPATH/Model.php(270): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH/BaseModel.php(676): CodeIgniter\Model->doFirst()
+ 6 APPPATH/Controllers/Auth.php(95): CodeIgniter\BaseModel->first()
+ 7 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Auth->loginUser()
+ 8 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+ 9 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2024-02-23 08:24:12 --> [Caused by] mysqli_sql_exception: Table 'greenshift.greenshift_greenshift_users' doesn't exist
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 306.
+ 1 SYSTEMPATH/Database/MySQLi/Connection.php(306): mysqli->query('SELECT *
+FROM `greenshift_greenshift_users`
+WHERE `pseudo` = \'testqsdqsd\'
+ LIMIT 1', 0)
+ 2 SYSTEMPATH/Database/BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `greenshift_greenshift_users`
+WHERE `pseudo` = \'testqsdqsd\'
+ LIMIT 1')
+ 3 SYSTEMPATH/Database/BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `greenshift_greenshift_users`
+WHERE `pseudo` = \'testqsdqsd\'
+ LIMIT 1')
+ 4 SYSTEMPATH/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `greenshift_greenshift_users`
+WHERE `pseudo` = :pseudo:
+ LIMIT 1', [...], false)
+ 5 SYSTEMPATH/Model.php(270): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH/BaseModel.php(676): CodeIgniter\Model->doFirst()
+ 7 APPPATH/Controllers/Auth.php(95): CodeIgniter\BaseModel->first()
+ 8 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Auth->loginUser()
+ 9 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+10 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+ERROR - 2024-02-23 08:24:20 --> mysqli_sql_exception: Table 'greenshift.greenshift_greenshift_users' doesn't exist in /Applications/MAMP/htdocs/S4/greenshift/system/Database/MySQLi/Connection.php:306
+Stack trace:
+#0 /Applications/MAMP/htdocs/S4/greenshift/system/Database/MySQLi/Connection.php(306): mysqli->query('SELECT *\nFROM `...', 0)
+#1 /Applications/MAMP/htdocs/S4/greenshift/system/Database/BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 /Applications/MAMP/htdocs/S4/greenshift/system/Database/BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 /Applications/MAMP/htdocs/S4/greenshift/system/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 /Applications/MAMP/htdocs/S4/greenshift/system/Model.php(270): CodeIgniter\Database\BaseBuilder->get()
+#5 /Applications/MAMP/htdocs/S4/greenshift/system/BaseModel.php(676): CodeIgniter\Model->doFirst()
+#6 /Applications/MAMP/htdocs/S4/greenshift/app/Controllers/Auth.php(95): CodeIgniter\BaseModel->first()
+#7 /Applications/MAMP/htdocs/S4/greenshift/system/CodeIgniter.php(941): App\Controllers\Auth->loginUser()
+#8 /Applications/MAMP/htdocs/S4/greenshift/system/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+#9 /Applications/MAMP/htdocs/S4/greenshift/system/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 /Applications/MAMP/htdocs/S4/greenshift/public/index.php(79): CodeIgniter\CodeIgniter->run()
+#11 {main}
+CRITICAL - 2024-02-23 08:24:20 --> CodeIgniter\Database\Exceptions\DatabaseException: Table 'greenshift.greenshift_greenshift_users' doesn't exist
+in SYSTEMPATH/Database/BaseConnection.php on line 647.
+ 1 SYSTEMPATH/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `greenshift_greenshift_users`
+WHERE `pseudo` = :pseudo:
+ LIMIT 1', [...], false)
+ 2 SYSTEMPATH/Model.php(270): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH/BaseModel.php(676): CodeIgniter\Model->doFirst()
+ 4 APPPATH/Controllers/Auth.php(95): CodeIgniter\BaseModel->first()
+ 5 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Auth->loginUser()
+ 6 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+ 7 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2024-02-23 08:24:20 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Table 'greenshift.greenshift_greenshift_users' doesn't exist
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 311.
+ 1 SYSTEMPATH/Database/BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `greenshift_greenshift_users`
+WHERE `pseudo` = \'testqsdqsd\'
+ LIMIT 1')
+ 2 SYSTEMPATH/Database/BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `greenshift_greenshift_users`
+WHERE `pseudo` = \'testqsdqsd\'
+ LIMIT 1')
+ 3 SYSTEMPATH/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `greenshift_greenshift_users`
+WHERE `pseudo` = :pseudo:
+ LIMIT 1', [...], false)
+ 4 SYSTEMPATH/Model.php(270): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH/BaseModel.php(676): CodeIgniter\Model->doFirst()
+ 6 APPPATH/Controllers/Auth.php(95): CodeIgniter\BaseModel->first()
+ 7 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Auth->loginUser()
+ 8 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+ 9 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2024-02-23 08:24:20 --> [Caused by] mysqli_sql_exception: Table 'greenshift.greenshift_greenshift_users' doesn't exist
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 306.
+ 1 SYSTEMPATH/Database/MySQLi/Connection.php(306): mysqli->query('SELECT *
+FROM `greenshift_greenshift_users`
+WHERE `pseudo` = \'testqsdqsd\'
+ LIMIT 1', 0)
+ 2 SYSTEMPATH/Database/BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `greenshift_greenshift_users`
+WHERE `pseudo` = \'testqsdqsd\'
+ LIMIT 1')
+ 3 SYSTEMPATH/Database/BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `greenshift_greenshift_users`
+WHERE `pseudo` = \'testqsdqsd\'
+ LIMIT 1')
+ 4 SYSTEMPATH/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `greenshift_greenshift_users`
+WHERE `pseudo` = :pseudo:
+ LIMIT 1', [...], false)
+ 5 SYSTEMPATH/Model.php(270): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH/BaseModel.php(676): CodeIgniter\Model->doFirst()
+ 7 APPPATH/Controllers/Auth.php(95): CodeIgniter\BaseModel->first()
+ 8 SYSTEMPATH/CodeIgniter.php(941): App\Controllers\Auth->loginUser()
+ 9 SYSTEMPATH/CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+10 SYSTEMPATH/CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()

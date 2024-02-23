@@ -41,7 +41,9 @@ class Auth extends BaseController
       ]);
 
       if (!$validated) {
-         return view('auth/register', ['validation' => $this->validator]);
+         echo view('templates/header');
+         echo view('auth/register', ['validation' => $this->validator]);
+         echo view('templates/footer');
       }
 
       $firstname = $this->request->getPost('firstname');
@@ -80,7 +82,9 @@ class Auth extends BaseController
       ]);
 
       if (!$validated) {
-         return view('auth/login', ['validation' => $this->validator]);
+         echo view('templates/header');
+         echo view('auth/login', ['validation' => $this->validator]);
+         echo view('templates/footer');
       } else {
          // Checking user details in database
 
