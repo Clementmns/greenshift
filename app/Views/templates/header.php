@@ -2,12 +2,12 @@
 <html>
 
 <head>
-    <title>Mon application</title>
+    <title>Greenshift</title>
     <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>/css/output.css">
 </head>
 
 <body>
 
-    <h1>Test</h1>
+    <h1>Greenshift</h1>
     <hr>
     <br>

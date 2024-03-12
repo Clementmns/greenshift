@@ -44,21 +44,5 @@ class BadgeModel extends Model
     // Récupération de données
     // 
 
-    // Le classement de l'utilisateur amical (ex : 1 parmi ses amis) -> requête SQL
 
-    // Le classement de l'utilisateur mondial (ex : 34 / le nb total d'utilisateur)
-
-    // L'avatar (lien)
-
-    // Tableau des badges de l'utilisateur (le lien du badge et titre)
-
-    // Le nombre de points de l'utilisateur
-
-    // Le niveau de l'utilisateur
-
-    // L'exp de l'utilisateur
-
-    // Tableau des personnes que l'utilisateur follow
-
-    // Récupérer le tableau JSON de l'avancée des objectifs (greenshift_users->goals)
 }
