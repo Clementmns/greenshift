@@ -12,4 +12,13 @@ class Extension
       $pathInfo = pathinfo($imageName);
       return "." . $pathInfo['extension'];
    }
+
+   public static function verifyExtension($extension)
+   {
+      if ($extension == ".jpg" || $extension == ".jpeg" || $extension == ".png") {
+         return true;
+      } else {
+         return false;
+      }
+   }
 }
