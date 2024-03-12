@@ -10,6 +10,7 @@
 
 <body>
     <h1>Classement de mes amis</h1>
+    <?= $data ?>
 
     <table>
         <thead>
