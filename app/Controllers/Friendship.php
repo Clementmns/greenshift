@@ -15,10 +15,9 @@ class Friendship extends BaseController
         $loggedInUserId = session()->get('loggedInUser');
 
         $userInfo = $userModel->getFriendsRanking($loggedInUserId);
-        $test = 12;
         $data = [
-            $test,
-            $userInfo,
+            "rankingFriend" => $userInfo,
+            "id_user" => $loggedInUserId,
         ];
 
         return view('classement/friend.php', $data);
