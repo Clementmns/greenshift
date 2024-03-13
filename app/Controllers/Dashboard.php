@@ -13,12 +13,12 @@ class Dashboard extends BaseController
         $userModel = new UserModel();
         $loggedInUserId = session()->get('loggedInUser');
         $userInfo = $userModel->find($loggedInUserId);
-
+        $rankingFriend = $userModel->getFriendsRanking($loggedInUserId);
         $data = [
-            'title' => 'Dashboard',
+            "rankingFriend" => $rankingFriend,
+            "id_user" => $loggedInUserId,
             'userInfo' => $userInfo,
         ];
-
 
 
         return view('dashboard/index', $data);

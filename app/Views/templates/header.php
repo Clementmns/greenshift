@@ -8,7 +8,7 @@
     <title>Document</title>
 </head>
 
-<body>
+<body class="bg-gray-100">
     <h1>Greenshift</h1>
     <hr>
     <br>

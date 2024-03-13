@@ -15,10 +15,12 @@ echo view("templates/header");
       <button class="bg-blue-400 text-white p-2 rounded-md" type="submit">Envoyer</button>
    </form>
 </div>
+<?php
+$friends = ["rankingFriend" => $rankingFriend];
+echo view("classement/friend", $friends);
+?>
 <br>
 <div>
-   <p><?= $userInfo['pseudo']; ?></p>
-   <p><?= $userInfo['firstname']; ?></p>
    <a href="<?= site_url('auth/logOut'); ?>">Déconnexion</a>
 </div>
 
