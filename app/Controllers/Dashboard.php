@@ -14,8 +14,10 @@ class Dashboard extends BaseController
         $loggedInUserId = session()->get('loggedInUser');
         $userInfo = $userModel->find($loggedInUserId);
         $rankingFriend = $userModel->getFriendsRanking($loggedInUserId);
+        $rankingWorld = $userModel->getWorldRanking();
         $data = [
             "rankingFriend" => $rankingFriend,
+            "rankingWorld" => $rankingWorld,
             "id_user" => $loggedInUserId,
             'userInfo' => $userInfo,
         ];

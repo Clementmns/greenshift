@@ -1,6 +1,3 @@
-<h1>Classement de mes amis</h1>
-<br>
-
 <table class="w-[20vw]">
 
     <tbody class="flex justify-center items-center flex-col gap-1">

@@ -64,6 +64,18 @@ class UserModel extends Model
 
 
     // Le classement de l'utilisateur mondial (ex : 34 / le nb total d'utilisateur)
+    public function getWorldRanking()
+    {
+        $builder = $this->db->table("greenshift_users");
+
+        $builder->select("greenshift_users.id_user,greenshift_users.firstname, greenshift_users.lastname, greenshift_users.pseudo, greenshift_users.avatar, greenshift_users.points, greenshift_users.exp, greenshift_users.level");
+        $builder->orderBy("greenshift_users.points", "DESC");
+        $builder->distinct();
+
+        $query = $builder->get();
+
+        return $query->getResultArray();
+    }
 
     // L'avatar (lien)
 

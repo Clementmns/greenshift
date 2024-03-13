@@ -15,9 +15,17 @@ echo view("templates/header");
       <button class="bg-blue-400 text-white p-2 rounded-md" type="submit">Envoyer</button>
    </form>
 </div>
+<br>
+<h2>Classement parmi les amis</h2>
 <?php
 $friends = ["rankingFriend" => $rankingFriend];
-echo view("classement/friend", $friends);
+echo view("classement/index", $friends);
+?>
+<br>
+<h2>Classement mondial</h2>
+<?php
+$world = ["rankingFriend" => $rankingWorld];
+echo view("classement/index", $world);
 ?>
 <br>
 <div>
