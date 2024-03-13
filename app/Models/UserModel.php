@@ -48,7 +48,7 @@ class UserModel extends Model
 
     public function getFriendsRanking($id_user)
     {
-        $builder = $this->db->table('greenshift_goalsrelized as gr');
+        $builder = $this->db->table('greenshift_goalsrealised as gr');
         $builder->select('g.id_user, u.firstname, u.lastname, COUNT(gr.id_goalrealised) as total');
         $builder->join('greenshift_goals as g', 'g.id_goal = gr.fk_goal');
         $builder->join('greenshift_users as u', 'u.id_user = gr.fk_user');

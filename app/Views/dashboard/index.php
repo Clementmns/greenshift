@@ -1,6 +1,8 @@
 <?php
 echo view("templates/header");
 ?>
+
+
 <?php if (session()->has('notification')) : ?>
    <div class="alert alert-success"><?= esc(session('notification')) ?></div>
 <?php endif; ?>
@@ -25,6 +27,10 @@ echo view("templates/header");
    session()->getFlashdata('success');
    ?>
 </div>
+
+
+
+
 <?php
 echo view("templates/footer");
 ?>
