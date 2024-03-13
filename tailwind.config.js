@@ -2,11 +2,11 @@
 module.exports = {
    content: ["./app/Views/**/**/*.php", "./public/**/*.php"],
    theme: {
-      extend: {},
-      textColor: theme => theme('colors'),
-      textColor: {
-         'primary': '#62B565',
-      }
+      extend: { 
+         colors: {'primary': '#62B565'},
+   },
+
+    
    },
    plugins: [],
 };
