@@ -1,23 +1,55 @@
+<?php
+echo view("templates/header");
+?>
 <h1>Classement de mes amis</h1>
-<?= $data ?>
 
 <table>
     <thead>
         <tr>
-            <th>ID</th>
+            <th>Pseudo</th>
             <th>Prénom</th>
             <th>Nom</th>
-            <th>Nombre de réalisations</th>
+            <th>Points</th>
         </tr>
     </thead>
     <tbody>
-        <?php foreach ($friends_ranking as $friend) : ?>
-            <tr>
-                <td><?= $friend['id_user'] ?></td>
-                <td><?= $friend['firstname'] ?></td>
-                <td><?= $friend['lastname'] ?></td>
-                <td><?= $friend['total'] ?></td>
-            </tr>
-        <?php endforeach; ?>
+        <?php foreach ($rankingFriend as $friend) : ?>
+            <?php if ($friend['id_user'] == $id_user) { ?>
+                <tr class="bg-primary">
+                    <td><img class="inline-block h-8 w-8 rounded-full ring-2 ring-white object-cover" src="<?= base_url() ?>/assets/avatar/<?= $friend['avatar']; ?>" alt=""></td>
+                    <td><?= $friend['pseudo'] ?></td>
+                    <td><?= $friend['firstname'] ?></td>
+                    <td><?= $friend['lastname'] ?></td>
+                    <td><?= $friend['points'] ?></td>
+                </tr>
+            <?php } else {
+            ?>
+                <tr>
+                    <td><img class="inline-block h-8 w-8 rounded-full ring-2 ring-white object-cover" src="<?= base_url() ?>/assets/avatar/<?= $friend['avatar']; ?>" alt=""></td>
+                    <td><?= $friend['pseudo'] ?></td>
+                    <td><?= $friend['firstname'] ?></td>
+                    <td><?= $friend['lastname'] ?></td>
+                    <td><?= $friend['points'] ?></td>
+                </tr>
+        <?php }
+        endforeach; ?>
     </tbody>
 </table>
+
+<br>
+<div>
+    <a href="<?= site_url('auth/logOut'); ?>">Déconnexion</a>
+</div>
+
+<div>
+    <?=
+    session()->getFlashdata('success');
+    ?>
+</div>
+
+
+
+
+<?php
+echo view("templates/footer");
+?>

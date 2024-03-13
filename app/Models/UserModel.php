@@ -48,14 +48,14 @@ class UserModel extends Model
 
     public function getFriendsRanking($id_user)
     {
-        $builder = $this->db->table('greenshift_goalsrealised as gr');
-        $builder->select('g.id_user, u.firstname, u.lastname, COUNT(gr.id_goalrealised) as total');
-        $builder->join('greenshift_goals as g', 'g.id_goal = gr.fk_goal');
-        $builder->join('greenshift_users as u', 'u.id_user = gr.fk_user');
-        $builder->join('greenshift_relation as r', 'r.fk_userfollowed = u.id_user', 'left');
-        $builder->where('r.fk_user', $id_user);
-        $builder->groupBy('g.id_user, u.firstname, u.lastname');
-        $builder->orderBy('COUNT(gr.id_goalrealised)', 'DESC');
+        $builder = $this->db->table("greenshift_users");
+
+        $builder->select("greenshift_users.id_user,greenshift_users.firstname, greenshift_users.lastname, greenshift_users.pseudo, greenshift_users.avatar, greenshift_users.points, greenshift_users.exp, greenshift_users.level");
+
+        $builder->join("greenshift_relation", "greenshift_users.id_user = greenshift_relation.fk_user", "inner");
+        $builder->where("(greenshift_users.id_user = $id_user OR greenshift_relation.fk_userfollowed = $id_user)", NULL, FALSE);
+        $builder->orderBy("greenshift_users.points", "DESC");
+        $builder->distinct();
 
         $query = $builder->get();
 
