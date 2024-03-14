@@ -8,7 +8,7 @@ echo view("templates/header");
 <?php endif; ?>
 <div>
    <form action="<?= base_url('auth/uploadImage'); ?>" enctype="multipart/form-data" method="post">
-      <img class="inline-block h-16 w-16 rounded-full ring-2 ring-white object-cover" src="<?= base_url() ?>/assets/avatar/<?= $userInfo['avatar']; ?>" alt="">
+      <img class="inline-block h-16 w-16 rounded-full ring-2 ring-white object-cover" src="<?= base_url() ?>assets/avatar/<?= $userInfo['avatar']; ?>" alt="">
       <input type="file" name="userImage">
       <hr>
       <br>

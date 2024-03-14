@@ -45,37 +45,73 @@ class Dashboard extends BaseController
     }
 
     public function validateGoal()
-{
-    $request = service('request');
+    {
+        $request = service('request');
 
-    // Vérifiez si la requête est de type AJAX
-    if ($request->isAJAX()) {
-        $loggedInUserId = session()->get('loggedInUser');
-        $goalId = $request->getVar('goal_id');
+        // Vérifiez si la requête est de type AJAX
+        if ($request->isAJAX()) {
+            $loggedInUserId = session()->get('loggedInUser');
+            $goalId = $request->getVar('goal_id');
 
-        try {
-            // Insérer le nouvel enregistrement dans la table greenshift_goalrealised en utilisant le modèle GoalRealisedModel
-            $goalRealisedModel = new GoalRealisedModel();
-            $goalRealisedModel->addGoalRealised($loggedInUserId, $goalId);
+            try {
+                // Insérer le nouvel enregistrement dans la table greenshift_goalrealised en utilisant le modèle GoalRealisedModel
+                $goalRealisedModel = new GoalRealisedModel();
+                $goalRealisedModel->addGoalRealised($loggedInUserId, $goalId);
 
-            // Récupérer la valeur de l'objectif validé
-            $earning = $goalRealisedModel->getGoalEarning($goalId);
+                // Récupérer la valeur de l'objectif validé
+                $earning = $goalRealisedModel->getGoalEarning($goalId);
 
-            // Mettre à jour les points de l'utilisateur
-            $userModel = new UserModel();
-            $userModel->updatePoints($loggedInUserId, $earning);
+                // Mettre à jour les points de l'utilisateur
+                $userModel = new UserModel();
+                $userModel->updatePoints($loggedInUserId, $earning);
 
-            return $this->response->setJSON(['success' => true]);
-        } catch (\Exception $e) {
-            // Log the exception
-            log_message('error', 'Error in validateGoal(): ' . $e->getMessage());
+                return $this->response->setJSON(['success' => true]);
+            } catch (\Exception $e) {
+                // Log the exception
+                log_message('error', 'Error in validateGoal(): ' . $e->getMessage());
 
-            // Return error response
-            return $this->response->setJSON(['success' => false, 'message' => 'Failed to validate goal.']);
+                // Return error response
+                return $this->response->setJSON(['success' => false, 'message' => 'Failed to validate goal.']);
+            }
         }
+
+        return $this->response->setStatusCode(403);
     }
 
-    return $this->response->setStatusCode(403);
-}
+    public function relation()
+    {
+        $userModel = new UserModel();
+        $loggedInUserId = session()->get('loggedInUser');
+        $userInfo = $userModel->find($loggedInUserId);
 
+        if ($this->request->isAJAX()) {
+            $people = strval($this->request->getGet('search'));
+            $users = $userModel->searchUsers($people, $loggedInUserId);
+            return $this->response->setJSON($users);
+        }
+
+        $data = [
+            'userInfo' => $userInfo,
+        ];
+
+        return view('relation/search', $data);
+    }
+
+
+    public  function relationView()
+    {
+        $userModel = new UserModel();
+        $loggedInUserId = session()->get('loggedInUser');
+        $userInfo = $userModel->find($loggedInUserId);
+        if ($this->request->isAJAX()) {
+            $people = $this->request->getGet('data');
+        }
+
+        $data = [
+            'userInfo' => $userInfo,
+            'people' => $people,
+        ];
+
+        return view("classement/searchFriend", $data);
+    }
 }
