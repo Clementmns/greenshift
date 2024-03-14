@@ -9,15 +9,15 @@
             if ($friend['id_user'] == $id_user) { ?>
                 <tr class="bg-primary-50 flex h-16 w-full justify-between rounded-md ring-inset ring-2 ring-primary-500 items-center">
                     <td <?php if ($n == 1) {
-                            echo 'class="text-yellow-500 ml-2 ring-2 w-6 ring-inset ring-yellow-500 rounded-full h-6 flex justify-center items-center m-0 p-0 w-[10%]"';
+                            echo 'class="text-yellow-500 ml-2 ring-2 w-8 ring-inset ring-yellow-500 rounded-full h-8 flex justify-center items-center m-0 p-0 w-[10%]"';
                         }
                         if ($n == 2) {
-                            echo 'class="text-zinc-500 ml-2 ring-2 w-6 ring-inset ring-zinc-500 rounded-full h-6 flex justify-center items-center m-0 p-0 w-[10%]"';
+                            echo 'class="text-zinc-500 ml-2 ring-2 w-8 ring-inset ring-zinc-500 rounded-full h-8 flex justify-center items-center m-0 p-0 w-[10%]"';
                         }
                         if ($n == 3) {
-                            echo 'class="text-amber-800 ml-2 ring-2 w-6 ring-inset ring-amber-800 rounded-full h-6 h-full flex justify-center items-center m-0 p-0 w-[10%]"';
+                            echo 'class="text-amber-800 ml-2 ring-2 w-8 ring-inset ring-amber-800 rounded-full h-8 flex justify-center items-center m-0 p-0 w-[10%]"';
                         } else {
-                            echo 'class="ml-2 w-6 rounded-full h-6 h-full flex justify-center items-center m-0 p-0 w-[10%]"';
+                            echo 'class="ml-2 w-8 rounded-full h-8 h-full flex justify-center items-center m-0 p-0 w-[10%]"';
                         } ?>>
                         <?= $n ?>
                     </td>
@@ -41,15 +41,15 @@
             ?>
                 <tr class="bg-white flex h-16 w-full justify-between items-center rounded-md ring-2 ring-inset ring-gray-200">
                     <td <?php if ($n == 1) {
-                            echo 'class="text-yellow-500 ml-2 ring-2 w-6 ring-inset ring-yellow-500 rounded-full h-6 flex justify-center items-center m-0 p-0 w-[10%]"';
+                            echo 'class="text-yellow-500 ml-2 ring-2 w-8 ring-inset ring-yellow-500 rounded-full h-8 flex justify-center items-center m-0 p-0 w-[10%]"';
                         }
                         if ($n == 2) {
-                            echo 'class="text-zinc-500 ml-2 ring-2 w-6 ring-inset ring-zinc-500 rounded-full h-6 flex justify-center items-center m-0 p-0 w-[10%]"';
+                            echo 'class="text-zinc-500 ml-2 ring-2 w-8 ring-inset ring-zinc-500 rounded-full h-8 flex justify-center items-center m-0 p-0 w-[10%]"';
                         }
                         if ($n == 3) {
-                            echo 'class="text-amber-800 ml-2 ring-2 w-6 ring-inset ring-amber-800 rounded-full h-6 h-full flex justify-center items-center m-0 p-0 w-[10%]"';
+                            echo 'class="text-amber-800 ml-2 ring-2 w-8 ring-inset ring-amber-800 rounded-full h-8 flex justify-center items-center m-0 p-0 w-[10%]"';
                         } else {
-                            echo 'class="ml-2 w-6 rounded-full h-6 h-full flex justify-center items-center m-0 p-0 w-[10%]"';
+                            echo 'class="ml-2 w-8 rounded-full h-8 h-full flex justify-center items-center m-0 p-0 w-[10%]"';
                         } ?>>
                         <?= $n ?>
                     </td>
