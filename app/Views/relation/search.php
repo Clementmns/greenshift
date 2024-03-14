@@ -55,11 +55,6 @@
                search.empty();
             }, 100);
          }
-         if ($(".search").on("focusout", function() {
-               setTimeout(() => {
-                  search.empty();
-               }, 50);
-            }));
       });
    });
 </script>

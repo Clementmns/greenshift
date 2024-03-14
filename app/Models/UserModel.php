@@ -50,10 +50,9 @@ class UserModel extends Model
     {
         $builder = $this->db->table("greenshift_users");
 
-        $builder->select("greenshift_users.id_user,greenshift_users.firstname, greenshift_users.lastname, greenshift_users.pseudo, greenshift_users.avatar, greenshift_users.points, greenshift_users.exp, greenshift_users.level");
-
-        $builder->join("greenshift_relation", "greenshift_users.id_user = greenshift_relation.fk_user", "inner");
-        $builder->where("(greenshift_users.id_user = $id_user OR greenshift_relation.fk_userfollowed = $id_user)", NULL, FALSE);
+        $builder->select("id_user, firstname, lastname, greenshift_users.pseudo, greenshift_users.avatar, greenshift_users.points, greenshift_users.exp, greenshift_users.level");
+        $builder->join("greenshift_relation", "greenshift_users.id_user = greenshift_relation.fk_user OR greenshift_users.id_user = greenshift_relation.fk_userfollowed", "inner");
+        $builder->where("(greenshift_relation.fk_user = $id_user OR greenshift_relation.fk_userfollowed = $id_user)");
         $builder->orderBy("greenshift_users.points", "DESC");
         $builder->distinct();
 
@@ -61,6 +60,7 @@ class UserModel extends Model
 
         return $query->getResultArray();
     }
+
 
 
     // Le classement de l'utilisateur mondial (ex : 34 / le nb total d'utilisateur)
@@ -82,7 +82,7 @@ class UserModel extends Model
     {
         // Exécuter la requête de recherche des utilisateurs
         $builder = $this->db->table('greenshift_users');
-        $builder->select('id_user, pseudo, avatar, level');
+        $builder->select('id_user, firstname, lastname, greenshift_users.pseudo, greenshift_users.avatar, greenshift_users.points, greenshift_users.exp, greenshift_users.level');
         $builder->where("id_user !=", $id_user);
         $builder->groupStart(); // Début des conditions groupées
         $builder->like('pseudo', $searchTerm, 'both');

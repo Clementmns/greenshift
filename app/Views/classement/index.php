@@ -6,7 +6,7 @@
         foreach ($rankingFriend as $friend) : ?>
             <?php
 
-            if ($friend['id_user'] == $id_user) { ?>
+            if ($friend['id_user'] == $userInfo['id_user']) { ?>
                 <tr class="bg-primary-50 flex h-16 w-full justify-between rounded-md ring-inset ring-2 ring-primary-500 items-center gap-4">
                     <td <?php if ($n == 1) {
                             echo 'class="text-yellow-500 ml-2 ring-2 min-w-8 w-8 ring-inset ring-yellow-500 rounded-full min-h-8 h-8 flex justify-center items-center m-0 p-0 w-[10%]"';
