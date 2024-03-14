@@ -44,10 +44,10 @@
 
                     </div>
                     <div class="mt-10 self-center">
-                        <button class="bg-primary text-white p-2 rounded-md">Connexion</button>
+                        <button class="bg-primary-500 text-white p-2 rounded-md">Connexion</button>
                     </div>
                 </form>
-                <p>Vous n'avez toujours pas de compte ? <a class="text-primary" href="<?= base_url('auth/register'); ?>">Inscription</a></p>
+                <p>Vous n'avez toujours pas de compte ? <a class="text-primary-500" href="<?= base_url('auth/register'); ?>">Inscription</a></p>
             </div>
         </div>
 
