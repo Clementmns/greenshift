@@ -77,17 +77,8 @@ class UserModel extends Model
         return $query->getResultArray();
     }
 
-    // L'avatar (lien)
-
     // Tableau des badges de l'utilisateur (le lien du badge et titre)
 
-    // Le nombre de points de l'utilisateur
-
-    // Le niveau de l'utilisateur
-
-    // L'exp de l'utilisateur
 
     // Tableau des personnes que l'utilisateur follow
-
-    // Récupérer le tableau JSON de l'avancée des objectifs (greenshift_users->goals)
 }
