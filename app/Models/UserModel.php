@@ -83,7 +83,10 @@ class UserModel extends Model
         $builder = $this->db->table('greenshift_users');
 
         $builder->select('id_user, pseudo, avatar, level');
-        $builder->like('pseudo', $searchTerm, 'left');
+        $builder->like('pseudo', $searchTerm, 'both');
+        $builder->orLike('firstname', $searchTerm, 'both');
+        $builder->orLike('lastname', $searchTerm, 'both');
+
         $builder->where("id_user != $id_user");
         $builder->distinct();
 
