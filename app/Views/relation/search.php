@@ -1,6 +1,3 @@
-<?php
-echo view("templates/header");
-?>
 <ul>
    <form>
       <label for="search">Rechercher :</label>
@@ -9,12 +6,6 @@ echo view("templates/header");
 
 
    <div id="result"></div>
-
-
-
-
-
-
 </ul>
 
 <script>
@@ -72,7 +63,3 @@ echo view("templates/header");
       });
    });
 </script>
-
-<?php
-echo view("templates/footer");
-?>

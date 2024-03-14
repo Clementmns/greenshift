@@ -80,31 +80,24 @@ class UserModel extends Model
     // Suggestions des relations
     public function searchUsers($searchTerm, $id_user)
     {
-        // Récupérer le prénom et le nom de famille de l'utilisateur en cours
-        $userData = $this->select('firstname, lastname')->where('id_user', $id_user)->findAll();
-
-        // Vérifier si des données utilisateur ont été trouvées
-        // Extraire le prénom et le nom de famille
-        $firstname = $userData[0]['firstname'];
-        $lastname = $userData[0]['lastname'];
-
-        // Retourner un tableau associatif contenant le prénom et le nom de famille
-
-
-
         // Exécuter la requête de recherche des utilisateurs
         $builder = $this->db->table('greenshift_users');
         $builder->select('id_user, pseudo, avatar, level');
+        $builder->where("id_user !=", $id_user);
+        $builder->groupStart(); // Début des conditions groupées
         $builder->like('pseudo', $searchTerm, 'both');
         $builder->orLike('firstname', $searchTerm, 'both');
         $builder->orLike('lastname', $searchTerm, 'both');
+        $builder->groupEnd(); // Fin des conditions groupées
 
-
-        $builder->where("id_user != $id_user AND firstname != '$firstname' AND lastname != '$lastname'");
-        $builder->distinct();
         $query = $builder->get();
         return $query->getResultArray();
     }
+
+
+
+
+
 
 
     // Récupérer le tableau JSON de l'avancée des objectifs (greenshift_users->goals)
