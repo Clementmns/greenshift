@@ -43,4 +43,41 @@ class Dashboard extends BaseController
 
         return view('goals/goalsweek', $data);
     }
+
+    public function relation()
+    {
+        $userModel = new UserModel();
+        $loggedInUserId = session()->get('loggedInUser');
+        $userInfo = $userModel->find($loggedInUserId);
+
+        if ($this->request->isAJAX()) {
+            $people = strval($this->request->getGet('search'));
+            $users = $userModel->searchUsers($people, $loggedInUserId);
+            return $this->response->setJSON($users);
+        }
+
+        $data = [
+            'userInfo' => $userInfo,
+        ];
+
+        return view('relation/search', $data);
+    }
+
+
+    public  function relationView()
+    {
+        $userModel = new UserModel();
+        $loggedInUserId = session()->get('loggedInUser');
+        $userInfo = $userModel->find($loggedInUserId);
+        if ($this->request->isAJAX()) {
+            $people = $this->request->getGet('data');
+        }
+
+        $data = [
+            'userInfo' => $userInfo,
+            'people' => $people,
+        ];
+
+        return view("classement/searchFriend", $data);
+    }
 }

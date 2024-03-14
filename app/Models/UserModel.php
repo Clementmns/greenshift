@@ -77,6 +77,21 @@ class UserModel extends Model
         return $query->getResultArray();
     }
 
+    // Suggestions des relations
+    public function searchUsers($searchTerm, $id_user)
+    {
+        $builder = $this->db->table('greenshift_users');
+
+        $builder->select('id_user, pseudo, avatar, level');
+        $builder->like('pseudo', $searchTerm, 'left');
+        $builder->where("id_user != $id_user");
+        $builder->distinct();
+
+        $query = $builder->get();
+
+        return $query->getResultArray();
+    }
+
     // Tableau des badges de l'utilisateur (le lien du badge et titre)
 
 
