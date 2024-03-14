@@ -22,7 +22,7 @@
                         <?= $n ?>
                     </td>
                     <td class="items-center flex justify-center w-12">
-                        <img class="inline-block h-8 !w-8 rounded-full ring-2 ring-inset ring-white object-cover" src="<?= base_url() ?>/assets/avatar/<?= $friend['avatar']; ?>" alt="">
+                        <img class="inline-block h-8 !w-8 rounded-full ring-2 ring-inset ring-white object-cover" src="<?= base_url() ?>assets/avatar/<?= $friend['avatar']; ?>" alt="">
                     </td>
                     <td class="items-center flex justify-left w-24">
                         <div>
@@ -54,7 +54,7 @@
                         <?= $n ?>
                     </td>
                     <td class="items-center flex justify-center w-12">
-                        <img class="inline-block h-8 !w-8 rounded-full ring-2 ring-white ring-inset object-cover" src="<?= base_url() ?>/assets/avatar/<?= $friend['avatar']; ?>" alt="">
+                        <img class="inline-block h-8 !w-8 rounded-full ring-2 ring-white ring-inset object-cover" src="<?= base_url() ?>assets/avatar/<?= $friend['avatar']; ?>" alt="">
                     </td>
                     <td class="items-center flex justify-left w-24">
                         <div>
