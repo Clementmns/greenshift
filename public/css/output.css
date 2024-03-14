@@ -622,6 +622,10 @@ video {
   height: 1rem;
 }
 
+.h-6 {
+  height: 1.5rem;
+}
+
 .h-8 {
   height: 2rem;
 }
@@ -662,8 +666,8 @@ video {
   width: 1rem;
 }
 
-.w-8 {
-  width: 2rem;
+.w-6 {
+  width: 1.5rem;
 }
 
 .w-\[10\%\] {
@@ -694,8 +698,6 @@ video {
   width: 100vw;
 }
 
-<<<<<<< HEAD
-=======
 .w-8 {
   width: 2rem;
 }
@@ -772,7 +774,6 @@ video {
   min-width: 9rem !important;
 }
 
->>>>>>> 63ab05dfff5e5adc4c1acd6b4f97ddfbd1fe1922
 .flex-col {
   flex-direction: column;
 }
