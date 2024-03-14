@@ -80,39 +80,46 @@ class UserModel extends Model
     // Suggestions des relations
     public function searchUsers($searchTerm, $id_user)
     {
-        $builder = $this->db->table('greenshift_users');
+        // Récupérer le prénom et le nom de famille de l'utilisateur en cours
+        $userData = $this->select('firstname, lastname')->where('id_user', $id_user)->findAll();
 
+        // Vérifier si des données utilisateur ont été trouvées
+        // Extraire le prénom et le nom de famille
+        $firstname = $userData[0]['firstname'];
+        $lastname = $userData[0]['lastname'];
+
+        // Retourner un tableau associatif contenant le prénom et le nom de famille
+
+
+
+        // Exécuter la requête de recherche des utilisateurs
+        $builder = $this->db->table('greenshift_users');
         $builder->select('id_user, pseudo, avatar, level');
         $builder->like('pseudo', $searchTerm, 'both');
         $builder->orLike('firstname', $searchTerm, 'both');
         $builder->orLike('lastname', $searchTerm, 'both');
 
-        $builder->where("id_user != $id_user");
+
+        $builder->where("id_user != $id_user AND firstname != '$firstname' AND lastname != '$lastname'");
         $builder->distinct();
-
         $query = $builder->get();
-
         return $query->getResultArray();
     }
 
-    // Tableau des badges de l'utilisateur (le lien du badge et titre)
-
-
-    // Tableau des personnes que l'utilisateur follow
 
     // Récupérer le tableau JSON de l'avancée des objectifs (greenshift_users->goals)
     public function updatePoints($userId, $earning)
     {
-        $currentUserPoints = $this->db->table('user')
-                                       ->select('points')
-                                       ->where('id_user', $userId)
-                                       ->get()
-                                       ->getRowArray()['points'];
+        $currentUserPoints = $this->db->table('greenshift_users')
+            ->select('points')
+            ->where('id_user', $userId)
+            ->get()
+            ->getRowArray()['points'];
 
         $newPoints = $currentUserPoints + $earning;
 
-        return $this->db->table('user')
-                        ->where('id_user', $userId)
-                        ->update(['points' => $newPoints]);
+        return $this->db->table('greenshift_users')
+            ->where('id_user', $userId)
+            ->update(['points' => $newPoints]);
     }
 }
