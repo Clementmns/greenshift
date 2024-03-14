@@ -3,19 +3,19 @@ echo view("templates/header");
 ?>
 <h2>Your Goals for This Week:</h2>
 <ul>
-   <?php foreach ($goals as $goal) : ?>
-      <li class="flex">
-         <?= esc($goal['title']) ?> - <?= esc($goal['description']) ?> - <img class="h-4 w-4" src="<?= base_url() ?>/assets/icons/coin.png" alt=""> <?= esc($goal['earning']) ?>
- 
-         <button class="bg-primary-500 validate-goal" data-goal="<?= esc($goal['id_goal']) ?>">valider</button>
-      </li>
-   <?php endforeach; ?>
+    <?php foreach ($goals as $goal) : ?>
+        <li class="flex">
+            <?= esc($goal['title']) ?> - <?= esc($goal['description']) ?> - <img class="h-4 w-4" src="<?= base_url() ?>/assets/icons/coin.png" alt=""> <?= esc($goal['earning']) ?>
+
+            <button class="bg-primary-500 validate-goal" data-goal="<?= esc($goal['id_goal']) ?>">valider</button>
+        </li>
+    <?php endforeach; ?>
 </ul>
 
 <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
 <script>
-    $(document).ready(function(){
-        $('.validate-goal').click(function(){
+    $(document).ready(function() {
+        $('.validate-goal').click(function() {
             var button = $(this); // Stockez une référence au bouton
 
             // Vérifiez si le bouton est déjà désactivé
@@ -24,13 +24,15 @@ echo view("templates/header");
                 $.ajax({
                     type: 'get',
                     url: '<?php echo base_url('dashboard/validateGoal'); ?>',
-                    data: {goal_id: goalId},
-                    success:function(response){
+                    data: {
+                        goal_id: goalId
+                    },
+                    success: function(response) {
                         console.log(response)
                         // Si l'insertion réussit, affichez un message de succès ou effectuez toute autre action nécessaire
-                        if(response.success) {
+                        if (response.success) {
                             alert('Goal validated successfully.');
-                            
+
                             // Désactivez le bouton
                             button.addClass('disabled');
                             button.prop('disabled', true);
@@ -38,11 +40,12 @@ echo view("templates/header");
                             // Mettre à jour les points de l'utilisateur
                             $.ajax({
                                 type: 'post',
-                                url: '<?php echo base_url('dashboard/updatePoints'); ?>',
-                                data: {goal_id: goalId},
-                                success:function(response){
-                                    console.log(response);
-                                    // Afficher un message ou effectuer toute autre action nécessaire après la mise à jour des points
+                                url: '',
+                                data: {
+                                    goal_id: goalId
+                                },
+                                success: function(response) {
+
                                 }
                             });
                         } else {
