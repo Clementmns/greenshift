@@ -16,9 +16,19 @@ echo view("templates/header");
    </form>
 </div>
 <br>
+<h2>Classement parmi les amis</h2>
+<?php
+$friends = ["rankingFriend" => $rankingFriend];
+echo view("classement/index", $friends);
+?>
+<br>
+<h2>Classement mondial</h2>
+<?php
+$world = ["rankingFriend" => $rankingWorld];
+echo view("classement/index", $world);
+?>
+<br>
 <div>
-   <p><?= $userInfo['pseudo']; ?></p>
-   <p><?= $userInfo['firstname']; ?></p>
    <a href="<?= site_url('auth/logOut'); ?>">Déconnexion</a>
 </div>
 

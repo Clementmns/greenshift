@@ -8,4 +8,5 @@ use CodeIgniter\Router\RouteCollection;
 
 $routes->group('', ['filter' => 'AuthCheck'], function ($routes) {
    $routes->get('/dashboard', 'Dashboard::index');
+   $routes->get('/dashboard/goals', 'Dashboard::goals');
 });

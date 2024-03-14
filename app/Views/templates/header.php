@@ -1,13 +1,14 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="fr">
 
 <head>
-    <title>Greenshift</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>/css/output.css">
+    <title>Document</title>
 </head>
 
-<body>
-
+<body class="bg-gray-100">
     <h1>Greenshift</h1>
     <hr>
     <br>
