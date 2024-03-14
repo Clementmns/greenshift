@@ -75,8 +75,9 @@ class Dashboard extends BaseController
             }
         }
 
-        return $this->response->setStatusCode(403);
-    }
+    return $this->response->setStatusCode(403);
+}
+
 
     public function relation()
     {

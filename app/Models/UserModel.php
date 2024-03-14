@@ -101,4 +101,18 @@ class UserModel extends Model
     // Tableau des personnes que l'utilisateur follow
 
     // Récupérer le tableau JSON de l'avancée des objectifs (greenshift_users->goals)
+    public function updatePoints($userId, $earning)
+    {
+        $currentUserPoints = $this->db->table('user')
+                                       ->select('points')
+                                       ->where('id_user', $userId)
+                                       ->get()
+                                       ->getRowArray()['points'];
+
+        $newPoints = $currentUserPoints + $earning;
+
+        return $this->db->table('user')
+                        ->where('id_user', $userId)
+                        ->update(['points' => $newPoints]);
+    }
 }
