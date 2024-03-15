@@ -14,6 +14,8 @@ class GoalRealisedModel extends Model
     protected $protectFields    = true;
     protected $allowedFields    = ['fk_user', 'fk_goal'];
 
+
+
     // Méthode pour insérer un nouvel enregistrement dans la table greenshift_goalrealised
     public function addGoalRealised($userId, $goalId)
     {
@@ -44,4 +46,18 @@ class GoalRealisedModel extends Model
             ->get()
             ->getRowArray()['earning'];
     }
+
+    public function goalsRealised($userId)
+    {
+        $builder = $this->db->table('greenshift_goalsrealised');
+        $builder->select('greenshift_goalsrealised.fk_goal, greenshift_goals.week, greenshift_goals.year, greenshift_goals.title, greenshift_goals.description, greenshift_goals.earning, greenshift_goals.num_goal');
+        $builder->join('greenshift_goals', 'greenshift_goals.id_goal = greenshift_goalsrealised.fk_goal');
+        $builder->where('greenshift_goalsrealised.fk_user', $userId);
+        $builder->distinct();
+    
+        $query = $builder->get();
+    
+        return $query->getResultArray();
+    }
+    
 }
