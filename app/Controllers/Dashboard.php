@@ -16,6 +16,10 @@ class Dashboard extends BaseController
         $loggedInUserId = session()->get('loggedInUser');
         $userInfo = $userModel->find($loggedInUserId);
         $rankingFriend = $userModel->getFriendsRanking($loggedInUserId);
+
+        if (empty($rankingFriend)) {
+            $rankingFriend = [$userInfo];
+        }
         $rankingWorld = $userModel->getWorldRanking();
         $goalModel = new GoalModel();
         $goals = $goalModel->getWeekGoals();
@@ -46,12 +50,12 @@ class Dashboard extends BaseController
 
         $goalRealisedModel = new GoalRealisedModel();
         $goalsRealised = $goalRealisedModel->goalsRealised($loggedInUserId);
-        
+
 
         $data = [
             'userInfo' => $userInfo,
             'goals' => $goals,
-            'goalsRealised' =>$goalsRealised,
+            'goalsRealised' => $goalsRealised,
         ];
 
         return view('goals/goalsweek', $data);
