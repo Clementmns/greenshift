@@ -46,21 +46,22 @@ class UserModel extends Model
 
     // Le classement de l'utilisateur amical (ex : 1 parmi ses amis) -> requête SQL
 
-    public function getFriendsRanking($id_user)
-    {
-        $builder = $this->db->table('greenshift_goalsrealised as gr');
-        $builder->select('g.id_user, u.firstname, u.lastname, COUNT(gr.id_goalrealised) as total');
-        $builder->join('greenshift_goals as g', 'g.id_goal = gr.fk_goal');
-        $builder->join('greenshift_users as u', 'u.id_user = gr.fk_user');
-        $builder->join('greenshift_relation as r', 'r.fk_userfollowed = u.id_user', 'left');
-        $builder->where('r.fk_user', $id_user);
-        $builder->groupBy('g.id_user, u.firstname, u.lastname');
-        $builder->orderBy('COUNT(gr.id_goalrealised)', 'DESC');
 
-        $query = $builder->get();
+}   public function getFriendsRanking($id_user)
+{
+    $builder = $this->db->table('greenshift_goalsrealised');
+    $builder->select('greenshift_goals.id_user, greenshift_users.firstname, greenshift_users.lastname, COUNT(greenshift_goalsrealised.id_goalrealised) as total');
+    $builder->join('greenshift_goals', 'greenshift_goals.id_goal = greenshift_goalsrealised.fk_goal');
+    $builder->join('greenshift_users', 'greenshift_users.id_user = greenshift_goalsrealised.fk_user');
+    $builder->join('greenshift_relation', 'greenshift_relation.fk_userfollowed = greenshift_users.id_user', 'left');
+    $builder->where('greenshift_relation.fk_user', $id_user);
+    $builder->groupBy('greenshift_goals.id_user, greenshift_users.firstname, greenshift_users.lastname');
+    $builder->orderBy('COUNT(greenshift_goalsrealised.id_goalrealised)', 'DESC');
 
-        return $query->getResultArray();
-    }
+    $query = $builder->get();
+
+    return $query->getResultArray();
+
 
 
     // Le classement de l'utilisateur mondial (ex : 34 / le nb total d'utilisateur)
