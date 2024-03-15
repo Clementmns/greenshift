@@ -12,7 +12,7 @@ class GoalModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['week', 'year', 'title', 'description', 'earning', 'num_goal'];
+    protected $allowedFields    = ['week', 'year', 'title', 'description', 'earning'];
 
     protected bool $allowEmptyInserts = false;
 

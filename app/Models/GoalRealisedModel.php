@@ -50,14 +50,13 @@ class GoalRealisedModel extends Model
     public function goalsRealised($userId)
     {
         $builder = $this->db->table('greenshift_goalsrealised');
-        $builder->select('greenshift_goalsrealised.fk_goal, greenshift_goals.week, greenshift_goals.year, greenshift_goals.title, greenshift_goals.description, greenshift_goals.earning, greenshift_goals.num_goal');
+        $builder->select('greenshift_goalsrealised.fk_goal, greenshift_goals.week, greenshift_goals.year, greenshift_goals.title, greenshift_goals.description, greenshift_goals.earning');
         $builder->join('greenshift_goals', 'greenshift_goals.id_goal = greenshift_goalsrealised.fk_goal');
         $builder->where('greenshift_goalsrealised.fk_user', $userId);
         $builder->distinct();
-    
+
         $query = $builder->get();
-    
+
         return $query->getResultArray();
     }
-    
 }
