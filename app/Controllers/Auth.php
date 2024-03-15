@@ -28,6 +28,30 @@ class Auth extends BaseController
    public function registerUser()
    {
 
+      function avatarGenerator($character)
+      {
+         $imageName = time() . rand(0, 999999) . ".png";
+         $path = getcwd() . '/assets/avatar/' .  $imageName;
+         $image = imagecreate(200, 200);
+
+         $red = rand(0, 255);
+         $green = rand(0, 255);
+         $blue = rand(0, 255);
+
+         imagecolorallocate($image, $red, $green, $blue);
+
+         $textcolor = imagecolorallocate($image, 255, 255, 255);
+
+         imagettftext($image, 100, 0, 55, 150, $textcolor, getcwd() . '/font/Arial.ttf', $character);
+
+         header('Content-type: image/png');
+
+         imagepng($image, $path);
+         imagedestroy($image);
+
+         return $imageName;
+      }
+
       $validated = $this->validate([
          'firstname' => ['rules' => 'required', 'errors' => ['required' => 'Le prénom est requis',]],
          'lastname' => ['rules' => 'required', 'errors' => ['required' => 'Le nom de famille est requis',]],
@@ -46,11 +70,15 @@ class Auth extends BaseController
       $password = $this->request->getPost('password');
       $passwordConf = $this->request->getPost('passwordConf');
 
+      $initials = substr($firstname[0], 0, 1);
+
+
       $data = [
          'firstname' => $firstname,
          'lastname' => $lastname,
          'pseudo' => $pseudo,
-         'password' => Hash::encrypt($password)
+         'password' => Hash::encrypt($password),
+         'avatar' => avatarGenerator($initials),
       ];
 
       // Storing data
@@ -58,7 +86,7 @@ class Auth extends BaseController
       $userModel = new \App\Models\UserModel();
       $query = $userModel->insert($data);
 
-      return redirect()->to('dashboard');
+      return redirect()->to('/dashboard');
    }
 
    public function loginUser()

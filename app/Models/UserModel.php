@@ -47,16 +47,16 @@ class UserModel extends Model
     // Le classement de l'utilisateur amical (ex : 1 parmi ses amis) -> requête SQL
 
 
-}   public function getFriendsRanking($id_user)
-{
-    $builder = $this->db->table('greenshift_goalsrealised');
-    $builder->select('greenshift_goals.id_user, greenshift_users.firstname, greenshift_users.lastname, COUNT(greenshift_goalsrealised.id_goalrealised) as total');
-    $builder->join('greenshift_goals', 'greenshift_goals.id_goal = greenshift_goalsrealised.fk_goal');
-    $builder->join('greenshift_users', 'greenshift_users.id_user = greenshift_goalsrealised.fk_user');
-    $builder->join('greenshift_relation', 'greenshift_relation.fk_userfollowed = greenshift_users.id_user', 'left');
-    $builder->where('greenshift_relation.fk_user', $id_user);
-    $builder->groupBy('greenshift_goals.id_user, greenshift_users.firstname, greenshift_users.lastname');
-    $builder->orderBy('COUNT(greenshift_goalsrealised.id_goalrealised)', 'DESC');
+}
+    public function getFriendsRanking($id_user)
+    {
+        $builder = $this->db->table("greenshift_users");
+
+        $builder->select("id_user, firstname, lastname, greenshift_users.pseudo, greenshift_users.avatar, greenshift_users.points, greenshift_users.exp, greenshift_users.level");
+        $builder->join("greenshift_relation", "greenshift_users.id_user = greenshift_relation.fk_user OR greenshift_users.id_user = greenshift_relation.fk_userfollowed", "inner");
+        $builder->where("(greenshift_relation.fk_user = $id_user OR greenshift_relation.fk_userfollowed = $id_user)");
+        $builder->orderBy("greenshift_users.points", "DESC");
+        $builder->distinct();
 
     $query = $builder->get();
 
@@ -64,19 +64,85 @@ class UserModel extends Model
 
 
 
+
     // Le classement de l'utilisateur mondial (ex : 34 / le nb total d'utilisateur)
+    public function getWorldRanking()
+    {
+        $builder = $this->db->table("greenshift_users");
 
-    // L'avatar (lien)
+        $builder->select("greenshift_users.id_user,greenshift_users.firstname, greenshift_users.lastname, greenshift_users.pseudo, greenshift_users.avatar, greenshift_users.points, greenshift_users.exp, greenshift_users.level");
+        $builder->orderBy("greenshift_users.points", "DESC");
+        $builder->distinct();
 
-    // Tableau des badges de l'utilisateur (le lien du badge et titre)
+        $query = $builder->get();
 
-    // Le nombre de points de l'utilisateur
+        return $query->getResultArray();
+    }
 
-    // Le niveau de l'utilisateur
+    // Suggestions des relations
+    public function searchUsers($searchTerm, $id_user)
+    {
+        // Exécuter la requête de recherche des utilisateurs
+        $builder = $this->db->table('greenshift_users');
+        $builder->select('id_user, firstname, lastname, greenshift_users.pseudo, greenshift_users.avatar, greenshift_users.points, greenshift_users.exp, greenshift_users.level');
+        $builder->where("id_user !=", $id_user);
+        $builder->groupStart(); // Début des conditions groupées
+        $builder->like('pseudo', $searchTerm, 'both');
+        $builder->orLike('firstname', $searchTerm, 'both');
+        $builder->orLike('lastname', $searchTerm, 'both');
+        $builder->groupEnd(); // Fin des conditions groupées
 
-    // L'exp de l'utilisateur
 
-    // Tableau des personnes que l'utilisateur follow
+    // Le classement de l'utilisateur mondial (ex : 34 / le nb total d'utilisateur)
+    public function getWorldRanking()
+    {
+        $builder = $this->db->table("greenshift_users");
+
+        $builder->select("greenshift_users.id_user,greenshift_users.firstname, greenshift_users.lastname, greenshift_users.pseudo, greenshift_users.avatar, greenshift_users.points, greenshift_users.exp, greenshift_users.level");
+        $builder->orderBy("greenshift_users.points", "DESC");
+        $builder->distinct();
+
+        $query = $builder->get();
+
+        return $query->getResultArray();
+    }
+
+    // Suggestions des relations
+    public function searchUsers($searchTerm, $id_user)
+    {
+        // Exécuter la requête de recherche des utilisateurs
+        $builder = $this->db->table('greenshift_users');
+        $builder->select('id_user, firstname, lastname, greenshift_users.pseudo, greenshift_users.avatar, greenshift_users.points, greenshift_users.exp, greenshift_users.level');
+        $builder->where("id_user !=", $id_user);
+        $builder->groupStart(); // Début des conditions groupées
+        $builder->like('pseudo', $searchTerm, 'both');
+        $builder->orLike('firstname', $searchTerm, 'both');
+        $builder->orLike('lastname', $searchTerm, 'both');
+        $builder->groupEnd(); // Fin des conditions groupées
+
+        $query = $builder->get();
+        return $query->getResultArray();
+    }
+
+
+
+
+
+
 
     // Récupérer le tableau JSON de l'avancée des objectifs (greenshift_users->goals)
+    public function updatePoints($userId, $earning)
+    {
+        $currentUserPoints = $this->db->table('greenshift_users')
+            ->select('points')
+            ->where('id_user', $userId)
+            ->get()
+            ->getRowArray()['points'];
+
+        $newPoints = $currentUserPoints + $earning;
+
+        return $this->db->table('greenshift_users')
+            ->where('id_user', $userId)
+            ->update(['points' => $newPoints]);
+    }
 }

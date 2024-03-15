@@ -1,95 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
     <meta charset="utf-8">
     <title><?= lang('Errors.pageNotFound') ?></title>
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>/css/output.css">
 
-    <style>
-        div.logo {
-            height: 200px;
-            width: 155px;
-            display: inline-block;
-            opacity: 0.08;
-            position: absolute;
-            top: 2rem;
-            left: 50%;
-            margin-left: -73px;
-        }
 
-        body {
-            height: 100%;
-            background: #fafafa;
-            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-            color: #777;
-            font-weight: 300;
-        }
-
-        h1 {
-            font-weight: lighter;
-            letter-spacing: normal;
-            font-size: 3rem;
-            margin-top: 0;
-            margin-bottom: 0;
-            color: #222;
-        }
-
-        .wrap {
-            max-width: 1024px;
-            margin: 5rem auto;
-            padding: 2rem;
-            background: #fff;
-            text-align: center;
-            border: 1px solid #efefef;
-            border-radius: 0.5rem;
-            position: relative;
-        }
-
-        pre {
-            white-space: normal;
-            margin-top: 1.5rem;
-        }
-
-        code {
-            background: #fafafa;
-            border: 1px solid #efefef;
-            padding: 0.5rem 1rem;
-            border-radius: 5px;
-            display: block;
-        }
-
-        p {
-            margin-top: 1.5rem;
-        }
-
-        .footer {
-            margin-top: 2rem;
-            border-top: 1px solid #efefef;
-            padding: 1em 2em 0 2em;
-            font-size: 85%;
-            color: #999;
-        }
-
-        a:active,
-        a:link,
-        a:visited {
-            color: #dd4814;
-        }
-    </style>
 </head>
 
-<body>
-    <div class="wrap">
-        <h1>404</h1>
+<body class="w-screen h-screen flex items-center justify-center">
+    <div class="w-2/4 flex flex-col items-center justify-between bg-gray-100 p-10 rounded-lg">
 
-        <p>
-            <?php if (ENVIRONMENT !== 'production') : ?>
-                <?= nl2br(esc($message)) ?>
-            <?php else : ?>
-                <?= lang('Errors.sorryCannotFind') ?>
-            <?php endif; ?>
-        </p>
+
+        <h3 class="text-primary text-9xl pb-5 font-bold">Oups...</h3>
+
+        <h1 class="text-gray-400 p-3 font-bold">Erreur 404</h1>
+
+        <p class="text-gray-700 p-1">Vous ne sauverez pas la planète ici !</p>
+
+        <p class="text-gray-700 p-1">La page que vous souhaitez n'existe pas.</p>
+
     </div>
-</body>
 
+</body>
 </html>

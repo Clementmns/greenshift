@@ -8,7 +8,7 @@ echo view("templates/header");
 <?php endif; ?>
 <div>
    <form action="<?= base_url('auth/uploadImage'); ?>" enctype="multipart/form-data" method="post">
-      <img class="inline-block h-16 w-16 rounded-full ring-2 ring-white object-cover" src="<?= base_url() ?>/assets/avatar/<?= $userInfo['avatar']; ?>" alt="">
+      <img class="inline-block h-16 w-16 rounded-full ring-2 ring-white object-cover" src="<?= base_url() ?>assets/avatar/<?= $userInfo['avatar']; ?>" alt="">
       <input type="file" name="userImage">
       <hr>
       <br>
@@ -16,9 +16,26 @@ echo view("templates/header");
    </form>
 </div>
 <br>
+<h2>Classement parmi les amis</h2>
+<?php
+$friends = ["rankingFriend" => $rankingFriend];
+echo view("classement/index", $friends);
+?>
+<br>
+<h2>Classement mondial</h2>
+<?php
+$world = ["rankingFriend" => $rankingWorld];
+echo view("classement/index", $world);
+?>
+<br>
+<?php
+
+echo view("relation/search");
+?>
+<br>
+<?php echo view("goals/goalsweek", $goals); ?>
+<br>
 <div>
-   <p><?= $userInfo['pseudo']; ?></p>
-   <p><?= $userInfo['firstname']; ?></p>
    <a href="<?= site_url('auth/logOut'); ?>">Déconnexion</a>
 </div>
 
