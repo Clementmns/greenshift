@@ -86,7 +86,7 @@ class Auth extends BaseController
       $userModel = new \App\Models\UserModel();
       $query = $userModel->insert($data);
 
-      return redirect()->to('/dashboard');
+      return redirect()->to('auth/index');
    }
 
    public function loginUser()
@@ -128,7 +128,7 @@ class Auth extends BaseController
             $userId = $userInfo['id_user'];
 
             session()->set('loggedInUser', $userId);
-            return redirect()->to('/dashboard');
+            return redirect()->to('dashboard/index');
          }
       }
    }
