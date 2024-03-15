@@ -1,6 +1,6 @@
 <table>
 
-    <tbody class="flex justify-center items-center flex-col gap-1">
+    <tbody class=" flex justify-center items-center flex-col gap-1">
         <?php
         $n = 1;
         foreach ($rankingFriend as $friend) : ?>

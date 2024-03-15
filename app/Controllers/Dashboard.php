@@ -139,6 +139,16 @@ class Dashboard extends BaseController
 
         if ($this->request->isAJAX()) {
             $people = $this->request->getGet('data');
+            foreach ($friends as $element) {
+                foreach ($people as $cle => $user) {
+                    if ($user["id_user"] === $element["id_user"]) {
+                        unset($people[$cle]);
+                    }
+                }
+            }
+
+            // Réindexer le tableau si nécessaire
+            $people = array_values($people);
         } else {
             $people = [];
         }
@@ -146,7 +156,6 @@ class Dashboard extends BaseController
         $data = [
             'userInfo' => $userInfo,
             'people' => $people,
-            'friends' => $friends,
         ];
 
         return view("classement/searchFriend", $data);
