@@ -20,11 +20,15 @@ class Dashboard extends BaseController
         $goalModel = new GoalModel();
         $goals = $goalModel->getWeekGoals();
 
+        $goalRealisedModel = new GoalRealisedModel();
+        $goalsRealised = $goalRealisedModel->goalsRealised($loggedInUserId);
+
         $data = [
             "rankingFriend" => $rankingFriend,
             "rankingWorld" => $rankingWorld,
             'userInfo' => $userInfo,
             'goals' => $goals,
+            'goalsRealised' => $goalsRealised,
         ];
 
 
@@ -40,9 +44,14 @@ class Dashboard extends BaseController
         $goalModel = new GoalModel();
         $goals = $goalModel->getWeekGoals();
 
+        $goalRealisedModel = new GoalRealisedModel();
+        $goalsRealised = $goalRealisedModel->goalsRealised($loggedInUserId);
+        
+
         $data = [
             'userInfo' => $userInfo,
             'goals' => $goals,
+            'goalsRealised' =>$goalsRealised,
         ];
 
         return view('goals/goalsweek', $data);

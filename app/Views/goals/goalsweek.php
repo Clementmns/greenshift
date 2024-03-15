@@ -3,11 +3,15 @@
     <?php foreach ($goals as $goal) : ?>
         <li class="flex">
             <?= esc($goal['title']) ?> - <?= esc($goal['description']) ?> - <img class="h-4 w-4" src="<?= base_url() ?>/assets/icons/coin.png" alt=""> <?= esc($goal['earning']) ?>
+            
+            <?php if (empty($goalsRealised) || !in_array($goal['id_goal'], array_column($goalsRealised, 'fk_goal'))) : ?>
+                <button class="bg-primary-500 validate-goal" data-goal="<?= esc($goal['id_goal']) ?>">valider</button>
+            <?php endif ?>
 
-            <button class="bg-primary-500 validate-goal" data-goal="<?= esc($goal['id_goal']) ?>">valider</button>
         </li>
     <?php endforeach; ?>
 </ul>
+
 
 <script>
     $(document).ready(function() {
@@ -29,9 +33,9 @@
                         if (response.success) {
                             alert('Goal validated successfully.');
 
+                            location.reload();
+
                             // Désactivez le bouton
-                            button.addClass('disabled');
-                            button.prop('disabled', true);
 
                             // Mettre à jour les points de l'utilisateur
                             $.ajax({
