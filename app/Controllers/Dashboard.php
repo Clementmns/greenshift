@@ -17,10 +17,14 @@ class Dashboard extends BaseController
         $userInfo = $userModel->find($loggedInUserId);
         $rankingFriend = $userModel->getFriendsRanking($loggedInUserId);
         $rankingWorld = $userModel->getWorldRanking();
+        $goalModel = new GoalModel();
+        $goals = $goalModel->getWeekGoals();
+
         $data = [
             "rankingFriend" => $rankingFriend,
             "rankingWorld" => $rankingWorld,
             'userInfo' => $userInfo,
+            'goals' => $goals,
         ];
 
 

@@ -32,6 +32,8 @@ echo view("classement/index", $world);
 
 echo view("relation/search");
 ?>
+<br>
+<?php echo view("goals/goalsweek", $goals); ?>
 <div>
    <a href="<?= site_url('auth/logOut'); ?>">Déconnexion</a>
 </div>
