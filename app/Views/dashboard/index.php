@@ -28,6 +28,13 @@ $world = ["rankingFriend" => $rankingWorld];
 echo view("classement/index", $world);
 ?>
 <br>
+<?php
+
+echo view("relation/search");
+?>
+<br>
+<?php echo view("goals/goalsweek", $goals); ?>
+<br>
 <div>
    <a href="<?= site_url('auth/logOut'); ?>">Déconnexion</a>
 </div>

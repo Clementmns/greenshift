@@ -1,6 +1,3 @@
-<?php
-echo view("templates/header");
-?>
 <h2>Your Goals for This Week:</h2>
 <ul>
     <?php foreach ($goals as $goal) : ?>
@@ -56,10 +53,3 @@ echo view("templates/header");
         });
     });
 </script>
-
-
-
-
-<?php
-echo view("templates/footer");
-?>

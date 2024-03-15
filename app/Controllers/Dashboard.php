@@ -6,6 +6,7 @@ use App\Controllers\BaseController;
 use App\Models\UserModel;
 use App\Models\GoalModel;
 use App\Models\GoalRealisedModel;
+use App\Models\FriendRelation;
 
 class Dashboard extends BaseController
 {
@@ -16,11 +17,14 @@ class Dashboard extends BaseController
         $userInfo = $userModel->find($loggedInUserId);
         $rankingFriend = $userModel->getFriendsRanking($loggedInUserId);
         $rankingWorld = $userModel->getWorldRanking();
+        $goalModel = new GoalModel();
+        $goals = $goalModel->getWeekGoals();
+
         $data = [
             "rankingFriend" => $rankingFriend,
             "rankingWorld" => $rankingWorld,
-            "id_user" => $loggedInUserId,
             'userInfo' => $userInfo,
+            'goals' => $goals,
         ];
 
 
@@ -78,6 +82,33 @@ class Dashboard extends BaseController
         return $this->response->setStatusCode(403);
     }
 
+    public function addFriend()
+    {
+        $request = service('request');
+
+        // Vérifiez si la requête est de type AJAX
+        if ($request->isAJAX()) {
+            $loggedInUserId = session()->get('loggedInUser');
+            $friendId = $request->getVar('id_friend');
+
+            try {
+                // Insérer le nouvel enregistrement dans la table greenshift_goalrealised en utilisant le modèle GoalRealisedModel
+                $friendRelation = new FriendRelation();
+                $friendRelation->addRelation($loggedInUserId, $friendId);
+
+                return $this->response->setJSON(['success' => true]);
+            } catch (\Exception $e) {
+                // Log the exception
+                log_message('error', 'Error in validateGoal(): ' . $e->getMessage());
+
+                // Return error response
+                return $this->response->setJSON(['success' => false, 'message' => 'Failed to validate goal.']);
+            }
+        }
+
+        return $this->response->setStatusCode(403);
+    }
+
 
     public function relation()
     {
@@ -99,18 +130,23 @@ class Dashboard extends BaseController
     }
 
 
-    public  function relationView()
+    public function relationView()
     {
         $userModel = new UserModel();
         $loggedInUserId = session()->get('loggedInUser');
         $userInfo = $userModel->find($loggedInUserId);
+        $friends = $userModel->getFriendsRanking($loggedInUserId);
+
         if ($this->request->isAJAX()) {
             $people = $this->request->getGet('data');
+        } else {
+            $people = [];
         }
 
         $data = [
             'userInfo' => $userInfo,
             'people' => $people,
+            'friends' => $friends,
         ];
 
         return view("classement/searchFriend", $data);

@@ -50,10 +50,9 @@ class UserModel extends Model
     {
         $builder = $this->db->table("greenshift_users");
 
-        $builder->select("greenshift_users.id_user,greenshift_users.firstname, greenshift_users.lastname, greenshift_users.pseudo, greenshift_users.avatar, greenshift_users.points, greenshift_users.exp, greenshift_users.level");
-
-        $builder->join("greenshift_relation", "greenshift_users.id_user = greenshift_relation.fk_user", "inner");
-        $builder->where("(greenshift_users.id_user = $id_user OR greenshift_relation.fk_userfollowed = $id_user)", NULL, FALSE);
+        $builder->select("id_user, firstname, lastname, greenshift_users.pseudo, greenshift_users.avatar, greenshift_users.points, greenshift_users.exp, greenshift_users.level");
+        $builder->join("greenshift_relation", "greenshift_users.id_user = greenshift_relation.fk_user OR greenshift_users.id_user = greenshift_relation.fk_userfollowed", "inner");
+        $builder->where("(greenshift_relation.fk_user = $id_user OR greenshift_relation.fk_userfollowed = $id_user)");
         $builder->orderBy("greenshift_users.points", "DESC");
         $builder->distinct();
 
@@ -61,6 +60,7 @@ class UserModel extends Model
 
         return $query->getResultArray();
     }
+
 
 
     // Le classement de l'utilisateur mondial (ex : 34 / le nb total d'utilisateur)
@@ -80,31 +80,24 @@ class UserModel extends Model
     // Suggestions des relations
     public function searchUsers($searchTerm, $id_user)
     {
-        // Récupérer le prénom et le nom de famille de l'utilisateur en cours
-        $userData = $this->select('firstname, lastname')->where('id_user', $id_user)->findAll();
-
-        // Vérifier si des données utilisateur ont été trouvées
-        // Extraire le prénom et le nom de famille
-        $firstname = $userData[0]['firstname'];
-        $lastname = $userData[0]['lastname'];
-
-        // Retourner un tableau associatif contenant le prénom et le nom de famille
-
-
-
         // Exécuter la requête de recherche des utilisateurs
         $builder = $this->db->table('greenshift_users');
-        $builder->select('id_user, pseudo, avatar, level');
+        $builder->select('id_user, firstname, lastname, greenshift_users.pseudo, greenshift_users.avatar, greenshift_users.points, greenshift_users.exp, greenshift_users.level');
+        $builder->where("id_user !=", $id_user);
+        $builder->groupStart(); // Début des conditions groupées
         $builder->like('pseudo', $searchTerm, 'both');
         $builder->orLike('firstname', $searchTerm, 'both');
         $builder->orLike('lastname', $searchTerm, 'both');
+        $builder->groupEnd(); // Fin des conditions groupées
 
-
-        $builder->where("id_user != $id_user AND firstname != '$firstname' AND lastname != '$lastname'");
-        $builder->distinct();
         $query = $builder->get();
         return $query->getResultArray();
     }
+
+
+
+
+
 
 
     // Récupérer le tableau JSON de l'avancée des objectifs (greenshift_users->goals)

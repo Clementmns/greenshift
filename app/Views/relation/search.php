@@ -1,6 +1,3 @@
-<?php
-echo view("templates/header");
-?>
 <ul>
    <form>
       <label for="search">Rechercher :</label>
@@ -9,12 +6,6 @@ echo view("templates/header");
 
 
    <div id="result"></div>
-
-
-
-
-
-
 </ul>
 
 <script>
@@ -64,15 +55,6 @@ echo view("templates/header");
                search.empty();
             }, 100);
          }
-         if ($(".search").on("focusout", function() {
-               setTimeout(() => {
-                  search.empty();
-               }, 50);
-            }));
       });
    });
 </script>
-
-<?php
-echo view("templates/footer");
-?>
