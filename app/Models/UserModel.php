@@ -12,7 +12,7 @@ class UserModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['lastname', 'firstname', 'password', 'pseudo', 'avatar', 'goals', 'points', 'exp', 'level'];
+    protected $allowedFields    = ['lastname', 'firstname', 'password', 'pseudo', 'avatar', 'goals', 'points', 'globalpoints', 'exp', 'level'];
 
     protected bool $allowEmptyInserts = false;
 
@@ -52,8 +52,9 @@ class UserModel extends Model
 
         $builder->select("id_user, firstname, lastname, greenshift_users.pseudo, greenshift_users.avatar, greenshift_users.points, greenshift_users.exp, greenshift_users.level");
         $builder->join("greenshift_relation", "greenshift_users.id_user = greenshift_relation.fk_user OR greenshift_users.id_user = greenshift_relation.fk_userfollowed", "inner");
-        $builder->where("(greenshift_relation.fk_user = $id_user OR greenshift_relation.fk_userfollowed = $id_user)");
+        $builder->where("(greenshift_relation.fk_user = $id_user)");
         $builder->orderBy("greenshift_users.points", "DESC");
+        $builder->orderBy("greenshift_users.exp", "DESC");
         $builder->distinct();
 
         $query = $builder->get();
@@ -68,14 +69,16 @@ class UserModel extends Model
     {
         $builder = $this->db->table("greenshift_users");
 
-        $builder->select("greenshift_users.id_user,greenshift_users.firstname, greenshift_users.lastname, greenshift_users.pseudo, greenshift_users.avatar, greenshift_users.points, greenshift_users.exp, greenshift_users.level");
-        $builder->orderBy("greenshift_users.points", "DESC");
+        $builder->select("greenshift_users.id_user, greenshift_users.firstname, greenshift_users.lastname, greenshift_users.pseudo, greenshift_users.avatar, greenshift_users.points, greenshift_users.exp, greenshift_users.level");
+        $builder->orderBy("greenshift_users.level", "DESC");
+        $builder->orderBy("greenshift_users.exp", "DESC"); // Tri par exp si le level est le même
         $builder->distinct();
 
         $query = $builder->get();
 
         return $query->getResultArray();
     }
+
 
     // Suggestions des relations
     public function searchUsers($searchTerm, $id_user)
@@ -109,10 +112,29 @@ class UserModel extends Model
             ->get()
             ->getRowArray()['points'];
 
+        $currentLevel = $this->db->table('greenshift_users')
+            ->select('level')
+            ->where('id_user', $userId)
+            ->get()
+            ->getRowArray()['level'];
+
+        $currentExp = $this->db->table('greenshift_users')
+            ->select('exp')
+            ->where('id_user', $userId)
+            ->get()
+            ->getRowArray()['exp'];
+
+        if ($currentExp > $currentLevel * 200 + 400) {
+            $newExp = $currentExp - ($currentLevel * 200 + 400);
+            $newLevel = $currentLevel + 1;
+        } else {
+            $newExp = $currentExp + $earning;
+            $newLevel = $currentLevel;
+        }
         $newPoints = $currentUserPoints + $earning;
 
         return $this->db->table('greenshift_users')
             ->where('id_user', $userId)
-            ->update(['points' => $newPoints]);
+            ->update(['points' => $newPoints, 'exp' => $newExp, 'level' => $newLevel]);
     }
 }

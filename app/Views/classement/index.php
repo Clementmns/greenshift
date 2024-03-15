@@ -24,17 +24,18 @@
                     <td class="items-center flex justify-center w-12">
                         <img class="inline-block h-8 !w-8 rounded-full ring-2 ring-inset ring-white object-cover" src="<?= base_url() ?>assets/avatar/<?= $friend['avatar']; ?>" alt="">
                     </td>
-                    <td class="items-center flex justify-left w-24">
-                        <div>
-                            <p class="font-bold first-letter:uppercase"><?= $friend['pseudo'] ?></p>
-                            <p class="text-gray-400">Niv. <?= $friend['level'] ?></p>
+                    <td class=" flex items-start w-24 flex-col">
+                        <p class="font-bold first-letter:uppercase"><?= $friend['pseudo'] ?></p>
+                        <div class="flex items-center">
+                            <img class="h-4 w-4" src="<?= base_url() ?>/assets/icons/coin.png" alt="">
+                            <p class="ml-2">
+                                <?= $friend['points'] ?>
+                            </p>
                         </div>
+
                     </td>
                     <td class="items-center flex justify-center w-24">
-                        <img class="h-4 w-4" src="<?= base_url() ?>/assets/icons/coin.png" alt="">
-                        <p class="ml-2">
-                            <?= $friend['points'] ?>
-                        </p>
+                        <p class="text-gray-400">Niv. <?= $friend['level'] ?></p>
                     </td>
                 </tr>
             <?php } else {
@@ -56,17 +57,18 @@
                     <td class="items-center flex justify-center w-12">
                         <img class="inline-block h-8 !w-8 rounded-full ring-2 ring-white ring-inset object-cover" src="<?= base_url() ?>assets/avatar/<?= $friend['avatar']; ?>" alt="">
                     </td>
-                    <td class="items-center flex justify-left w-24">
-                        <div>
-                            <p class="font-bold first-letter:uppercase"><?= $friend['pseudo'] ?></p>
-                            <p class="text-gray-400">Niv. <?= $friend['level'] ?></p>
+                    <td class=" flex items-start w-24 flex-col">
+                        <p class="font-bold first-letter:uppercase"><?= $friend['pseudo'] ?></p>
+                        <div class="flex items-center">
+                            <img class="h-4 w-4" src="<?= base_url() ?>/assets/icons/coin.png" alt="">
+                            <p class="ml-2">
+                                <?= $friend['points'] ?>
+                            </p>
                         </div>
+
                     </td>
                     <td class="items-center flex justify-center w-24">
-                        <img class="h-4 w-4" src="<?= base_url() ?>/assets/icons/coin.png" alt="">
-                        <p class="ml-2">
-                            <?= $friend['points'] ?>
-                        </p>
+                        <p class="text-gray-400">Niv. <?= $friend['level'] ?></p>
                     </td>
                 </tr>
         <?php }
