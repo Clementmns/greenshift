@@ -1,6 +1,5 @@
 <?php
 echo view("templates/header");
-print_r($rankingFriend);
 ?>
 
 
