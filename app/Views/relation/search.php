@@ -30,7 +30,7 @@
                            data: data
                         },
                         success: function(data2) {
-                           console.log("success");
+
 
                            $('#result').html(data2);
                         },

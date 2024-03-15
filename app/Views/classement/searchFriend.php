@@ -1,4 +1,4 @@
-<table>
+<table class="searchFriend">
     <tbody class="flex justify-center items-center flex-col gap-1">
         <?php foreach ($people as $friend) : ?>
             <tr class="bg-white flex h-16 w-full justify-between items-center rounded-md ring-2 ring-inset ring-gray-200 gap-4">
@@ -40,8 +40,7 @@
                     if (response.success) {
                         alert('Friend added successfully.');
 
-                        // Désactivez le bouton
-                        $(this).unwrap();
+                        location.reload();
 
                     } else {
                         alert('Failed to validate goal.');
