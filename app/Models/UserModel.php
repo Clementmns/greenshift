@@ -46,8 +46,6 @@ class UserModel extends Model
 
     // Le classement de l'utilisateur amical (ex : 1 parmi ses amis) -> requête SQL
 
-
-}
     public function getFriendsRanking($id_user)
     {
         $builder = $this->db->table("greenshift_users");
@@ -58,39 +56,11 @@ class UserModel extends Model
         $builder->orderBy("greenshift_users.points", "DESC");
         $builder->distinct();
 
-    $query = $builder->get();
-
-    return $query->getResultArray();
-
-
-
-
-    // Le classement de l'utilisateur mondial (ex : 34 / le nb total d'utilisateur)
-    public function getWorldRanking()
-    {
-        $builder = $this->db->table("greenshift_users");
-
-        $builder->select("greenshift_users.id_user,greenshift_users.firstname, greenshift_users.lastname, greenshift_users.pseudo, greenshift_users.avatar, greenshift_users.points, greenshift_users.exp, greenshift_users.level");
-        $builder->orderBy("greenshift_users.points", "DESC");
-        $builder->distinct();
-
         $query = $builder->get();
 
         return $query->getResultArray();
     }
 
-    // Suggestions des relations
-    public function searchUsers($searchTerm, $id_user)
-    {
-        // Exécuter la requête de recherche des utilisateurs
-        $builder = $this->db->table('greenshift_users');
-        $builder->select('id_user, firstname, lastname, greenshift_users.pseudo, greenshift_users.avatar, greenshift_users.points, greenshift_users.exp, greenshift_users.level');
-        $builder->where("id_user !=", $id_user);
-        $builder->groupStart(); // Début des conditions groupées
-        $builder->like('pseudo', $searchTerm, 'both');
-        $builder->orLike('firstname', $searchTerm, 'both');
-        $builder->orLike('lastname', $searchTerm, 'both');
-        $builder->groupEnd(); // Fin des conditions groupées
 
 
     // Le classement de l'utilisateur mondial (ex : 34 / le nb total d'utilisateur)
