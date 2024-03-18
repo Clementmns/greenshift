@@ -44,5 +44,10 @@ class BadgeModel extends Model
     // Récupération de données
     // 
 
+    // Récupérer toutes les infos tous les badges
+
+    // Récupérer toutes les infos des badges obtenus de l'utilisateur
+
+
 
 }

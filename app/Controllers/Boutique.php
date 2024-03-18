@@ -10,19 +10,8 @@ class Boutique extends BaseController
 {
     public function index()
     {
-        $userModel = new UserModel();
-        $loggedInUserId = session()->get('loggedInUser');
-        $userInfo = $userModel->find($loggedInUserId);
-        $rankingFriend = $userModel->getFriendsRanking($loggedInUserId);
-        $rankingWorld = $userModel->getWorldRanking();
-        $data = [
-            "rankingFriend" => $rankingFriend,
-            "rankingWorld" => $rankingWorld,
-            "id_user" => $loggedInUserId,
-            'userInfo' => $userInfo,
-        ];
+        // Récupérer tous les badges (fonction pour récupérer 6 badges aléatoires (les badges devront être les mêmes pour tous les users))
 
-
-        return view('dashboard/index', $data);
+        // Récupérer les badges de l'utilisateur
     }
 }
