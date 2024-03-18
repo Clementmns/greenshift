@@ -12,6 +12,7 @@ class Boutique extends BaseController
         $badgeModel = new BadgeModel();
         $userModel = new UserModel();
         $loggedInUserId = session()->get('loggedInUser');
+        $userInfo = $userModel->find($loggedInUserId);
 
         // Récupérer tous les badges disponibles
         $allBadges = $badgeModel->getAllBadges();
@@ -26,6 +27,7 @@ class Boutique extends BaseController
             'allBadges' => $allBadges,
             'userBadges' => $userBadges,
             'userPoints' => $userPoints,
+            'userInfo' => $userInfo,
         ];
 
         return view('boutique/index', $data);
