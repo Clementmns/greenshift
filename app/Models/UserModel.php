@@ -124,13 +124,15 @@ class UserModel extends Model
             ->get()
             ->getRowArray()['exp'];
 
-        if ($currentExp > $currentLevel * 200 + 400) {
-            $newExp = $currentExp - ($currentLevel * 200 + 400);
+        if ($currentExp + $earning >= ($currentLevel * 200 + 400)) {
+            $newExp = $currentExp + $earning - ($currentLevel * 200 + 400);
             $newLevel = $currentLevel + 1;
         } else {
             $newExp = $currentExp + $earning;
             $newLevel = $currentLevel;
         }
+
+
         $newPoints = $currentUserPoints + $earning;
 
         return $this->db->table('greenshift_users')

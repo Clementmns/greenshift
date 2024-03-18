@@ -1,6 +1,3 @@
-<?php
-echo view("templates/header");
-?>
 <form action="<?= base_url('auth/registerUser') ?>" method="post">
     <?= csrf_field(); ?>
     <div>
@@ -40,6 +37,3 @@ echo view("templates/header");
 <br>
 <br>
 <a href="<?= base_url('auth'); ?>">Vous avez déjà un compte ? Se connecter</a>
-<?php
-echo view("templates/header");
-?>

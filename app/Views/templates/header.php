@@ -10,6 +10,4 @@
 </head>
 
 <body class="bg-gray-100">
-    <h1>Greenshift</h1>
-    <hr>
-    <br>
+    <?php echo view("dashboard/sidebar.php") ?>
