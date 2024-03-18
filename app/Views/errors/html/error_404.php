@@ -13,7 +13,7 @@
     <div class="w-2/4 flex flex-col items-center justify-between bg-gray-100 p-10 rounded-lg">
 
 
-        <h3 class="text-primary text-9xl pb-5 font-bold">Oups...</h3>
+        <h3 class="text-primary-500 text-9xl pb-5 font-bold">Oups...</h3>
 
         <h1 class="text-gray-400 p-3 font-bold">Erreur 404</h1>
 
