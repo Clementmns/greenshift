@@ -47,6 +47,41 @@
         });
     });
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     $(document).ready(function() {
         $('.validate-goal').click(function() {
             var button = $(this); // Stockez une référence au bouton
