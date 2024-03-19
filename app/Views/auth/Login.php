@@ -51,7 +51,7 @@
 
                     </div>
                     <div class="mt-10 self-center">
-                        <button class="bg-primary-500 text-white pl-3 pr-3 pb-2 pt-2 rounded-md shadow-lg hover:bg-white hover:text-primary-500 hover:ring-2 hover:ring-primary-500 transition-all">Se connecter</button>
+                        <button class="bg-primary-500 text-white pl-3 pr-3 pb-2 pt-2 rounded-md shadow-lg hover:bg-white hover:text-primary-500 hover:ring-2 hover:ring-primary-500  transition-all">Se connecter</button>
                     </div>
                 </form>
                 <p>Vous n'avez toujours pas de compte ? <a class="text-primary-500 underline" href="<?= base_url('auth/register'); ?>">Inscrivez-vous</a></p>
