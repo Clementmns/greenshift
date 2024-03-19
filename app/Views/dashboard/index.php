@@ -2,10 +2,13 @@
 echo view("templates/header");
 ?>
 
+<?php if (session()->has('notification')) : ?>
+   <div class="fixed bottom-0 right-0 z-10 shadow-xl ">
+      <p><?= esc(session('notification')) ?></p>
+   </div>
+<?php endif; ?>
+
 <div class="w-[calc(100%-240px)]">
-   <?php if (session()->has('notification')) : ?>
-      <div class="alert alert-success"><?= esc(session('notification')) ?></div>
-   <?php endif; ?>
 
    <br>
    <h2>Classement parmi les amis</h2>
@@ -21,7 +24,6 @@ echo view("templates/header");
    ?>
    <br>
    <?php
-
    echo view("relation/search");
    ?>
    <br>
