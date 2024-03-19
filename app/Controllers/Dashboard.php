@@ -82,13 +82,17 @@ class Dashboard extends BaseController
                 $userModel = new UserModel();
                 $userModel->updatePoints($loggedInUserId, $earning);
 
+                session()->setFlashdata('success', 'Objectif réalisé');
+                // Envoyer une réponse JSON indiquant le succès
                 return $this->response->setJSON(['success' => true]);
             } catch (\Exception $e) {
                 // Log the exception
                 log_message('error', 'Error in validateGoal(): ' . $e->getMessage());
 
-                // Return error response
-                return $this->response->setJSON(['success' => false, 'message' => 'Failed to validate goal.']);
+                // Définir un message d'erreur
+                session()->setFlashdata('error', "Erreur lors de la validation de l'objectif");
+                // Envoyer une réponse JSON indiquant l'erreur
+                return $this->response->setJSON(['success' => false]);
             }
         }
 
@@ -109,18 +113,25 @@ class Dashboard extends BaseController
                 $friendRelation = new FriendRelation();
                 $friendRelation->addRelation($loggedInUserId, $friendId);
 
+                // Définir un message de succès
+                session()->setFlashdata('success', 'Ami correctement ajouté');
+                // Envoyer une réponse JSON indiquant le succès
                 return $this->response->setJSON(['success' => true]);
             } catch (\Exception $e) {
                 // Log the exception
                 log_message('error', 'Error in validateGoal(): ' . $e->getMessage());
 
-                // Return error response
-                return $this->response->setJSON(['success' => false, 'message' => 'Failed to validate goal.']);
+                // Définir un message d'erreur
+                session()->setFlashdata('error', "Erreur lors de l'ajout de l'ami");
+                // Envoyer une réponse JSON indiquant l'erreur
+                return $this->response->setJSON(['success' => false]);
             }
         }
 
-        return $this->response->setStatusCode(403);
+        // Rediriger vers le tableau de bord
+        return redirect()->to('dashboard');
     }
+
 
 
     public function relation()
