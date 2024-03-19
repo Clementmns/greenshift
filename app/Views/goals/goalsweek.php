@@ -8,7 +8,7 @@
                     <div>
                         <p><?= strlen($goal['title']) > 30 ? substr($goal['title'], 0, 30) . '...' : esc($goal['title']) ?></p>
                         <div class="description text-gray-400">
-                            <p><?= strlen($goal['description']) > 30 ? substr($goal['description'], 0, 30) . '...' : esc($goal['description']) ?></p>
+                            <p class="excerpt"><?= strlen($goal['description']) > 30 ? substr($goal['description'], 0, 30) . '...' : esc($goal['description']) ?></p>
                             <?php if (strlen($goal['description']) > 30) : ?>
                                 <p class="hidden full-description"><?= esc($goal['description']) ?></p>
                                 <button class="text-blue-500 hover:underline toggle-description">Lire plus</button>
@@ -37,49 +37,17 @@
     document.querySelectorAll('.toggle-description').forEach(button => {
         button.addEventListener('click', function() {
             const description = this.closest('.description').querySelector('.full-description');
+            const excerpt = this.closest('.description').querySelector('.excerpt');
             description.classList.toggle('hidden');
             if (description.classList.contains('hidden')) {
                 this.textContent = 'Lire plus';
+                excerpt.style.display = 'block'; // Modifier le style CSS directement avec JavaScript
             } else {
                 this.textContent = 'Lire moins';
-
+                excerpt.style.display = 'none';
             }
         });
     });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     $(document).ready(function() {
