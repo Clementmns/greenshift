@@ -14,12 +14,14 @@
     ?>
     <section class="w-screen h-screen flex">
 
-        <div class="w-7/12 h-full bg-cover bg-center flex items-center justify-center rounded-br-2xl rounded-tr-2xl shadow-2xl" style="background-image: url('<?= base_url() ?>/assets/img/auth-bg.jpeg');">
-
+        <div class="w-7/12 h-full bg-cover bg-center flex items-center justify-center rounded-br-2xl rounded-tr-3xl shadow-3xl" style="background-image: url('<?= base_url() ?>/assets/img/auth-bg.jpeg');">
+            <div class="w-full h-full flex flex-col justify-center items-center gap-36">
+                <h1 class="text-white text-9xl shadow-white">Greenshift</h1>
+            </div>
         </div>
 
 
-        </div>
+
 
         <div class="w-5/12 h-screen flex justify-center items-center ">
             <div class=" flex flex-col items-center justify-between h-2/4 w-[80%]">

@@ -35,22 +35,6 @@
 </table>
 
 <script>
-    document.querySelectorAll('.toggle-description').forEach(button => {
-        button.addEventListener('click', function() {
-            const description = this.closest('.description').querySelector('.full-description');
-            const excerpt = this.closest('.description').querySelector('.excerpt');
-            description.classList.toggle('hidden');
-            if (description.classList.contains('hidden')) {
-                this.textContent = 'Lire plus';
-                excerpt.style.display = 'block'; // Modifier le style CSS directement avec JavaScript
-            } else {
-                this.textContent = 'Lire moins';
-                excerpt.style.display = 'none';
-            }
-        });
-    });
-
-
     $(document).ready(function() {
         $('.validate-goal').click(function() {
             var button = $(this);
