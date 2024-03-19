@@ -9,23 +9,28 @@
 </head>
 
 <body>
+    <?php
+    echo view("templates/notification");
+    ?>
     <section class="w-screen h-screen flex">
 
-        <div class="w-7/12 h-full bg-cover bg-center flex items-center justify-center rounded-br-2xl rounded-tr-2xl shadow-2xl" style="background-image: url('<?= base_url() ?>/assets/img/auth-bg.jpeg');">
-
+        <div class="w-7/12 h-full bg-cover bg-center flex items-center justify-center rounded-br-2xl rounded-tr-3xl shadow-3xl" style="background-image: url('<?= base_url() ?>/assets/img/auth-bg.jpeg');">
+            <div class="w-full h-full flex flex-col justify-center items-center gap-36">
+                <h1 class="text-white text-9xl shadow-white">Greenshift</h1>
+            </div>
         </div>
 
 
-        </div>
+
 
         <div class="w-5/12 h-screen flex justify-center items-center ">
             <div class=" flex flex-col items-center justify-between h-2/4 w-[80%]">
-                <h2 class="text-4xl">Connexion</h2>
+                <h2 class="text-5xl">Connexion</h2>
                 <?php $failMessage = session()->getFlashdata('fail'); ?>
                 <?php if ($failMessage) : ?>
                     <p style="color: red;">
                         <?= esc($failMessage) ?>
-                </p>
+                    </p>
                 <?php endif; ?>
                 <form action="<?= base_url('auth/loginUser') ?>" method="post" class="flex flex-col w-full p-10">
                     <?= csrf_field(); ?>
@@ -46,10 +51,10 @@
 
                     </div>
                     <div class="mt-10 self-center">
-                        <button class="bg-primary-500 text-white pl-3 pr-3 pb-2 pt-2 rounded-md shadow-lg">Se connecter</button>
+                        <button class="bg-primary-500 text-white pl-3 pr-3 pb-2 pt-2 rounded-md shadow-lg hover:bg-white hover:text-primary-500 hover:ring-2 hover:ring-primary-500  transition-all">Se connecter</button>
                     </div>
                 </form>
-                <p>Vous n'avez toujours pas de compte ? <a class="text-primary-500 underline" href="<?= base_url('auth/register'); ?>">Inscrivez-vous</a></p>
+                <p>Vous n'avez toujours pas de compte ? <a class="text-primary-500 hover:underline transition-all" href="<?= base_url('auth/register'); ?>">Inscrivez-vous</a></p>
             </div>
         </div>
 

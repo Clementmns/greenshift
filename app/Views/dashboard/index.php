@@ -1,11 +1,12 @@
 <?php
 echo view("templates/header");
+echo view("templates/notification");
 ?>
 
+
+
+
 <div class="w-[calc(100%-240px)]">
-   <?php if (session()->has('notification')) : ?>
-      <div class="alert alert-success"><?= esc(session('notification')) ?></div>
-   <?php endif; ?>
 
    <br>
    <h2>Classement parmi les amis</h2>
@@ -21,7 +22,6 @@ echo view("templates/header");
    ?>
    <br>
    <?php
-
    echo view("relation/search");
    ?>
    <br>
@@ -31,11 +31,6 @@ echo view("templates/header");
    </div>
    <br>
 
-   <div>
-      <?=
-      session()->getFlashdata('success');
-      ?>
-   </div>
 </div>
 
 

@@ -128,7 +128,7 @@ class Auth extends BaseController
             $userId = $userInfo['id_user'];
 
             session()->set('loggedInUser', $userId);
-            return redirect()->to('dashboard/index');
+            return redirect()->to('dashboard/index')->with('success', 'Connexion réussie');
          }
       }
    }
@@ -160,16 +160,16 @@ class Auth extends BaseController
 
             // Vérifier si le fichier est une image
             if (!Extension::verifyExtension($imageExtension)) {
-               return redirect()->to('dashboard')->with('notification', 'Erreur: format non supporté.');
+               return redirect()->to('dashboard')->with('error', 'Format non supporté');
             }
 
             // Vérifier si le fichier est une image et la taille est inférieure à 2 Mo
             if (!in_array($img->getMimeType(), ['image/jpeg', 'image/png'])) {
-               return redirect()->to('dashboard')->with('notification', 'Erreur: fichier non image.');
+               return redirect()->to('dashboard')->with('error', 'Fichier non image');
             }
 
             if ($img->getSize() > 2097152) {
-               return redirect()->to('dashboard')->with('notification', 'Erreur: taille du fichier supérieure à 2 Mo.');
+               return redirect()->to('dashboard')->with('error', 'Fichier supérieur à 2Mo');
             }
 
             if (empty($errors)) {
@@ -188,11 +188,10 @@ class Auth extends BaseController
 
                $userModel->update($loggedInUserId, $data);
 
-               // Utilisez with pour passer la notification lors de la redirection
-               return redirect()->to('dashboard')->with('notification', 'Image correctement importée');
+               return redirect()->to('dashboard')->with('success', 'Image importée');
             }
          } else {
-            return redirect()->to('dashboard')->with('notification', 'Erreur: Fichier non supporté');
+            return redirect()->to('dashboard')->with('error', 'Fichier non supporté');
          }
       } catch (Exception $e) {
          echo $e->getMessage();
@@ -206,6 +205,6 @@ class Auth extends BaseController
       if (session()->has('loggedInUser')) {
          session()->remove('loggedInUser');
       }
-      return redirect()->to('/auth?access=loggedout')->with('fail', 'You are logged out');
+      return redirect()->to('/auth')->with('error', 'Vous avez été déconnecté');
    }
 }
