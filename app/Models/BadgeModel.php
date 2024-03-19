@@ -44,10 +44,6 @@ class BadgeModel extends Model
     // Récupération de données
     // 
 
-    // Récupérer toutes les infos tous les badges
-
-    // Récupérer toutes les infos des badges obtenus de l'utilisateur
-
     // Méthode pour récupérer toutes les informations sur les badges
     public function getAllBadges()
     {
@@ -63,6 +59,15 @@ class BadgeModel extends Model
                         ->where('greenshift_ownedbadges.fk_user', $userId)
                         ->get()
                         ->getResultArray();
+    }
+
+    // Méthode pour vérifier si un utilisateur possède un badge spécifique
+    public function userHasBadge($userId, $badgeId)
+    {
+        return $this->db->table('greenshift_ownedbadges')
+                        ->where('fk_user', $userId)
+                        ->where('fk_badge', $badgeId)
+                        ->countAllResults() > 0;
     }
 
     // Méthode pour acheter un badge
@@ -91,7 +96,7 @@ class BadgeModel extends Model
     }
 
     // Méthode pour récupérer les points de l'utilisateur
-    protected function getUserPoints($userId)
+    public function getUserPoints($userId)
     {
         $userModel = new UserModel();
         $user = $userModel->find($userId);
@@ -103,14 +108,14 @@ class BadgeModel extends Model
     }
 
     // Méthode pour mettre à jour les points de l'utilisateur
-    protected function updateUserPoints($userId, $newPoints)
+    public function updateUserPoints($userId, $newPoints)
     {
         $userModel = new UserModel();
         $userModel->update($userId, ['points' => $newPoints]);
     }
 
     // Méthode pour ajouter un badge à un utilisateur
-    protected function addUserBadge($userId, $badgeId)
+    public function addUserBadge($userId, $badgeId)
     {
         $data = [
             'fk_user' => $userId,

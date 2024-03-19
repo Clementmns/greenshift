@@ -640,6 +640,10 @@ video {
    display: table;
 }
 
+.hidden {
+  display: none;
+}
+
 .h-16 {
    height: 4rem;
 }
