@@ -67,7 +67,6 @@
                         console.log(response)
                         // Si l'insertion réussit, affichez un message de succès ou effectuez toute autre action nécessaire
                         if (response.success) {
-                            alert('Goal validated successfully.');
 
                             location.reload();
 
