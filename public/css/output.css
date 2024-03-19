@@ -762,10 +762,6 @@ video {
   width: 10%;
 }
 
-.w-\[40vw\] {
-  width: 40vw;
-}
-
 .w-\[45\%\] {
   width: 45%;
 }
@@ -800,8 +796,12 @@ video {
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
-.transform {
-  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+.min-w-8 {
+  min-width: 2rem;
+}
+
+.max-w-\[\] {
+  max-width: ;
 }
 
 .cursor-pointer {
@@ -834,6 +834,10 @@ video {
 
 .gap-1 {
   gap: 0.25rem;
+}
+
+.gap-12 {
+  gap: 3rem;
 }
 
 .gap-4 {
