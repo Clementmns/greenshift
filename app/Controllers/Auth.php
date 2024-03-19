@@ -165,11 +165,11 @@ class Auth extends BaseController
 
             // Vérifier si le fichier est une image et la taille est inférieure à 2 Mo
             if (!in_array($img->getMimeType(), ['image/jpeg', 'image/png'])) {
-               return redirect()->to('dashboard')->with('notification', 'Erreur: fichier non image.');
+               return redirect()->to('dashboard')->with('notification', 'fichier non image');
             }
 
             if ($img->getSize() > 2097152) {
-               return redirect()->to('dashboard')->with('notification', 'Erreur: taille du fichier supérieure à 2 Mo.');
+               return redirect()->to('dashboard')->with('notification', 'fichier supérieur à 2Mo');
             }
 
             if (empty($errors)) {
@@ -189,10 +189,10 @@ class Auth extends BaseController
                $userModel->update($loggedInUserId, $data);
 
                // Utilisez with pour passer la notification lors de la redirection
-               return redirect()->to('dashboard')->with('notification', 'Image correctement importée');
+               return redirect()->to('dashboard');
             }
          } else {
-            return redirect()->to('dashboard')->with('notification', 'Erreur: Fichier non supporté');
+            return redirect()->to('dashboard/sidebar')->with('notification', 'fichier non supporté');
          }
       } catch (Exception $e) {
          echo $e->getMessage();

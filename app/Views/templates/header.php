@@ -9,5 +9,5 @@
     <script src="<?= base_url(); ?>js/jquery/dist/jquery.min.js"></script>
 </head>
 
-<body class="bg-gray-100">
+<body>
     <?php echo view("dashboard/sidebar.php") ?>
