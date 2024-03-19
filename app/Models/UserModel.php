@@ -97,13 +97,17 @@ class UserModel extends Model
         return $query->getResultArray();
     }
 
+    // Récupérer le nombre de points d'un utilisateur
+    public function getUserPoints($userId)
+    {
+        return $this->db->table('greenshift_users')
+                        ->select('points')
+                        ->where('id_user', $userId)
+                        ->get()
+                        ->getRowArray()['points'];
+    }
 
-
-
-
-
-
-    // Récupérer le tableau JSON de l'avancée des objectifs (greenshift_users->goals)
+    // Mettre à jour les points d'un utilisateur
     public function updatePoints($userId, $earning)
     {
         $currentUserPoints = $this->db->table('greenshift_users')
@@ -124,13 +128,15 @@ class UserModel extends Model
             ->get()
             ->getRowArray()['exp'];
 
-        if ($currentExp > $currentLevel * 200 + 400) {
-            $newExp = $currentExp - ($currentLevel * 200 + 400);
+        if ($currentExp + $earning >= ($currentLevel * 200 + 400)) {
+            $newExp = $currentExp + $earning - ($currentLevel * 200 + 400);
             $newLevel = $currentLevel + 1;
         } else {
             $newExp = $currentExp + $earning;
             $newLevel = $currentLevel;
         }
+
+
         $newPoints = $currentUserPoints + $earning;
 
         return $this->db->table('greenshift_users')

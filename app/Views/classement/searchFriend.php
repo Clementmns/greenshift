@@ -1,4 +1,4 @@
-<table class="searchFriend">
+<table class="searchFriend w-64">
     <tbody class="flex justify-center items-center flex-col gap-1">
         <?php foreach ($people as $friend) : ?>
             <tr class="bg-white flex h-16 w-full justify-between items-center rounded-md ring-2 ring-inset ring-gray-200 gap-4">
@@ -11,9 +11,9 @@
                         <p class="text-gray-400">Niv. <?= $friend['level'] ?></p>
                     </div>
                 </td>
-                <td>
+                <td class="w-20">
                     <!-- Bouton avec un attribut data pour stocker l'id_user -->
-                    <button class="text-primary-500 font-bold addBtn" data-userid="<?= $friend['id_user'] ?>">Ajouter</button>
+                    <button class=" text-primary-500 font-bold addBtn" data-userid="<?= $friend['id_user'] ?>">Ajouter</button>
                     <div id="id"></div>
                 </td>
             </tr>

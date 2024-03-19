@@ -9,7 +9,5 @@
     <script src="<?= base_url(); ?>js/jquery/dist/jquery.min.js"></script>
 </head>
 
-<body class="bg-gray-100">
-    <h1>Greenshift</h1>
-    <hr>
-    <br>
+<body>
+    <?php echo view("dashboard/sidebar.php") ?>
