@@ -36,15 +36,9 @@
                     id_friend: userId
                 },
                 success: function(response) {
-                    console.log(response)
-                    if (response.success) {
-                        alert('Friend added successfully.');
-
-                        location.reload();
-
-                    } else {
-                        alert('Failed to validate goal.');
-                    }
+                    // Vérifiez si la réponse contient le message de succès
+                    // Si l'ami est ajouté avec succès, recharger la page
+                    location.reload();
                 }
             });
         });

@@ -7,6 +7,8 @@
                 <td class="items-center flex justify-start w-4/6">
                     <div>
                         <p><?= strlen($goal['title']) > 30 ? substr($goal['title'], 0, 30) . '...' : esc($goal['title']) ?></p>
+                        <p class="excerpt"><?= strlen($goal['description']) > 30 ? substr($goal['description'], 0, 30) . '...' : esc($goal['description']) ?></p>
+
                         <div class="description text-gray-400">
                             <p class="excerpt"><?= strlen($goal['description']) > 30 ? substr($goal['description'], 0, 30) . '...' : esc($goal['description']) ?></p>
                             <?php if (strlen($goal['description']) > 30) : ?>
@@ -52,9 +54,7 @@
 
     $(document).ready(function() {
         $('.validate-goal').click(function() {
-            var button = $(this); // Stockez une référence au bouton
-
-            // Vérifiez si le bouton est déjà désactivé
+            var button = $(this);
             if (!button.hasClass('disabled')) {
                 var goalId = button.data('goal');
                 $.ajax({
@@ -64,29 +64,7 @@
                         goal_id: goalId
                     },
                     success: function(response) {
-                        console.log(response)
-                        // Si l'insertion réussit, affichez un message de succès ou effectuez toute autre action nécessaire
-                        if (response.success) {
-                            alert('Goal validated successfully.');
-
-                            location.reload();
-
-                            // Désactivez le bouton
-
-                            // Mettre à jour les points de l'utilisateur
-                            $.ajax({
-                                type: 'post',
-                                url: '',
-                                data: {
-                                    goal_id: goalId
-                                },
-                                success: function(response) {
-
-                                }
-                            });
-                        } else {
-                            alert('Failed to validate goal.');
-                        }
+                        location.reload();
                     }
                 });
             }
