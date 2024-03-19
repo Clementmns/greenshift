@@ -83,8 +83,6 @@
 
                                 }
                             });
-                        } else {
-                            alert('Failed to validate goal.');
                         }
                     }
                 });
