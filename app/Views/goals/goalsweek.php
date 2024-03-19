@@ -38,6 +38,7 @@
                 this.textContent = 'Lire plus';
             } else {
                 this.textContent = 'Lire moins';
+
             }
         });
     });
