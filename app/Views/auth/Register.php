@@ -19,7 +19,7 @@
 
         <div class="w-5/12 h-screen flex justify-center items-center ">
             <div class="w-[80%] flex flex-col items-center justify-between h-[60vh] ">
-                <h2 class="text-4xl">Inscription</h2>
+                <h2 class="text-5xl">Inscription</h2>
 
                 <form action="<?= base_url('auth/registerUser') ?>" method="post" class="flex flex-col w-full p-10">
                     <?= csrf_field(); ?>
@@ -66,12 +66,12 @@
                         </div>
                     </div>
                     <div class="self-center">
-                        <button class="mt-10 bg-primary-500 text-white pl-3 pr-3 pb-2 pt-2 rounded-md shadow-lg">S'inscrire</button>
+                        <button class="mt-10 bg-primary-500 text-white pl-3 pr-3 pb-2 pt-2 rounded-md shadow-lg hover:bg-white hover:text-primary-500 hover:ring-2 hover:ring-primary-500  transition-all">S'inscrire</button>
                     </div>
 
                 </form>
 
-                <p>Vous avez déjà un compte ? <a class="text-primary-500 underline" href="<?= base_url('auth'); ?>"> Se connecter</a></p>
+                <p>Vous avez déjà un compte ? <a class="text-primary-500 hover:underline transition-all" href="<?= base_url('auth'); ?>"> Se connecter</a></p>
             </div>
         </div>
 
