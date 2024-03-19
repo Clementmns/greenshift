@@ -9,6 +9,9 @@
 </head>
 
 <body>
+    <?php
+    echo view("templates/notification");
+    ?>
     <section class="w-screen h-screen flex">
 
         <div class="w-7/12 h-full bg-cover bg-center flex items-center justify-center rounded-br-2xl rounded-tr-2xl shadow-2xl" style="background-image: url('<?= base_url() ?>/assets/img/auth-bg.jpeg');">
@@ -25,7 +28,7 @@
                 <?php if ($failMessage) : ?>
                     <p style="color: red;">
                         <?= esc($failMessage) ?>
-                </p>
+                    </p>
                 <?php endif; ?>
                 <form action="<?= base_url('auth/loginUser') ?>" method="post" class="flex flex-col w-full p-10">
                     <?= csrf_field(); ?>

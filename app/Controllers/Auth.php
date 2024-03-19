@@ -128,7 +128,7 @@ class Auth extends BaseController
             $userId = $userInfo['id_user'];
 
             session()->set('loggedInUser', $userId);
-            return redirect()->to('dashboard/index');
+            return redirect()->to('dashboard/index')->with('success', 'Connexion réussie');
          }
       }
    }
@@ -191,7 +191,7 @@ class Auth extends BaseController
                return redirect()->to('dashboard')->with('success', 'Image importée');
             }
          } else {
-            return redirect()->to('dashboard/sidebar')->with('error', 'Fichier non supporté');
+            return redirect()->to('dashboard')->with('error', 'Fichier non supporté');
          }
       } catch (Exception $e) {
          echo $e->getMessage();
@@ -205,6 +205,6 @@ class Auth extends BaseController
       if (session()->has('loggedInUser')) {
          session()->remove('loggedInUser');
       }
-      return redirect()->to('/auth?access=loggedout')->with('error', 'You are logged out');
+      return redirect()->to('/auth')->with('error', 'Vous avez été déconnecté');
    }
 }
