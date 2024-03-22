@@ -23,7 +23,7 @@
     <table id="goalsTable" class="flex flex-col">
         <tbody class="w-screen flex flex-col justify-center items-center gap-1">
             <?php foreach ($goals as $goal) : ?>
-                <tr class="bg-white flex h-auto w-full justify-between items-center ring-gray-200 box">
+                <tr class="bg-white flex h-auto w-[full] justify-between items-center ring-gray-200 box">
                     <td class="flex items-center justify-center w-2/12">
                         <button class="w-6 h-6 toggle-description"><img src="<?= base_url('assets/icons/info.png') ?>" alt="Coin Icon"></button>
                     </td>
