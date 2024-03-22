@@ -70,33 +70,7 @@ public function addFavoriteBadge($userId, $badgeId)
     return true; // Badge ajouté avec succès aux favoris
 }
 
-public function removeFavoriteBadge($userId, $badgeId)
-{
-    $user = $this->find($userId);
-    if (!$user) {
-        return false; // Utilisateur non trouvé
-    }
 
-    // Récupérer les badges favoris actuels de l'utilisateur
-    if(isset($favoriteBadges)){
- $favoriteBadges = explode(',', $user['favorite_badges']);
-    }
-   
-
-    // Vérifier si le badge est dans les favoris
-    $key = array_search($badgeId, $favoriteBadges);
-    if ($key === false) {
-        return false; // Le badge n'est pas dans les favoris
-    }
-
-    // Supprimer le badge des favoris
-    unset($favoriteBadges[$key]);
-
-    // Mettre à jour la colonne favorite_badges dans la base de données
-    $this->update($userId, ['favorite_badges' => implode(',', $favoriteBadges)]);
-
-    return true; // Badge supprimé avec succès des favoris
-}
 
 
     public function getFriendsRanking($id_user)
@@ -225,4 +199,29 @@ public function getUserFavoriteBadges($userId)
             ->where('id_user', $userId)
             ->update(['points' => $newPoints, 'exp' => $newExp, 'level' => $newLevel]);
     }
+    public function removeFavoriteBadge($userId, $badgeId)
+{
+    $user = $this->find($userId);
+    if (!$user) {
+        return false; // Utilisateur non trouvé
+    }
+
+    // Récupérer les badges favoris actuels de l'utilisateur
+    $favoriteBadges = explode(',', $user['favorite_badges']);
+
+    // Vérifier si le badge est dans les favoris
+    $key = array_search($badgeId, $favoriteBadges);
+    if ($key === false) {
+        return false; // Le badge n'est pas dans les favoris
+    }
+
+    // Supprimer le badge des favoris
+    unset($favoriteBadges[$key]);
+
+    // Mettre à jour la colonne favorite_badges dans la base de données
+    $this->update($userId, ['favorite_badges' => implode(',', $favoriteBadges)]);
+
+    return true; // Badge supprimé avec succès des favoris
+}
+
 }

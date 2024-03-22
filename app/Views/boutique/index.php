@@ -37,6 +37,8 @@
         <li class="flex">
             <?php echo $favoriteBadge['title']; ?> - <?php echo $favoriteBadge['price']; ?> points
             <img src="<?php echo $favoriteBadge['link']; ?>" alt="<?php echo $favoriteBadge['title']; ?>">
+            <!-- Ajoutez un lien ou un bouton pour supprimer le badge des favoris -->
+            <a href="<?php echo base_url('boutique/removeFavoriteBadge/'.$favoriteBadge['id_badge']); ?>">Supprimer des favoris</a>
         </li>
     <?php endforeach; ?>
 </ul>
