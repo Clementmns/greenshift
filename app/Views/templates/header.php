@@ -10,4 +10,3 @@
 </head>
 
 <body>
-    <?php echo view("dashboard/sidebar.php") ?>
