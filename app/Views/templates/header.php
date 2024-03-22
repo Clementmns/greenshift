@@ -10,7 +10,7 @@
 </head>
 
 <body class="bg-primary-500">
-    <header class="fixed top-0 w-full bg-primary-500 h-28 flex justify-between items-center p-6">
+    <header class="fixed top-0 w-full bg-primary-500 h-28 flex justify-between items-center p-6 z-50">
         <div class="flex items-center gap-4">
             <div>
                 <img class="inline-block h-8 !w-8 " src="<?= base_url() ?>assets/icons/menu.png" alt="">
@@ -32,4 +32,4 @@
         <div class="fixed -z-50 bottom-0 bg-white h-[85vh] w-[180vw] rounded-t-full">
         </div>
     </div>
-    <main class="mt-28  px-6 ">
+    <main class="mt-28  px-6 mb-24">

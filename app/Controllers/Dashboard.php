@@ -39,6 +39,35 @@ class Dashboard extends BaseController
         return view('dashboard/index', $data);
     }
 
+    public function classement()
+    {
+        $userModel = new UserModel();
+        $loggedInUserId = session()->get('loggedInUser');
+        $userInfo = $userModel->find($loggedInUserId);
+        $rankingFriend = $userModel->getFriendsRanking($loggedInUserId);
+
+        if (empty($rankingFriend)) {
+            $rankingFriend = [$userInfo];
+        }
+        $rankingWorld = $userModel->getWorldRanking();
+        $goalModel = new GoalModel();
+        $goals = $goalModel->getWeekGoals();
+
+        $goalRealisedModel = new GoalRealisedModel();
+        $goalsRealised = $goalRealisedModel->goalsRealised($loggedInUserId);
+
+        $data = [
+            "rankingFriend" => $rankingFriend,
+            "rankingWorld" => $rankingWorld,
+            'userInfo' => $userInfo,
+            'goals' => $goals,
+            'goalsRealised' => $goalsRealised,
+        ];
+
+
+        return view('dashboard/classement', $data);
+    }
+
     public function goals()
     {
         $userModel = new UserModel();
