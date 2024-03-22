@@ -54,7 +54,7 @@ class Auth extends BaseController
 
       $validated = $this->validate([
          'firstname' => ['rules' => 'required', 'errors' => ['required' => 'Le prénom est requis',]],
-         'lastname' => ['rules' => 'required', 'errors' => ['required' => 'Le nom de famille est requis',]],
+         'lastname' => ['rules' => 'required', 'errors' => ['required' => 'Le nom est requis',]],
          'pseudo' => ['rules' => 'required', 'errors' => ['required' => 'Le pseudo complet est requis',]],
          'password' => ['rules' => 'required|min_length[5]|max_length[30]', 'errors' => ['required' => 'Le mot de passe est requis', 'min_length' => 'Le mot de passe doit faire au moins 5 charactères', 'max_length' => 'Le mot de passe ne doit pas dépasser 30 charactères']],
          'passwordConf' => ['rules' => 'required|min_length[5]|max_length[30]', 'errors' => ['required' => 'Le mot de passe est requis', 'min_length' => 'Le mot de passe doit faire au moins 5 charactères', 'max_length' => 'Le mot de passe ne doit pas dépasser 30 charactères', 'matches' => 'Les mots de passe doivent être identiques']],
