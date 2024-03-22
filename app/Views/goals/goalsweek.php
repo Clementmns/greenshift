@@ -1,7 +1,7 @@
 <!-- Ajoutez ce code à votre HTML -->
 <!-- Ajoutez ce code à votre HTML -->
 <div id="popup" class="hidden fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-center">
-    <div class="bg-white p-4 rounded-md w-full">
+    <div class="bg-white p-4 rounded-md w-[90%]">
         <h2 id="popupTitle" class="font-semibold text-lg mb-2"></h2>
         <div id="popupContent"></div>
     </div>
