@@ -21,7 +21,7 @@
     </div>
 
     <table id="goalsTable" class="flex flex-col">
-        <tbody class="w-screen flex flex-col justify-center items-center gap-1">
+        <tbody class="w-full flex flex-col justify-center items-center gap-1">
             <?php foreach ($goals as $goal) : ?>
                 <tr class="bg-white flex h-auto w-full justify-between items-center ring-gray-200 box">
                     <td class="flex items-center justify-center w-2/12">
