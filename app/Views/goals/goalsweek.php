@@ -7,20 +7,20 @@
     </div>
 </div>
 
-    <table id="goalsTable" class="flex flex-col">
-        <tbody class="w-full flex flex-col justify-center items-center gap-1">
-            <?php foreach ($goals as $goal) : ?>
-                <tr class="bg-white flex h-auto w-full justify-between items-center ring-gray-200 box">
-                    <td class="flex items-center justify-center w-2/12">
-                        <button class="w-6 h-6 toggle-description"><img src="<?= base_url('assets/icons/info.png') ?>" alt="Coin Icon"></button>
-                    </td>
-                    <td class="items-start flex flex-col justify-evenly w-7/12 h-full">
-                        <div class="leading-none gap-1">
-                            <!-- Ajout de la classe "title" -->
-                            <p class="title font-semibold"><?= strlen($goal['title']) > 30 ? substr($goal['title'], 0, 30) . '...' : esc($goal['title']) ?></p>
-                            <!-- Ajout de la classe "description" -->
-                            <div class="description text-gray-400">
-                                <p class="excerpt"><?= strlen($goal['description']) > 30 ? substr($goal['description'], 0, 30) . '...' : esc($goal['description']) ?></p>
+<table id="goalsTable" class="flex flex-col">
+    <tbody class="w-full flex flex-col justify-center items-center gap-1">
+        <?php foreach ($goals as $goal) : ?>
+            <tr class="bg-white flex h-auto w-full justify-between items-center ring-gray-200 box">
+                <td class="flex items-center justify-center w-2/12">
+                    <button class="w-6 h-6 toggle-description"><img src="<?= base_url('assets/icons/info.png') ?>" alt="Coin Icon"></button>
+                </td>
+                <td class="items-start flex flex-col justify-evenly w-7/12 h-full">
+                    <div class="leading-none gap-1">
+                        <!-- Ajout de la classe "title" -->
+                        <p class="title font-semibold"><?= strlen($goal['title']) > 30 ? substr($goal['title'], 0, 30) . '...' : esc($goal['title']) ?></p>
+                        <!-- Ajout de la classe "description" -->
+                        <div class="description text-gray-400">
+                            <p class="excerpt"><?= strlen($goal['description']) > 30 ? substr($goal['description'], 0, 30) . '...' : esc($goal['description']) ?></p>
 
                             <p class="hidden full-description"><?= esc($goal['description']) ?></p>
 
