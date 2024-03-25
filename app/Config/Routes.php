@@ -24,6 +24,3 @@ $routes->group('', ['filter' => 'AuthCheck'], function ($routes) {
 
 $routes->get('/login', 'Auth::index');
 $routes->get('/register', 'Auth::register');
-
-$routes->get('/loginUser', 'Auth::loginUser');
-$routes->get('/registerUser', 'Auth::registerUser');

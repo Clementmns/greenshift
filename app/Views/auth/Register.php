@@ -24,7 +24,7 @@
             <div class="w-full flex flex-col items-center justify-between h-[60vh] ">
                 <h2 class="text-5xl">Inscription</h2>
 
-                <form action="<?= base_url('registerUser') ?>" method="post" class="flex flex-col w-full p-10">
+                <form action="<?= base_url('auth/registerUser') ?>" method="post" class="flex flex-col w-full p-10">
                     <?= csrf_field(); ?>
                     <div class="mt-1 flex justify-between">
                         <div class="w-[45%]">
