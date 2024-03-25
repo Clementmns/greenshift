@@ -88,13 +88,6 @@ $world = ["rankingFriend" => $rankingWorld];
 
 
 
-<div>
-   <a href="<?= site_url('auth/logOut'); ?>">Déconnexion</a>
-</div>
-<br>
-
-
-
 
 <?php
 echo view("templates/footer");
