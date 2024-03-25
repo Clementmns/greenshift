@@ -9,6 +9,8 @@ use CodeIgniter\Filters\DebugToolbar;
 use CodeIgniter\Filters\Honeypot;
 use CodeIgniter\Filters\InvalidChars;
 use CodeIgniter\Filters\SecureHeaders;
+use App\Filters\AjaxRequest;
+
 
 class Filters extends BaseConfig
 {
@@ -26,6 +28,8 @@ class Filters extends BaseConfig
         'invalidchars'  => InvalidChars::class,
         'secureheaders' => SecureHeaders::class,
         'AuthCheck'     => AuthCheckFilter::class,
+        'ajax_request' => AjaxRequest::class,
+
     ];
 
     /**
@@ -67,5 +71,7 @@ class Filters extends BaseConfig
      * Example:
      * 'isLoggedIn' => ['before' => ['account/*', 'profiles/*']]
      */
-    public array $filters = [];
+    public array $filters = [
+        'ajax_request' => ['before' => ['dashboard/*']],
+    ];
 }
