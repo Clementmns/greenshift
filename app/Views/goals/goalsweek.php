@@ -21,9 +21,7 @@
                         <!-- Ajout de la classe "description" -->
                         <div class="description text-gray-400">
                             <p class="excerpt"><?= strlen($goal['description']) > 30 ? substr($goal['description'], 0, 30) . '...' : esc($goal['description']) ?></p>
-
                             <p class="hidden full-description"><?= esc($goal['description']) ?></p>
-
                         </div>
                         <div class="flex items-center">
                             <img class="h-4 w-4" src="<?= base_url('assets/icons/coin.png') ?>" alt="Coin Icon">
@@ -43,26 +41,25 @@
 
 <!-- Assurez-vous d'inclure jQuery avant ce script -->
 <script>
-    document.querySelectorAll('.toggle-description').forEach(button => {
-        button.addEventListener('click', function() {
-            // Trouver l'élément description et titre dans la même ligne que le bouton cliqué
-            const description = this.closest('tr').querySelector('.description .full-description');
-            const title = this.closest('tr').querySelector('.title');
-            const popupContent = document.getElementById('popupContent');
-            const popupTitle = document.getElementById('popupTitle');
+    $('.toggle-description').on('click', function() {
+        // Trouver l'élément description et titre dans la même ligne que le bouton cliqué
+        var description = $(this).closest('tr').find('.description .full-description');
+        var title = $(this).closest('tr').find('.title');
+        var popupContent = $('#popupContent');
+        var popupTitle = $('#popupTitle');
 
-            // Mettre le contenu de full-description et titre dans le popupContent et popupTitle
-            if (description && title) {
-                popupContent.innerHTML = description.innerHTML;
-                popupTitle.innerText = title.innerText;
+        // Mettre le contenu de full-description et titre dans le popupContent et popupTitle
+        if (description.length > 0 && title.length > 0) {
+            popupContent.html(description.html());
+            popupTitle.text(title.text());
 
-                // Afficher le popup
-                document.getElementById('popup').classList.remove('hidden');
-            } else {
-                console.error('Description ou titre non trouvés');
-            }
-        });
+            // Afficher le popup
+            $('#popup').removeClass('hidden');
+        } else {
+            console.error('Description ou titre non trouvés');
+        }
     });
+
 
     $(document).ready(function() {
         $('#closePopup').click(function() {

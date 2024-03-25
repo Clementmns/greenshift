@@ -6,6 +6,14 @@ $friends = ["rankingFriend" => $rankingFriend];
 $world = ["rankingFriend" => $rankingWorld];
 ?>
 
+<div id="popup" class="overflow-y-auto hidden fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-start">
+   <div class="bg-white p-4 rounded-md w-[90%] mt-44 min-h-20 flex flex-col justify-center max-h-[50vh]">
+      <?php
+      echo view("relation/search");
+      ?>
+   </div>
+</div>
+
 
 
 <div class="box">
@@ -27,47 +35,57 @@ $world = ["rankingFriend" => $rankingWorld];
    </div>
 
 </div>
-<button class="w-full flex justify-center items-center gap-2 p-3 box my-6 bg-primary-500 text-white">
+<button id="" class="toggle-addFriend w-full flex justify-center items-center gap-2 p-3 box my-6 bg-primary-500 text-white">
    <img class="inline-block h-8 !w-8" src="<?= base_url() ?>assets/icons/friend_add.svg" alt="">
    <p class="text-lg font-bold">Ajouter un ami</p>
 </button>
 
 
 <script>
-   $(document).ready(function() {
-      $('.tab-button').click(function() {
-         // Remove active class from all buttons
-         $('.tab-button').removeClass('border-b-2 border-primary-400');
+   $('.toggle-addFriend').on('click', function() {
+      // Mettre le contenu de full-description et titre dans le popupContent et popupTitle
+      $('#popup').removeClass('hidden');
+   });
 
-         // Add active class to the clicked button
-         $(this).addClass('border-b-2 border-primary-400');
 
-         // Reset translateY for all buttons
-         $('.tab-button').css('transform', 'translateY(0)');
+   $('#closePopup').click(function() {
+      $('#popup').addClass('hidden');
+   });
 
-         // Lift the clicked tab
-         $(this).css('transform', 'translateY(-7px)');
+   $('#popup').click(function(event) {
+      if (event.target === this) {
+         $(this).addClass('hidden');
+      }
+   });
 
-         // Get the classement text from data attribute
-         if ($(this).attr('data-classement') == "Mondial") {
-            $('.classement-ami').fadeOut(200, function() {
-               $('.classement-ami').addClass('hidden');
-               $('.classement-mondial').fadeIn(200).removeClass('hidden');
-            });
-         } else {
-            $('.classement-mondial').fadeOut(200, function() {
-               $('.classement-mondial').addClass('hidden');
-               $('.classement-ami').fadeIn(200).removeClass('hidden');
-            });
-         }
-      });
+   $('.tab-button').click(function() {
+      // Remove active class from all buttons
+      $('.tab-button').removeClass('border-b-2 border-primary-400');
+
+      // Add active class to the clicked button
+      $(this).addClass('border-b-2 border-primary-400');
+
+      // Reset translateY for all buttons
+      $('.tab-button').css('transform', 'translateY(0)');
+
+      // Lift the clicked tab
+      $(this).css('transform', 'translateY(-7px)');
+
+      // Get the classement text from data attribute
+      if ($(this).attr('data-classement') == "Mondial") {
+         $('.classement-ami').fadeOut(200, function() {
+            $('.classement-ami').addClass('hidden');
+            $('.classement-mondial').fadeIn(200).removeClass('hidden');
+         });
+      } else {
+         $('.classement-mondial').fadeOut(200, function() {
+            $('.classement-mondial').addClass('hidden');
+            $('.classement-ami').fadeIn(200).removeClass('hidden');
+         });
+      }
    });
 </script>
 
-
-<?php
-echo view("relation/search");
-?>
 
 
 <div>

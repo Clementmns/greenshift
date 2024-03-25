@@ -1,12 +1,10 @@
-<ul>
-   <form>
-      <label for="search">Rechercher :</label>
-      <input class="search" type="text">
-   </form>
+<form class="m-5 box flex justify-between items-center h-10">
+   <img class="h-6 w-6" src="<?= base_url() ?>assets/icons/search.png" alt="">
 
+   <input class="search w-full h-8 p-1" type="search" placeholder="Rechercher" autofocus>
+</form>
 
-   <div id="result"></div>
-</ul>
+<div id="result"></div>
 
 <script>
    $(document).ready(function() {

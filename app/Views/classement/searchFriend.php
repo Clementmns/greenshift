@@ -1,7 +1,7 @@
-<table class="searchFriend w-64">
-    <tbody class="flex justify-center items-center flex-col gap-1">
+<table class=" searchFriend w-full flex justify-center items-center ">
+    <tbody class="flex justify-center items-center flex-col gap-1 w-full">
         <?php foreach ($people as $friend) : ?>
-            <tr class="bg-white flex h-16 w-full justify-between items-center rounded-md ring-2 ring-inset ring-gray-200 gap-4">
+            <tr class="box bg-white flex h-16 w-full justify-between items-center gap-4">
                 <td class="items-center flex justify-center w-12">
                     <img class="inline-block h-8 !w-8 rounded-full ring-2 ring-white ring-inset object-cover" src="<?= base_url() ?>assets/avatar/<?= $friend['avatar']; ?>" alt="">
                 </td>
@@ -20,6 +20,7 @@
         <?php endforeach; ?>
     </tbody>
 </table>
+</div>
 
 <script>
     // Attendez que le document soit prêt
