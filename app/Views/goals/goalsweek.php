@@ -4,7 +4,7 @@
         <p class="font-semibold text-5xl relative bottom-1">/</p>
         <p class="font-semibold text-5xl"><?php echo count($goals); ?></p>
     </div>
-    <svg viewBox="0 0 100 100" class=" w-full h-full origin-center">
+    <svg viewBox="0 0 100 100" class=" w-full h-full  origin-center">
         <path class="absolute rotate-[231.5deg] origin-center -z-10" id="bgArc" fill="transparent" stroke="#e5e7eB" stroke-linecap="round" stroke-width="10" d="M50 10 A40 40 0 1 1 11.002883512727053 58.90083735825259"></path>
 
         <path class="absolute rotate-[231.5deg] origin-center" id="progressArc" fill="transparent" stroke="#338954" stroke-linecap="round" stroke-width="10" d="M50 90 A40 40 0 0 1 30 90"></path>
@@ -81,59 +81,58 @@
             const popupTitle = document.getElementById('popupTitle');
 
             // Mettre le contenu de full-description et titre dans le popupContent et popupTitle
-            if (description.length > 0 && title.length > 0) {
-                popupContent.html(description.html());
-                popupTitle.text(title.text());
+            if (description && title) {
+                popupContent.innerHTML = description.innerHTML;
+                popupTitle.innerText = title.innerText;
 
                 // Afficher le popup
-                $('#popup').removeClass('hidden');
+                document.getElementById('popup').classList.remove('hidden');
             } else {
                 console.error('Description ou titre non trouvés');
             }
         });
+    });
+
+    $('#closePopup').click(function() {
+        $('#popup').addClass('hidden');
+    });
+
+    $('#popup').click(function(event) {
+        if (event.target === this) {
+            $(this).addClass('hidden');
+        }
+    });
 
 
-        $('#closePopup').click(function() {
-            $('#popup').addClass('hidden');
-        });
+    $('.validate-goal').click(function() {
+        var button = $(this);
 
-        $('#popup').click(function(event) {
-            if (event.target === this) {
-                $(this).addClass('hidden');
-            }
-        });
-
-
-        $('.validate-goal').click(function() {
-            var button = $(this);
-
-            if (!button.hasClass('disabled')) {
-                var goalId = button.data('goal');
-                $.ajax({
-                    type: 'get',
-                    url: '<?php echo base_url('dashboard/validateGoal'); ?>',
-                    data: {
-                        goal_id: goalId
-                    },
-                    success: function(response) {
-                        console.log(response)
-                        if (response.success) {
-                            location.reload();
-                            updateProgressArc(); // Mettre à jour l'arc de cercle après la validation d'un goal
-                            $.ajax({
-                                type: 'post',
-                                url: '',
-                                data: {
-                                    goal_id: goalId
-                                },
-                                success: function(response) {
-                                    // Mettre à jour les points de l'utilisateur si nécessaire
-                                }
-                            });
-                        }
+        if (!button.hasClass('disabled')) {
+            var goalId = button.data('goal');
+            $.ajax({
+                type: 'get',
+                url: '<?php echo base_url('dashboard/validateGoal'); ?>',
+                data: {
+                    goal_id: goalId
+                },
+                success: function(response) {
+                    console.log(response)
+                    if (response.success) {
+                        location.reload();
+                        updateProgressArc(); // Mettre à jour l'arc de cercle après la validation d'un goal
+                        $.ajax({
+                            type: 'post',
+                            url: '',
+                            data: {
+                                goal_id: goalId
+                            },
+                            success: function(response) {
+                                // Mettre à jour les points de l'utilisateur si nécessaire
+                            }
+                        });
                     }
-                });
-            }
-        });
+                }
+            });
+        }
     });
 </script>
