@@ -1,16 +1,13 @@
 <?php
-echo view("templates/header");
-echo view("templates/notification");
-
 $friends = ["rankingFriend" => $rankingFriend];
 $world = ["rankingFriend" => $rankingWorld];
+
+$search = view("relation/search");
 ?>
 
-<div id="popup" class="overflow-y-auto hidden fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-start z-50">
+<div id="popupFriend" class="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-start z-50 hidden">
    <div class="bg-white p-4 rounded-md w-[90%] mt-44 min-h-20 flex flex-col justify-center max-h-[50vh]">
-      <?php
-      echo view("relation/search");
-      ?>
+      <?php echo $search ?>
    </div>
 </div>
 
@@ -44,15 +41,15 @@ $world = ["rankingFriend" => $rankingWorld];
 <script>
    $('.toggle-addFriend').on('click', function() {
       // Mettre le contenu de full-description et titre dans le popupContent et popupTitle
-      $('#popup').removeClass('hidden');
+      $('#popupFriend').removeClass('hidden');
    });
 
 
    $('#closePopup').click(function() {
-      $('#popup').addClass('hidden');
+      $('#popupFriend').addClass('hidden');
    });
 
-   $('#popup').click(function(event) {
+   $('#popupFriend').click(function(event) {
       if (event.target === this) {
          $(this).addClass('hidden');
       }
@@ -85,10 +82,3 @@ $world = ["rankingFriend" => $rankingWorld];
       }
    });
 </script>
-
-
-
-
-<?php
-echo view("templates/footer");
-?>

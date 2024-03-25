@@ -13,6 +13,7 @@ class Dashboard extends BaseController
 {
     public function index()
     {
+        $badgeModel = new BadgeModel();
         $userModel = new UserModel();
         $loggedInUserId = session()->get('loggedInUser');
         $userInfo = $userModel->find($loggedInUserId);
@@ -21,6 +22,17 @@ class Dashboard extends BaseController
         if (empty($rankingFriend)) {
             $rankingFriend = [$userInfo];
         }
+
+        $allBadges = $badgeModel->getAllBadges();
+
+        // Récupérer les badges de l'utilisateur
+        $userBadges = $badgeModel->getUserOwnedBadges($loggedInUserId);
+
+        // Récupérer les points de l'utilisateur
+        $userPoints = $userModel->getUserPoints($loggedInUserId);
+
+        // Récupérer les badges favoris de l'utilisateur
+        $userFavoriteBadges = $userModel->getUserFavoriteBadges($loggedInUserId);
         $rankingWorld = $userModel->getWorldRanking();
         $goalModel = new GoalModel();
         $goals = $goalModel->getWeekGoals();
@@ -29,6 +41,14 @@ class Dashboard extends BaseController
         $goalsRealised = $goalRealisedModel->goalsRealised($loggedInUserId);
 
         $data = [
+            'allBadges' => $allBadges,
+
+            'userBadges' => $userBadges,
+
+            'userPoints' => $userPoints,
+
+            'userFavoriteBadges' => $userFavoriteBadges, // Ajout de cette variable pour les favoris
+
             "rankingFriend" => $rankingFriend,
             "rankingWorld" => $rankingWorld,
             'userInfo' => $userInfo,

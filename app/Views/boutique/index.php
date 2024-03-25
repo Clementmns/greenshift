@@ -1,5 +1,3 @@
-<?php echo view("templates/header"); ?>
-
 <div class="mx-4 my-8 grid gap-8">
 
     <div class="box">
@@ -65,5 +63,3 @@
     </div>
 
 </div>
-
-<?php echo view("templates/footer"); ?>
