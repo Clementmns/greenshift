@@ -86,7 +86,7 @@ class Auth extends BaseController
       $userModel = new \App\Models\UserModel();
       $query = $userModel->insert($data);
 
-      return redirect()->to('auth/index');
+      return redirect()->to('login');
    }
 
    public function loginUser()
@@ -111,7 +111,7 @@ class Auth extends BaseController
 
          if (!$userInfo) {
             session()->setFlashdata('fail', 'Utilisateur introuvable');
-            return redirect()->to('auth')->withInput();
+            return redirect()->to('login')->withInput();
          }
 
          // Check user password with db password
@@ -119,7 +119,7 @@ class Auth extends BaseController
 
          if (!$checkPassword) {
             session()->setFlashdata('fail', 'Mot de passe incorrect');
-            return redirect()->to('auth')->withInput();
+            return redirect()->to('login')->withInput();
          } else {
             // Process user info
 
@@ -128,7 +128,7 @@ class Auth extends BaseController
             $userId = $userInfo['id_user'];
 
             session()->set('loggedInUser', $userId);
-            return redirect()->to('dashboard/index')->with('success', 'Connexion réussie');
+            return redirect()->to('/')->with('success', 'Connexion réussie');
          }
       }
    }
@@ -160,16 +160,16 @@ class Auth extends BaseController
 
             // Vérifier si le fichier est une image
             if (!Extension::verifyExtension($imageExtension)) {
-               return redirect()->to('dashboard')->with('error', 'Format non supporté');
+               return redirect()->to('')->with('error', 'Format non supporté');
             }
 
             // Vérifier si le fichier est une image et la taille est inférieure à 2 Mo
             if (!in_array($img->getMimeType(), ['image/jpeg', 'image/png'])) {
-               return redirect()->to('dashboard')->with('error', 'Fichier non image');
+               return redirect()->to('')->with('error', 'Fichier non image');
             }
 
             if ($img->getSize() > 2097152) {
-               return redirect()->to('dashboard')->with('error', 'Fichier supérieur à 2Mo');
+               return redirect()->to('')->with('error', 'Fichier supérieur à 2Mo');
             }
 
             if (empty($errors)) {
@@ -188,10 +188,10 @@ class Auth extends BaseController
 
                $userModel->update($loggedInUserId, $data);
 
-               return redirect()->to('dashboard')->with('success', 'Image importée');
+               return redirect()->to('')->with('success', 'Image importée');
             }
          } else {
-            return redirect()->to('dashboard')->with('error', 'Fichier non supporté');
+            return redirect()->to('')->with('error', 'Fichier non supporté');
          }
       } catch (Exception $e) {
          echo $e->getMessage();
@@ -205,6 +205,6 @@ class Auth extends BaseController
       if (session()->has('loggedInUser')) {
          session()->remove('loggedInUser');
       }
-      return redirect()->to('/auth')->with('error', 'Vous avez été déconnecté');
+      return redirect()->to('login')->with('error', 'Vous avez été déconnecté');
    }
 }

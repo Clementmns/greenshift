@@ -54,7 +54,7 @@
                         <button class="bg-primary-500 text-white pl-3 pr-3 pb-2 pt-2 rounded-md shadow-lg">Se connecter</button>
                     </div>
                 </form>
-                <p class="text-center mx-10">Vous n'avez toujours pas de compte ? <br> <a class="text-primary-500 underline l" href="<?= base_url('auth/register'); ?>">Inscrivez-vous</a></p>
+                <p class="text-center mx-10">Vous n'avez toujours pas de compte ? <br> <a class="text-primary-500 underline l" href="<?= base_url('register'); ?>">Inscrivez-vous</a></p>
             </div>
         </div>
 

@@ -43,5 +43,3 @@
     </div>
 
 </div>
-
-<?php echo view("templates/footer"); ?>

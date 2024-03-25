@@ -74,7 +74,7 @@
 
                 </form>
 
-                <p class="text-center mx-10">Vous avez déjà un compte ? <br> <a class="text-primary-500 underline transition-all" href="<?= base_url('auth'); ?>"> Se connecter</a></p>
+                <p class="text-center mx-10">Vous avez déjà un compte ? <br> <a class="text-primary-500 underline transition-all" href="<?= base_url('login'); ?>"> Se connecter</a></p>
             </div>
         </div>
 
