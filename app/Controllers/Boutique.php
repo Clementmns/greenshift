@@ -37,8 +37,8 @@ class Boutique extends BaseController
         return view('boutique/index', $data);
     }
 
-    // Méthode pour acheter un badge
-    public function buyBadge($badgeId)
+    // Méthode pour acheter plusieurs badges
+    public function buyBadges()
     {
         $badgeModel = new BadgeModel();
         $userModel = new UserModel();
@@ -46,88 +46,103 @@ class Boutique extends BaseController
 
         // Vérifier si l'utilisateur est connecté
         if (!$loggedInUserId) {
-            return redirect()->to('/login')->with('error', 'Vous devez être connecté pour acheter un badge.');
+            return redirect()->to('/login')->with('error', 'Vous devez être connecté pour acheter des badges.');
         }
 
-        // Vérifier si le badge existe
-        $badge = $badgeModel->find($badgeId);
-        if (!$badge) {
-            return redirect()->back()->with('error', 'Le badge que vous essayez d\'acheter n\'existe pas.');
+        // Récupérer les badges sélectionnés à acheter
+        $selectedBadges = $this->request->getPost('selected_badges');
+
+        // Vérifier si des badges ont été sélectionnés
+        if ($selectedBadges === null || empty($selectedBadges)) {
+            return redirect()->back()->with('error', "Aucun badge n'a été sélectionné.");
         }
 
-        // Vérifier si l'utilisateur a déjà acheté ce badge
-        $userBadge = $badgeModel->userHasBadge($loggedInUserId, $badgeId);
-        if ($userBadge) {
-            return redirect()->back()->with('error', 'Vous avez déjà acheté ce badge.');
+        // Acheter chaque badge sélectionné
+        foreach ($selectedBadges as $badgeId) {
+            // Vérifier si le badge existe
+            $badge = $badgeModel->find($badgeId);
+            if (!$badge) {
+                return redirect()->back()->with('error', 'Le badge que vous essayez d\'acheter n\'existe pas.');
+            }
+
+            // Vérifier si l'utilisateur a déjà acheté ce badge
+            $userBadge = $badgeModel->userHasBadge($loggedInUserId, $badgeId);
+            if ($userBadge) {
+                return redirect()->back()->with('error', 'Vous avez déjà acheté le badge "'.$badge['title'].'".');
+            }
+
+            // Vérifier si l'utilisateur a suffisamment de points
+            $userPoints = $userModel->getUserPoints($loggedInUserId);
+            if ($userPoints < $badge['price']) {
+                return redirect()->back()->with('error', 'Vous n\'avez pas assez de points pour acheter le badge "'.$badge['title'].'".');
+            }
+
+            // Acheter le badge
+            $badgeModel->buyBadge($loggedInUserId, $badgeId);
         }
 
-        // Vérifier si l'utilisateur a suffisamment de points
-        $userPoints = $userModel->getUserPoints($loggedInUserId);
-        if ($userPoints < $badge['price']) {
-            return redirect()->back()->with('error', 'Vous n\'avez pas assez de points pour acheter ce badge.');
-        }
-
-        // Acheter le badge
-        $badgeModel->buyBadge($loggedInUserId, $badgeId);
-
-        return redirect()->back()->with('success', 'Le badge a été acheté avec succès.');
+        return redirect()->back()->with('success', 'Les badges sélectionnés ont été achetés avec succès.');
     }
 
     // Méthode pour ajouter des badges aux favoris
-   // Méthode pour ajouter des badges aux favoris
-public function addFavoriteBadges()
-{
-    $userModel = new UserModel();
-    $loggedInUserId = session()->get('loggedInUser');
+    public function addFavoriteBadges()
+    {
+        $userModel = new UserModel();
+        $loggedInUserId = session()->get('loggedInUser');
 
-    // Vérifier si l'utilisateur est connecté
-    if (!$loggedInUserId) {
-        return redirect()->to('/login')->with('error', 'Vous devez être connecté pour ajouter un badge aux favoris.');
+        // Vérifier si l'utilisateur est connecté
+        if (!$loggedInUserId) {
+            return redirect()->to('/login')->with('error', 'Vous devez être connecté pour ajouter un badge aux favoris.');
+        }
+
+        // Récupérer les badges sélectionnés à ajouter aux favoris
+        $favoriteBadges = $this->request->getPost('favorite_badges');
+
+        // Vérifier si des badges ont été sélectionnés
+        if ($favoriteBadges === null || empty($favoriteBadges)) {
+            return redirect()->back()->with('error', "Aucun badge n'a été sélectionné.");
+        }
+
+        // Récupérer les badges favoris actuels de l'utilisateur
+        $userFavoriteBadges = $userModel->getUserFavoriteBadges($loggedInUserId);
+
+        // Vérifier si l'utilisateur a déjà trois badges favoris
+        if (count($userFavoriteBadges) >= 3) {
+            return redirect()->back()->with('error', 'Vous ne pouvez pas ajouter plus de trois badges aux favoris.');
+        }
+
+        // Ajouter chaque badge aux favoris de l'utilisateur
+        foreach ($favoriteBadges as $badgeId) {
+            $userModel->addFavoriteBadge($loggedInUserId, $badgeId);
+        }
+
+        return redirect()->back()->with('success', 'Les badges ont été ajoutés aux favoris avec succès.');
     }
 
-    // Récupérer les badges sélectionnés à ajouter aux favoris
-    $favoriteBadges = $this->request->getPost('favorite_badges');
+    // Méthode pour supprimer un badge des favoris
+    public function removeFavoriteBadges()
+    {
+        $userModel = new UserModel();
+        $loggedInUserId = session()->get('loggedInUser');
 
-    // Vérifier si des badges ont été sélectionnés
-    if ($favoriteBadges === null || empty($favoriteBadges)) {
-        return redirect()->back()->with('error', "Aucun badge n'a été sélectionné.");
+        // Vérifier si l'utilisateur est connecté
+        if (!$loggedInUserId) {
+            return redirect()->to('/login')->with('error', 'Vous devez être connecté pour supprimer des badges des favoris.');
+        }
+
+        // Récupérer les badges sélectionnés à supprimer des favoris
+        $favoriteBadgesToRemove = $this->request->getPost('favorite_badges_to_remove');
+
+        // Vérifier si des badges ont été sélectionnés
+        if ($favoriteBadgesToRemove === null || empty($favoriteBadgesToRemove)) {
+            return redirect()->back()->with('error', "Aucun badge n'a été sélectionné pour être supprimé des favoris.");
+        }
+
+        // Supprimer chaque badge des favoris de l'utilisateur
+        foreach ($favoriteBadgesToRemove as $badgeId) {
+            $userModel->removeFavoriteBadge($loggedInUserId, $badgeId);
+        }
+
+        return redirect()->back()->with('success', 'Les badges sélectionnés ont été supprimés des favoris avec succès.');
     }
-
-    // Récupérer les badges favoris actuels de l'utilisateur
-    $userFavoriteBadges = $userModel->getUserFavoriteBadges($loggedInUserId);
-
-    // Vérifier si l'utilisateur a déjà trois badges favoris
-    if (count($userFavoriteBadges) >= 3) {
-        return redirect()->back()->with('error', 'Vous ne pouvez pas ajouter plus de trois badges aux favoris.');
-    }
-
-    // Ajouter chaque badge aux favoris de l'utilisateur
-    foreach ($favoriteBadges as $badgeId) {
-        $userModel->addFavoriteBadge($loggedInUserId, $badgeId);
-    }
-
-    return redirect()->back()->with('success', 'Les badges ont été ajoutés aux favoris avec succès.');
 }
-
-// Méthode pour supprimer un badge des favoris
-public function removeFavoriteBadge($badgeId)
-{
-    $userModel = new UserModel();
-    $loggedInUserId = session()->get('loggedInUser');
-
-    // Vérifier si l'utilisateur est connecté
-    if (!$loggedInUserId) {
-        return redirect()->to('/login')->with('error', 'Vous devez être connecté pour supprimer un badge des favoris.');
-    }
-
-    // Supprimer le badge des favoris de l'utilisateur
-    $userModel->removeFavoriteBadge($loggedInUserId, $badgeId);
-
-    return redirect()->back()->with('success', 'Le badge a été supprimé des favoris avec succès.');
-}
-
-        
-    }
-
-
-
