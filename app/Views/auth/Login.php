@@ -32,7 +32,7 @@
                         <?= esc($failMessage) ?>
                     </p>
                 <?php endif; ?>
-                <form action="<?= base_url('auth/loginUser') ?>" method="post" class="flex flex-col w-full p-10">
+                <form action="<?= base_url('loginUser') ?>" method="post" class="flex flex-col w-full p-10">
                     <?= csrf_field(); ?>
                     <div>
                         <label for="pseudo">Pseudo : </label>

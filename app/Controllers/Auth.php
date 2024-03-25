@@ -111,7 +111,7 @@ class Auth extends BaseController
 
          if (!$userInfo) {
             session()->setFlashdata('fail', 'Utilisateur introuvable');
-            return redirect()->to('auth')->withInput();
+            return redirect()->to('login')->withInput();
          }
 
          // Check user password with db password
@@ -128,7 +128,7 @@ class Auth extends BaseController
             $userId = $userInfo['id_user'];
 
             session()->set('loggedInUser', $userId);
-            return redirect()->to('')->with('success', 'Connexion réussie');
+            return redirect()->to('/')->with('success', 'Connexion réussie');
          }
       }
    }
