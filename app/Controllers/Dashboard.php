@@ -7,6 +7,7 @@ use App\Models\UserModel;
 use App\Models\GoalModel;
 use App\Models\GoalRealisedModel;
 use App\Models\FriendRelation;
+use App\Models\BadgeModel;
 
 class Dashboard extends BaseController
 {
@@ -37,6 +38,36 @@ class Dashboard extends BaseController
 
 
         return view('dashboard/index', $data);
+    }
+
+    public function badges()
+    {
+        $badgeModel = new BadgeModel();
+        $userModel = new UserModel();
+        $loggedInUserId = session()->get('loggedInUser');
+        $userInfo = $userModel->find($loggedInUserId);
+
+        // Récupérer tous les badges disponibles
+        $allBadges = $badgeModel->getAllBadges();
+
+        // Récupérer les badges de l'utilisateur
+        $userBadges = $badgeModel->getUserOwnedBadges($loggedInUserId);
+
+        // Récupérer les points de l'utilisateur
+        $userPoints = $userModel->getUserPoints($loggedInUserId);
+
+        // Récupérer les badges favoris de l'utilisateur
+        $userFavoriteBadges = $userModel->getUserFavoriteBadges($loggedInUserId);
+
+        $data = [
+            'allBadges' => $allBadges,
+            'userBadges' => $userBadges,
+            'userPoints' => $userPoints,
+            'userFavoriteBadges' => $userFavoriteBadges, // Ajout de cette variable pour les favoris
+            'userInfo' => $userInfo,
+        ];
+
+        return view('badges/index', $data);
     }
 
     public function classement()
