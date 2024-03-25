@@ -7,82 +7,46 @@ use App\Models\UserModel;
 
 class Boutique extends BaseController
 {
-    public function index()
+    // Méthode pour acheter un badge
+    public function buyBadge($badgeId)
     {
-        $badgeModel = new BadgeModel();
-        $userModel = new UserModel();
-        $loggedInUserId = session()->get('loggedInUser');
-        $userInfo = $userModel->find($loggedInUserId);
 
-        // Récupérer tous les badges disponibles
-        $allBadges = $badgeModel->getAllBadges();
-
-        // Récupérer les badges de l'utilisateur
-        $userBadges = $badgeModel->getUserOwnedBadges($loggedInUserId);
-
-        // Récupérer les points de l'utilisateur
-        $userPoints = $userModel->getUserPoints($loggedInUserId);
-
-        // Récupérer les badges favoris de l'utilisateur
-        $userFavoriteBadges = $userModel->getUserFavoriteBadges($loggedInUserId);
-
-        $data = [
-            'allBadges' => $allBadges,
-            'userBadges' => $userBadges,
-            'userPoints' => $userPoints,
-            'userFavoriteBadges' => $userFavoriteBadges, // Ajout de cette variable pour les favoris
-            'userInfo' => $userInfo,
-        ];
-
-        return view('boutique/index', $data);
-    }
-
-    // Méthode pour acheter plusieurs badges
-    public function buyBadges()
-    {
         $badgeModel = new BadgeModel();
         $userModel = new UserModel();
         $loggedInUserId = session()->get('loggedInUser');
 
         // Vérifier si l'utilisateur est connecté
         if (!$loggedInUserId) {
-            return redirect()->to('/login')->with('error', 'Vous devez être connecté pour acheter des badges.');
+            return redirect()->to('/login')->with('error', 'Vous devez être connecté pour acheter un badge.');
         }
 
-        // Récupérer les badges sélectionnés à acheter
-        $selectedBadges = $this->request->getPost('selected_badges');
-
-        // Vérifier si des badges ont été sélectionnés
-        if ($selectedBadges === null || empty($selectedBadges)) {
-            return redirect()->back()->with('error', "Aucun badge n'a été sélectionné.");
+        // Vérifier si le badge existe
+        $badge = $badgeModel->find($badgeId);
+        if (!$badge) {
+            return redirect()->back()->with('error', 'Le badge que vous essayez d\'acheter n\'existe pas.');
         }
 
-        // Acheter chaque badge sélectionné
-        foreach ($selectedBadges as $badgeId) {
-            // Vérifier si le badge existe
-            $badge = $badgeModel->find($badgeId);
-            if (!$badge) {
-                return redirect()->back()->with('error', 'Le badge que vous essayez d\'acheter n\'existe pas.');
-            }
-
-            // Vérifier si l'utilisateur a déjà acheté ce badge
-            $userBadge = $badgeModel->userHasBadge($loggedInUserId, $badgeId);
-            if ($userBadge) {
-                return redirect()->back()->with('error', 'Vous avez déjà acheté le badge "'.$badge['title'].'".');
-            }
-
-            // Vérifier si l'utilisateur a suffisamment de points
-            $userPoints = $userModel->getUserPoints($loggedInUserId);
-            if ($userPoints < $badge['price']) {
-                return redirect()->back()->with('error', 'Vous n\'avez pas assez de points pour acheter le badge "'.$badge['title'].'".');
-            }
-
-            // Acheter le badge
-            $badgeModel->buyBadge($loggedInUserId, $badgeId);
+        $userBadge = $badgeModel->userHasBadge($loggedInUserId, $badgeId);
+        if ($userBadge) {
+            return redirect()->back()->with('error', 'Vous avez déjà acheté ce badge.');
         }
 
-        return redirect()->back()->with('success', 'Les badges sélectionnés ont été achetés avec succès.');
+        // Vérifier si l'utilisateur a suffisamment de points
+        $userPoints = $userModel->getUserPoints($loggedInUserId);
+        if ($userPoints < $badge['price']) {
+            return redirect()->back()->with('error', 'Vous n\'avez pas assez de points pour acheter ce badge.');
+        }
+
+        // Acheter le badge
+        $badgeModel->buyBadge($loggedInUserId, $badgeId);
+
+        return redirect()->back()->with('success', 'Le badge a été acheté avec succès.');
     }
+
+
+
+
+
 
     // Méthode pour ajouter des badges aux favoris
     public function addFavoriteBadges()

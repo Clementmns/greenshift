@@ -32,4 +32,4 @@
         <div class="fixed -z-50 bottom-0 bg-white h-[85vh] w-[180vw] rounded-t-full">
         </div>
     </div>
-    <main class="mt-28  px-6 mb-24">
+    <main class="mt-28  px-6 mb-24 wrapper hidden">

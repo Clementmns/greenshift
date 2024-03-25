@@ -54,20 +54,20 @@ class BadgeModel extends Model
     public function getUserOwnedBadges($userId)
     {
         return $this->db->table('greenshift_ownedbadges')
-                        ->select('greenshift_badges.*') // Sélectionne toutes les colonnes de greenshift_badges
-                        ->join('greenshift_badges', 'greenshift_badges.id_badge = greenshift_ownedbadges.fk_badge')
-                        ->where('greenshift_ownedbadges.fk_user', $userId)
-                        ->get()
-                        ->getResultArray();
+            ->select('greenshift_badges.*') // Sélectionne toutes les colonnes de greenshift_badges
+            ->join('greenshift_badges', 'greenshift_badges.id_badge = greenshift_ownedbadges.fk_badge')
+            ->where('greenshift_ownedbadges.fk_user', $userId)
+            ->get()
+            ->getResultArray();
     }
 
     // Méthode pour vérifier si un utilisateur possède un badge spécifique
     public function userHasBadge($userId, $badgeId)
     {
         return $this->db->table('greenshift_ownedbadges')
-                        ->where('fk_user', $userId)
-                        ->where('fk_badge', $badgeId)
-                        ->countAllResults() > 0;
+            ->where('fk_user', $userId)
+            ->where('fk_badge', $badgeId)
+            ->countAllResults() > 0;
     }
 
     // Méthode pour acheter un badge
