@@ -40,7 +40,7 @@
                 </tr>
             <?php } else {
             ?>
-                <tr class=" flex h-16 w-full justify-between box items-center gap-2">
+                <tr class="user-row flex h-16 w-full justify-between box items-center gap-2" data-user-id="<?= $friend['id_user']; ?>">
                     <td <?php if ($n == 1) {
                             echo 'class="text-yellow-500 ml-2 ring-2 max-w-6 w-6 rounded-full max-h-6 h-6 ring-inset ring-yellow-500 rounded-full flex justify-center items-center m-0 p-0 w-1/6"';
                         }
@@ -76,3 +76,26 @@
         endforeach; ?>
     </tbody>
 </table>
+
+<script>
+    $('.user-row').on('click', function() {
+        var profileUserId = $(this).data('user-id');
+
+        // Effectuer une requête AJAX pour récupérer les informations de l'utilisateur
+        $.ajax({
+            url: '<?php echo base_url('user/getUserInfos'); ?>',
+            type: 'GET',
+            data: {
+                profileUserId: profileUserId,
+            },
+            success: function(response) {
+                $('#popupProfile').removeClass('hidden');
+                $('#profileFriend').html(response);
+            },
+            error: function(xhr, status, error) {
+                console.error(error);
+                // Gérer les erreurs
+            }
+        });
+    });
+</script>

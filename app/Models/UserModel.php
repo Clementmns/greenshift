@@ -54,18 +54,18 @@ class UserModel extends Model
         }
 
         // Récupérer les badges favoris actuels de l'utilisateur
-        $favoriteBadges = explode(',', $user['favorite_badges']);
+        $favoriteBadges = $user['favorite_badges'];
 
         // Vérifier si le badge est déjà dans les favoris
-        if (in_array($badgeId, $favoriteBadges)) {
+        if ($badgeId == $favoriteBadges) {
             return false; // Le badge est déjà dans les favoris
         }
 
         // Ajouter le badge à la liste des favoris
-        $favoriteBadges[] = $badgeId;
+        $favoriteBadges = $badgeId;
 
         // Mettre à jour la colonne favorite_badges dans la base de données
-        $this->update($userId, ['favorite_badges' => implode(',', $favoriteBadges)]);
+        $this->update($userId, ['favorite_badges' => $favoriteBadges]);
 
         return true; // Badge ajouté avec succès aux favoris
     }
@@ -116,21 +116,19 @@ class UserModel extends Model
         }
 
         // Récupérer les badges favoris de l'utilisateur
-        $favoriteBadges = explode(',', $user['favorite_badges']);
+        $favoriteBadges = $user['favorite_badges'];
 
         // Si l'utilisateur n'a pas de badges favoris, retourner un tableau vide
         if (empty($favoriteBadges)) {
-            return [];
+            return "";
         }
 
         // Récupérer les détails des badges favoris à partir de leur ID
         $badgeModel = new BadgeModel();
-        $userFavoriteBadges = [];
-        foreach ($favoriteBadges as $badgeId) {
-            $badge = $badgeModel->find($badgeId);
-            if ($badge) {
-                $userFavoriteBadges[] = $badge;
-            }
+        $userFavoriteBadges = "";
+        $badge = $badgeModel->find($favoriteBadges);
+        if ($badge) {
+            $userFavoriteBadges = $badge;
         }
 
         return $userFavoriteBadges;
@@ -198,29 +196,5 @@ class UserModel extends Model
         return $this->db->table('greenshift_users')
             ->where('id_user', $userId)
             ->update(['points' => $newPoints, 'exp' => $newExp, 'level' => $newLevel]);
-    }
-    public function removeFavoriteBadge($userId, $badgeId)
-    {
-        $user = $this->find($userId);
-        if (!$user) {
-            return false; // Utilisateur non trouvé
-        }
-
-        // Récupérer les badges favoris actuels de l'utilisateur
-        $favoriteBadges = explode(',', $user['favorite_badges']);
-
-        // Vérifier si le badge est dans les favoris
-        $key = array_search($badgeId, $favoriteBadges);
-        if ($key === false) {
-            return false; // Le badge n'est pas dans les favoris
-        }
-
-        // Supprimer le badge des favoris
-        unset($favoriteBadges[$key]);
-
-        // Mettre à jour la colonne favorite_badges dans la base de données
-        $this->update($userId, ['favorite_badges' => implode(',', $favoriteBadges)]);
-
-        return true; // Badge supprimé avec succès des favoris
     }
 }

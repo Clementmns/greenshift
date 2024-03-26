@@ -6,8 +6,14 @@ $search = view("relation/search");
 ?>
 
 <div id="popupFriend" class="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-start z-50 hidden">
-   <div class="bg-white p-4 rounded-md w-[90%] mt-44 min-h-20 flex flex-col justify-center max-h-[50vh]">
+   <div class="bg-white p-4 rounded-md w-[90%] mt-44 min-h-20 flex flex-col justify-center max-h-[70vh]">
       <?php echo $search ?>
+   </div>
+</div>
+
+<div id="popupProfile" class="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-start z-50 hidden">
+   <div class="bg-white p-4 rounded-md w-[90%] mt-44 min-h-20 flex flex-col justify-center max-h-[70vh]">
+      <div id="profileFriend"></div>
    </div>
 </div>
 
@@ -50,6 +56,16 @@ $search = view("relation/search");
    });
 
    $('#popupFriend').click(function(event) {
+      if (event.target === this) {
+         $(this).addClass('hidden');
+      }
+   });
+
+   $('#closePopup').click(function() {
+      $('#popupProfile').addClass('hidden');
+   });
+
+   $('#popupProfile').click(function(event) {
       if (event.target === this) {
          $(this).addClass('hidden');
       }

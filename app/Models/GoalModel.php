@@ -58,4 +58,9 @@ class GoalModel extends Model
             'year' => $currentYear,
         ])->findAll();
     }
+
+    public function addGoals($data)
+    {
+        return $this->insertBatch($data);
+    }
 }

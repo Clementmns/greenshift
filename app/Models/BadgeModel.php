@@ -124,4 +124,9 @@ class BadgeModel extends Model
 
         $this->db->table('greenshift_ownedbadges')->insert($data);
     }
+
+    public function addBadge($data)
+    {
+        return $this->insert($data);
+    }
 }

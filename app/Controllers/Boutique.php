@@ -67,20 +67,11 @@ class Boutique extends BaseController
             return redirect()->back()->with('error', "Aucun badge n'a été sélectionné.");
         }
 
-        // Récupérer les badges favoris actuels de l'utilisateur
-        $userFavoriteBadges = $userModel->getUserFavoriteBadges($loggedInUserId);
-
-        // Vérifier si l'utilisateur a déjà trois badges favoris
-        if (count($userFavoriteBadges) >= 3) {
-            return redirect()->back()->with('error', 'Vous ne pouvez pas ajouter plus de trois badges aux favoris.');
-        }
 
         // Ajouter chaque badge aux favoris de l'utilisateur
-        foreach ($favoriteBadges as $badgeId) {
-            $userModel->addFavoriteBadge($loggedInUserId, $badgeId);
-        }
+        $userModel->addFavoriteBadge($loggedInUserId, $favoriteBadges);
 
-        return redirect()->back()->with('success', 'Les badges ont été ajoutés aux favoris avec succès.');
+        return redirect()->back()->with('success', 'Le badge a été ajouté en tant que favori');
     }
 
     // Méthode pour supprimer un badge des favoris
