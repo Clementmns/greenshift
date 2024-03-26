@@ -1602,6 +1602,10 @@ video {
     height: 42vw;
   }
 
+  .landscape\:h-full {
+    height: 100%;
+  }
+
   .landscape\:w-\[20vw\] {
     width: 20vw;
   }
@@ -1624,6 +1628,25 @@ video {
 
   .landscape\:gap-4 {
     gap: 1rem;
+  }
+
+  .landscape\:rounded {
+    border-radius: 0.25rem;
+  }
+
+  .landscape\:rounded-b-none {
+    border-bottom-right-radius: 0px;
+    border-bottom-left-radius: 0px;
+  }
+
+  .landscape\:rounded-r {
+    border-top-right-radius: 0.25rem;
+    border-bottom-right-radius: 0.25rem;
+  }
+
+  .landscape\:rounded-r-3xl {
+    border-top-right-radius: 1.5rem;
+    border-bottom-right-radius: 1.5rem;
   }
 
   .landscape\:hover\:translate-y-0:hover {

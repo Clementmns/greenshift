@@ -12,16 +12,16 @@
     <?php
     echo view("templates/notification");
     ?>
-    <section class="w-screen h-screen flex flex-col items-center justify-center">
+    <section class="w-screen h-screen flex flex-col items-center justify-center landscape:flex-row">
 
-        <div class="w-full h-1/4 bg-cover bg-center flex items-center justify-center rounded-b-3xl shadow-3xl" style="background-image: url('<?= base_url() ?>/assets/img/auth-bg.jpeg');">
+        <div class="w-full h-1/4 bg-cover landscape:h-full bg-center flex items-center justify-center landscape:rounded-b-none landscape:rounded-r-3xl rounded-b-3xl shadow-3xl" style="background-image: url('<?= base_url() ?>/assets/img/auth-bg.jpeg');">
             <div class="w-full h-full flex flex-col justify-center items-center">
                 <h1 class="text-white text-7xl shadow-white">Greenshift</h1>
             </div>
         </div>
 
         <div class="w-full h-3/4 flex justify-center items-center">
-            <div class="w-full flex flex-col items-center justify-between h-[60vh] ">
+            <div class="w-full flex flex-col items-center justify-between h-[60vh] landscape:w-[30vw]">
                 <h2 class="text-5xl">Inscription</h2>
 
                 <form action="<?= base_url('auth/registerUser') ?>" method="post" class="flex flex-col w-full p-10 pt-2">

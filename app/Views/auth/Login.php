@@ -12,9 +12,9 @@
     <?php
     echo view("templates/notification");
     ?>
-    <section class="w-screen h-screen flex flex-col items-center justify-center ">
+    <section class="w-screen h-screen flex flex-col items-center justify-center landscape:flex-row">
 
-        <div class="w-full h-1/4 bg-cover bg-center flex items-center justify-center rounded-b-3xl shadow-3xl" style="background-image: url('<?= base_url() ?>/assets/img/auth-bg.jpeg');">
+        <div class="w-full h-1/4 landscape:h-full bg-cover bg-center flex items-center justify-center rounded-b-3xl landscape:rounded-b-none landscape:rounded-r-3xl shadow-3xl" style="background-image: url('<?= base_url() ?>/assets/img/auth-bg.jpeg');">
             <div class="w-full h-full flex flex-col justify-center items-center">
                 <h1 class="text-white text-7xl shadow-white">Greenshift</h1>
             </div>
@@ -24,7 +24,7 @@
 
 
         <div class="w-full h-3/4 flex justify-center items-center">
-            <div class=" flex flex-col items-center justify-evenly h-full w-full">
+            <div class=" flex flex-col items-center justify-evenly h-full w-full landscape:w-[30vw]">
                 <h2 class="text-5xl">Connexion</h2>
                 <?php $failMessage = session()->getFlashdata('fail'); ?>
                 <?php if ($failMessage) : ?>
