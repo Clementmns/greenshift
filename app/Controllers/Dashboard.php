@@ -37,6 +37,8 @@ class Dashboard extends BaseController
         $goalModel = new GoalModel();
         $goals = $goalModel->getWeekGoals();
 
+        $goalsNextWeek = $goalModel->getNextWeekGoals();
+
         $goalRealisedModel = new GoalRealisedModel();
         $goalsRealised = $goalRealisedModel->goalsRealised($loggedInUserId);
 
@@ -54,6 +56,7 @@ class Dashboard extends BaseController
             'userInfo' => $userInfo,
             'goals' => $goals,
             'goalsRealised' => $goalsRealised,
+            'goalsNextWeek' => $goalsNextWeek,
         ];
 
 

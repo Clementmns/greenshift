@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Greeshift - Inscription</title>
+    <title>Greenshift - Inscription</title>
     <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>/css/output.css">
 </head>
 
@@ -24,7 +24,7 @@
             <div class="w-full flex flex-col items-center justify-between h-[60vh] ">
                 <h2 class="text-5xl">Inscription</h2>
 
-                <form action="<?= base_url('auth/registerUser') ?>" method="post" class="flex flex-col w-full p-10">
+                <form action="<?= base_url('auth/registerUser') ?>" method="post" class="flex flex-col w-full p-10 pt-2">
                     <?= csrf_field(); ?>
                     <div class="mt-1 flex justify-between">
                         <div class="w-[45%]">
@@ -48,7 +48,7 @@
                         <div>
 
                             <input class="bg-gray-100 p-1 rounded-lg ring-2 ring-gray-200 w-full shadow-md" value="<?= set_value('pseudo'); ?>" id="pseudo" type="text" name="pseudo" placeholder="Ex: titlah">
-                            <span class="leading-none text-red-500"><?= isset($validation) ? display_form_errors($validation, 'pseudo') : ''; ?></span class="leading-none text-red-500">
+                            <span class="leading-none text-red-500 text-sm"><?= isset($validation) ? display_form_errors($validation, 'pseudo') : ''; ?></span class="leading-none text-red-500">
                         </div>
 
                     </div>
@@ -58,14 +58,14 @@
 
 
                             <input class="bg-gray-100 p-1 rounded-lg ring-2 ring-gray-200 w-full shadow-md" value="<?= set_value('password'); ?>" id="password" type="password" name="password" placeholder="Ex: motdepasse1234">
-                            <span class="leading-none text-red-500"><?= isset($validation) ? display_form_errors($validation, 'password') : ''; ?></span class="leading-none text-red-500">
+                            <span class="leading-none text-red-500 text-sm"><?= isset($validation) ? display_form_errors($validation, 'password') : ''; ?></span class="leading-none text-red-500">
                         </div>
                     </div>
                     <div class="mt-1">
                         <label for="passwordConf">Confirmer le mot de passe</label>
                         <div>
                             <input class="bg-gray-100 p-1 rounded-lg ring-2 ring-gray-200 w-full shadow-md" value="<?= set_value('passwordConf'); ?>" id="passwordConf" type="password" name="passwordConf" placeholder="Ex: motdepasse1234">
-                            <span class="leading-none text-red-500"><?= isset($validation) ? display_form_errors($validation, 'passwordConf') : ''; ?></span class="leading-none text-red-500">
+                            <span class="leading-none text-red-500 text-sm"><?= isset($validation) ? display_form_errors($validation, 'passwordConf') : ''; ?></span class="leading-none text-red-500">
                         </div>
                     </div>
                     <div class="self-center">

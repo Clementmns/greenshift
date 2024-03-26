@@ -1,12 +1,12 @@
 <nav class="fixed bottom-0 left-0 w-full  z-[43] h-16">
     <div class="box rounded-t-3xl rounded-b-none p-2 ">
         <ul class="flex justify-around">
-            <li class="icon-button transition-all p-3 m-0" data-icon="home"><img src="<?= base_url("assets/icons/maison.svg"); ?>" alt="Icone 5" class="w-6 h-6 object-cover"></a></li>
-            <li class="icon-button transition-all p-3 m-0" data-icon="ranking"><img src="<?= base_url("assets/icons/trophee.svg"); ?>" alt="Icone 5" class="w-6 h-6 object-cover"></a></li>
-            <li class="icon-button transition-all p-3 m-0" data-icon="badges"><img src="<?= base_url("assets/icons/badge.svg"); ?>" alt="Icone 5" class="w-6 h-6 object-cover"></a></li>
-            <li class="icon-button transition-all p-3 m-0" data-icon="shop"><img src="<?= base_url("assets/icons/panier.svg"); ?>" alt="Icone 5" class="w-6 h-6 object-cover"></a></li>
+            <li class="icon-button transition-all p-3 m-0 landscape:hover:border-b-2 landscape:hover:border-primary-500 cursor-pointer" data-icon="home"><img src="<?= base_url("assets/icons/maison.svg"); ?>" alt="Icone 5" class="w-6 h-6 object-cover"></a></li>
+            <li class="icon-button transition-all p-3 m-0 landscape:hover:border-b-2 landscape:hover:border-primary-500 cursor-pointer" data-icon="ranking"><img src="<?= base_url("assets/icons/trophee.svg"); ?>" alt="Icone 5" class="w-6 h-6 object-cover"></a></li>
+            <li class="icon-button transition-all p-3 m-0 landscape:hover:border-b-2 landscape:hover:border-primary-500 cursor-pointer" data-icon="badges"><img src="<?= base_url("assets/icons/badge.svg"); ?>" alt="Icone 5" class="w-6 h-6 object-cover"></a></li>
+            <li class="shopNav icon-button transition-all p-3 m-0 landscape:hover:border-b-2 landscape:hover:border-primary-500 cursor-pointer" data-icon="shop"><img src="<?= base_url("assets/icons/panier.svg"); ?>" alt="Icone 5" class="w-6 h-6 object-cover"></a></li>
             <?php if ($userInfo['role'] == 1) {
-                echo "<li class='icon-button p-3 m-0' data-icon='admin'><img src='" . base_url("assets/icons/admin.svg") . "' alt='Icone 5' class='w-6 h-6 object-cover'></a></li>";
+                echo "<li class='transition-all icon-button p-3 m-0 landscape:hover:border-b-2 landscape:hover:border-primary-500 cursor-pointer' data-icon='admin'><img src='" . base_url("assets/icons/admin.svg") . "' alt='Icone 5' class='w-6 h-6 object-cover'></a></li>";
             } ?>
         </ul>
     </div>

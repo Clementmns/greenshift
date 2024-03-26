@@ -1,53 +1,58 @@
-<div class="box w-full h-[35vh] flex flex-col justify-center items-center mb-10" id="circle">
-    <div class="absolute flex items-center text-gray-700">
-        <p class="font-semibold text-5xl"><?php echo count($goalsRealised); ?></p>
-        <p class="font-semibold text-5xl relative bottom-1">/</p>
-        <p class="font-semibold text-5xl"><?php echo count($goals); ?></p>
+<div class="flex flex-col items-center w-full landscape:flex-row landscape:gap-4">
+    <div class="w-full">
+        <div class="box w-full h-[35vh] landscape:h-[42vw] flex flex-col justify-center items-center mb-10 landscape:mb-0" id="circle">
+            <div class="absolute flex items-center text-gray-700">
+                <p class="font-semibold text-5xl"><?php echo count($goalsRealised); ?></p>
+                <p class="font-semibold text-5xl relative bottom-1">/</p>
+                <p class="font-semibold text-5xl"><?php echo count($goals); ?></p>
+            </div>
+            <svg viewBox="0 0 100 100" class="transition-all w-full h-full  origin-center">
+                <path class="transition-all absolute rotate-[231.5deg] origin-center -z-10" id="bgArc" fill="transparent" stroke="#e5e7eB" stroke-linecap="round" stroke-width="10" d="M50 10 A40 40 0 1 1 11.002883512727053 58.90083735825259"></path>
+                <path class="absolute rotate-[231.5deg] origin-center" id="progressArc" fill="transparent" stroke="#338954" stroke-linecap="round" stroke-width="10" d="M50 90 A40 40 0 0 1 30 90"></path>
+            </svg>
+
+
+        </div>
+        <div id="popup" class="hidden fixed top-0 left-0 w-full h-full z-50 bg-black bg-opacity-50 flex justify-center items-center">
+            <div class="bg-white p-4 rounded-md w-[90%] landscape:w-[30vw]">
+                <h2 id="popupTitle" class=" font-semibold text-lg mb-2"></h2>
+                <div id="popupContent"></div>
+            </div>
+        </div>
     </div>
-    <svg viewBox="0 0 100 100" class=" w-full h-full  origin-center">
-        <path class="absolute rotate-[231.5deg] origin-center -z-10" id="bgArc" fill="transparent" stroke="#e5e7eB" stroke-linecap="round" stroke-width="10" d="M50 10 A40 40 0 1 1 11.002883512727053 58.90083735825259"></path>
-
-        <path class="absolute rotate-[231.5deg] origin-center" id="progressArc" fill="transparent" stroke="#338954" stroke-linecap="round" stroke-width="10" d="M50 90 A40 40 0 0 1 30 90"></path>
-    </svg>
-
-
-</div>
-<div id="popup" class="hidden fixed top-0 left-0 w-full h-full z-50 bg-black bg-opacity-50 flex justify-center items-center">
-    <div class="bg-white p-4 rounded-md w-[90%]">
-        <h2 id="popupTitle" class="font-semibold text-lg mb-2"></h2>
-        <div id="popupContent"></div>
+    <div class="w-full">
+        <h2 class="text-center font-bold text-xl mb-4">Vos objectifs :</h2>
+        <table id="goalsTable" class="flex flex-col">
+            <tbody class="w-full flex flex-col justify-center items-center gap-1">
+                <?php foreach ($goals as $goal) : ?>
+                    <tr class="bg-white flex h-auto w-full justify-between items-center ring-gray-200 box">
+                        <td class="flex items-center justify-center w-2/12">
+                            <button class="w-6 h-6 toggle-description"><img src="<?= base_url('assets/icons/info.png') ?>" alt="Coin Icon"></button>
+                        </td>
+                        <td class="items-start flex flex-col justify-evenly w-7/12 h-full">
+                            <div class="leading-none gap-1">
+                                <p class="title font-semibold"><?= strlen($goal['title']) > 30 ? substr($goal['title'], 0, 30) . '...' : esc($goal['title']) ?></p>
+                                <div class="description text-gray-400">
+                                    <p class="excerpt"><?= strlen($goal['description']) > 30 ? substr($goal['description'], 0, 30) . '...' : esc($goal['description']) ?></p>
+                                    <p class="hidden full-description"><?= esc($goal['description']) ?></p>
+                                </div>
+                                <div class="flex items-center">
+                                    <img class="h-4 w-4" src="<?= base_url('assets/icons/shifter.svg') ?>" alt="Coin Icon">
+                                    <p class="ml-2"><?= esc($goal['earning']) ?></p>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="flex items-center justify-center w-3/12">
+                            <?php if (empty($goalsRealised) || !in_array($goal['id_goal'], array_column($goalsRealised, 'fk_goal'))) : ?>
+                                <button class="bg-primary-500 landscape:hover:bg-primary-700 text-white py-1 px-2 rounded validate-goal" data-goal="<?= esc($goal['id_goal']) ?>">Valider</button>
+                            <?php endif; ?>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
     </div>
 </div>
-<h2 class="text-center font-bold text-xl mb-4">Vos objectifs :</h2>
-<table id="goalsTable" class="flex flex-col">
-    <tbody class="w-full flex flex-col justify-center items-center gap-1">
-        <?php foreach ($goals as $goal) : ?>
-            <tr class="bg-white flex h-auto w-full justify-between items-center ring-gray-200 box">
-                <td class="flex items-center justify-center w-2/12">
-                    <button class="w-6 h-6 toggle-description"><img src="<?= base_url('assets/icons/info.png') ?>" alt="Coin Icon"></button>
-                </td>
-                <td class="items-start flex flex-col justify-evenly w-7/12 h-full">
-                    <div class="leading-none gap-1">
-                        <p class="title font-semibold"><?= strlen($goal['title']) > 30 ? substr($goal['title'], 0, 30) . '...' : esc($goal['title']) ?></p>
-                        <div class="description text-gray-400">
-                            <p class="excerpt"><?= strlen($goal['description']) > 30 ? substr($goal['description'], 0, 30) . '...' : esc($goal['description']) ?></p>
-                            <p class="hidden full-description"><?= esc($goal['description']) ?></p>
-                        </div>
-                        <div class="flex items-center">
-                            <img class="h-4 w-4" src="<?= base_url('assets/icons/shifter.svg') ?>" alt="Coin Icon">
-                            <p class="ml-2"><?= esc($goal['earning']) ?></p>
-                        </div>
-                    </div>
-                </td>
-                <td class="flex items-center justify-center w-3/12">
-                    <?php if (empty($goalsRealised) || !in_array($goal['id_goal'], array_column($goalsRealised, 'fk_goal'))) : ?>
-                        <button class="bg-primary-500 text-white py-1 px-2 rounded validate-goal" data-goal="<?= esc($goal['id_goal']) ?>">Valider</button>
-                    <?php endif; ?>
-                </td>
-            </tr>
-        <?php endforeach; ?>
-    </tbody>
-</table>
 <script>
     var progressComplete = false; // Variable pour suivre si le progrès est complet
 

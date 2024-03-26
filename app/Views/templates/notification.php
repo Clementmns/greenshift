@@ -20,9 +20,11 @@
 
    <script>
       function closeNotification() {
-         var toast = document.getElementById('toast');
-         toast.remove();
+         $("#toast").fadeOut(200);
       }
+      setInterval(() => {
+         closeNotification();
+      }, 3000);
    </script>
 
 <?php endif; ?>
@@ -50,7 +52,7 @@
 
    <script>
       function closeNotification() {
-         $("#toast").fadeOut(1000);
+         $("#toast").fadeOut(200);
       }
       setInterval(() => {
          closeNotification();

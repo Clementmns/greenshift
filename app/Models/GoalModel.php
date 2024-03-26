@@ -59,6 +59,26 @@ class GoalModel extends Model
         ])->findAll();
     }
 
+    public function getNextWeekGoals()
+    {
+        // Get the current week and year
+        $currentWeek = date('W');
+        $currentYear = date('Y');
+
+        if ($currentWeek + 1 > 52.1429) {
+            $currentWeek = $currentWeek - 51;
+            $currentYear += 1;
+        } else {
+            $currentWeek += 1;
+        }
+
+        // Find goals for the current week
+        return $this->where([
+            'week' =>  $currentWeek,
+            'year' => $currentYear,
+        ])->findAll();
+    }
+
     public function addGoals($data)
     {
         return $this->insertBatch($data);

@@ -10,10 +10,7 @@ echo view("templates/notification");
    echo '<div class="container admin box flex flex-col gap-4 hidden">';
    echo view("admin/index");
    echo '</div>';
-}
-
-echo view("templates/footer");
-?>
+} ?>
 
 <script>
    $(document).ready(function() {
@@ -34,3 +31,6 @@ echo view("templates/footer");
       }
    });
 </script>
+<?php
+echo view("templates/footer");
+?>

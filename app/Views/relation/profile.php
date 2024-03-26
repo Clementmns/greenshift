@@ -9,7 +9,8 @@
          </div>
       </div>
       <?php if (isset($userFavoriteBadges['link'])) : ?>
-         <div class="flex flex-col items-center mt-10">
+         <h2 class="mt-4">Badge favori :</h2>
+         <div class="flex flex-col items-center mt-1">
             <img class="inline-block h-56 rounded-md object-cover" src="<?= base_url() ?>assets/badges/<?= $userFavoriteBadges['link']; ?>" alt="">
          </div>
       <?php endif; ?>

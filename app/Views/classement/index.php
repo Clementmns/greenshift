@@ -7,7 +7,7 @@
             <?php
 
             if ($friend['id_user'] == $userInfo['id_user']) { ?>
-                <tr class="bg-primary-50 ring-primary-500 flex h-16 w-full justify-between box ring-inset ring-2 items-center gap-2">
+                <tr class="bg-primary-50 ring-primary-500 flex h-16 w-full justify-between box ring-inset ring-2 items-center gap-2 transition-all landscape:hover:bg-gray-100 cursor-pointer">
                     <td <?php if ($n == 1) {
                             echo 'class="text-yellow-500 ml-2 ring-2 ring-inset ring-yellow-500 rounded-full max-w-6 w-6 rounded-full max-h-6 h-6 flex justify-center items-center m-0 p-0 w-1/6"';
                         }
@@ -27,7 +27,7 @@
                     <td class=" flex items-start w-3/6 flex-col">
                         <p class="font-bold first-letter:uppercase"><?= $friend['pseudo'] ?></p>
                         <div class="flex items-center">
-                            <img class="h-4 w-4" src="<?= base_url() ?>/assets/icons/coin.png" alt="">
+                            <img class="h-4 w-4" src="<?= base_url() ?>/assets/icons/shifter.svg" alt="">
                             <p class="ml-2">
                                 <?= $friend['points'] ?>
                             </p>
@@ -40,7 +40,7 @@
                 </tr>
             <?php } else {
             ?>
-                <tr class="user-row flex h-16 w-full justify-between box items-center gap-2" data-user-id="<?= $friend['id_user']; ?>">
+                <tr class="user-row flex h-16 w-full justify-between box items-center gap-2 transition-all landscape:hover:bg-gray-100 cursor-pointer" data-user-id="<?= $friend['id_user']; ?>">
                     <td <?php if ($n == 1) {
                             echo 'class="text-yellow-500 ml-2 ring-2 max-w-6 w-6 rounded-full max-h-6 h-6 ring-inset ring-yellow-500 rounded-full flex justify-center items-center m-0 p-0 w-1/6"';
                         }
@@ -60,7 +60,7 @@
                     <td class=" flex items-start w-3/6 flex-col">
                         <p class="font-bold first-letter:uppercase"><?= $friend['pseudo'] ?></p>
                         <div class="flex items-center">
-                            <img class="h-4 w-4" src="<?= base_url() ?>/assets/icons/coin.png" alt="">
+                            <img class="h-4 w-4" src="<?= base_url() ?>/assets/icons/shifter.svg" alt="">
                             <p class="ml-2">
                                 <?= $friend['points'] ?>
                             </p>

@@ -4,7 +4,7 @@
    <input class="search w-full h-8 p-1" type="search" placeholder="Rechercher" autofocus>
 </form>
 
-<div id="result"></div>
+<div id="result" class="p-3 overflow-y-auto max-h-[50vh] min-h-0"></div>
 
 <script>
    $(document).ready(function() {
