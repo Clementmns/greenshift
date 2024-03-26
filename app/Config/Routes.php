@@ -6,8 +6,6 @@ use CodeIgniter\Router\RouteCollection;
  * @var RouteCollection $routes
  */
 
-$routes->setAutoRoute(true);
-
 $routes->group('', ['filter' => 'AuthCheck'], function ($routes) {
    $routes->get('/', 'Dashboard::index');
 

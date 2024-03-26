@@ -17,7 +17,7 @@ class Auth extends BaseController
 
    public function index()
    {
-      return view('auth/login');
+      return view(base_url() . 'auth/login');
    }
 
    public function register()
