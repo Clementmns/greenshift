@@ -18,10 +18,10 @@
         <h1 class="text-xl font-bold mb-4">Vos badges :</h1>
         <?php if (isset($userBadges)) : ?>
             <form action="<?php echo base_url('boutique/addFavoriteBadges'); ?>" method="post" class="text-right">
-                <div class="flex items-center justify-center gap-4 flex-wrap">
+                <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));">
                     <?php foreach ($userBadges as $badge) : ?>
-                        <div class="flex flex-col items-center justify-center">
-                            <label for="favorite_badges[<?= $badge['id_badge']; ?>]">
+                        <div class="badge-label">
+                            <label class="flex flex-col items-center justify-center " for="favorite_badges[<?= $badge['id_badge']; ?>]">
                                 <img src="<?php echo ('assets/badges/' . $badge['link']); ?>" alt="<?php echo $badge['title']; ?>" class="w-20 mb-2 object-cover rounded-md badge-img border-2 border-gray-300">
                                 <p class="font-semibold text-center"><?php echo $badge['title']; ?></p>
                             </label>
@@ -47,10 +47,10 @@
     $(document).ready(function() {
         // Écoute les changements d'état des boutons radio
         $('input[name="favorite_badges"]').change(function() {
-            // Retire la bordure de tous les badges
-            $('.badge-img').removeClass('border-gray-300 border-primary-300');
-            // Ajoute la bordure au badge sélectionné
-            $(this).closest('.flex').find('.badge-img').addClass('border-primary-300');
+            // Retire la bordure de toutes les images de badge
+            $('.badge-img').removeClass('border-primary-300 border-gray-300');
+            // Ajoute la bordure uniquement à l'image du badge sélectionné
+            $(this).closest('.badge-label').find('.badge-img').addClass('border-primary-300');
         });
     });
 </script>

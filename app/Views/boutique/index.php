@@ -9,7 +9,9 @@
                     <img class="inline-block h-4 !w-4" src="<?= base_url() ?>assets/icons/shifter.svg" alt="">
                     <p class="font-semibold text-xs"><?php echo $badge['price']; ?></p>
                 </div>
-                <a href="<?php echo base_url('boutique/buyBadge/' . $badge['id_badge']); ?>" class="text-white bg-primary-500 p-1 rounded-md landscape:hover:bg-primary-700 transition-all mt-2">Acheter</a>
+                <?php if (empty($userBadges) || !in_array($badge['id_badge'], array_column($userBadges, 'id_badge'))) : ?>
+                    <a href="<?php echo base_url('boutique/buyBadge/' . $badge['id_badge']); ?>" class="text-white bg-primary-500 p-1 rounded-md landscape:hover:bg-primary-700 transition-all mt-2">Acheter</a>
+                <?php endif; ?>
             </div>
         <?php endforeach; ?>
     </div>
