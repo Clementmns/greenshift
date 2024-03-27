@@ -77,10 +77,10 @@ class UserModel extends Model
     {
         $builder = $this->db->table("greenshift_users");
 
-        $builder->select("id_user, firstname, lastname, greenshift_users.pseudo, greenshift_users.avatar, greenshift_users.points, greenshift_users.exp, greenshift_users.level");
+        $builder->select("greenshift_users.id_user, greenshift_users.firstname, greenshift_users.lastname, greenshift_users.pseudo, greenshift_users.avatar, greenshift_users.points, greenshift_users.exp, greenshift_users.level");
         $builder->join("greenshift_relation", "greenshift_users.id_user = greenshift_relation.fk_user OR greenshift_users.id_user = greenshift_relation.fk_userfollowed", "inner");
         $builder->where("(greenshift_relation.fk_user = $id_user)");
-        $builder->orderBy("greenshift_users.points", "DESC");
+        $builder->orderBy("greenshift_users.level", "DESC");
         $builder->orderBy("greenshift_users.exp", "DESC");
         $builder->distinct();
 
