@@ -40,7 +40,6 @@ class BadgeController extends BaseController
         }
 
         // Afficher le formulaire d'ajout de badge
-        return view('add_badge_form');
     }
 
     public function uploadBadgeImage()

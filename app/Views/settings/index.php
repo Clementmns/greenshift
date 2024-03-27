@@ -1,4 +1,4 @@
-<div class=" flex flex-col justify-between text-xl w-[70vw] landscape:w-[20vw] shadow-classic h-full rounded-r-lg rounded-b-lg  bg-white p-4">
+<div class=" flex flex-col justify-evenly text-xl w-[70vw] landscape:w-[20vw] shadow-classic h-full rounded-r-lg rounded-b-lg  bg-white p-4">
    <img class="menuClosePopup cursor-pointer inline-block h-8 w-8 self-end" src="<?= base_url() ?>assets/icons/cross.svg" alt="">
    <div class="h-[80%]">
       <div class="flex items-center flex-col">
@@ -31,10 +31,11 @@
 
 
    </div>
-   <div class="flex flex-col items-center w-full gap-1">
-
-      <a class="w-full text-center text-white rounded-lg bg-red-500 landscape:hover:bg-red-700 transition-all py-2" href="<?= site_url('auth/logOut'); ?>">Déconnexion</a>
-      <p class="text-xs text-gray-400">GreenShift© - 2024</p>
+   <div class="h-full">
+      <div class="flex flex-col items-center w-full gap-1">
+         <a class="w-full text-center text-white rounded-lg bg-red-500 landscape:hover:bg-red-700 transition-all py-2" href="<?= site_url('auth/logOut'); ?>">Déconnexion</a>
+         <p class="text-xs text-gray-400">GreenShift© - 2024</p>
+      </div>
    </div>
 </div>
 

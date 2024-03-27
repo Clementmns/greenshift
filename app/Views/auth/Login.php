@@ -38,7 +38,7 @@
                         <label for="pseudo">Pseudo : </label>
                         <div>
                             <input value="<?= set_value('pseudo'); ?>" class="bg-gray-100 p-1 rounded-lg ring-2 ring-gray-200 w-full shadow-md" id="pseudo" type="text" name="pseudo" placeholder="Votre pseudo">
-                            <span class="leading-tight text-red-500"><?= isset($validation) ? display_form_errors($validation, 'pseudo') : ''; ?></span>
+                            <span class="leading-tight text-red-500"><?= isset($validation) ? 'pseudo incorrect' : ''; ?></span>
                         </div>
 
                     </div>
@@ -46,7 +46,7 @@
                         <label for="password">Mot de passe : </label>
                         <div>
                             <input value="<?= set_value('password'); ?>" class="bg-gray-100 p-1 rounded-lg ring-2 ring-gray-200 w-full shadow-md" id="password" type="password" name="password" placeholder="Votre mot de passe">
-                            <span class="leading-tight text-red-500"><?= isset($validation) ? display_form_errors($validation, 'password') : ''; ?></span>
+                            <span class="leading-tight text-red-500"><?= isset($validation) ? 'mot de passe incorrect' : ''; ?></span>
                         </div>
 
                     </div>

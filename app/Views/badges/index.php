@@ -1,4 +1,4 @@
-<div class="flex flex-col items-center gap-4 landscape:flex-row">
+<div class="flex flex-col items-center gap-4 landscape:flex-row landscape:items-start">
     <div class="box flex items-center flex-col">
         <h1 class="text-xl font-bold mb-4">Badge favori :</h1>
         <?php if (isset($userFavoriteBadges['link'])) : ?>

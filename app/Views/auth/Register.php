@@ -31,14 +31,14 @@
                             <label for="firstname">Prénom</label>
                             <div>
                                 <input class="bg-gray-100 p-1 rounded-lg ring-2 ring-gray-200 w-full shadow-md" value="<?= set_value('firstname'); ?>" id="firstname" type="text" name="firstname" placeholder="Ex: Titouan">
-                                <span class="leading-none text-red-500 text-sm"><?= isset($validation) ? display_form_errors($validation, 'firstname') : ''; ?></span class="leading-none text-red-500">
+                                <span class="leading-none text-red-500 text-sm"><?= isset($validation) ? 'Le prénom est requis' : ''; ?></span class="leading-none text-red-500">
                             </div>
                         </div>
                         <div class="w-[45%]">
                             <label for="lastname">Nom</label>
                             <div>
                                 <input class="bg-gray-100 p-1 rounded-lg ring-2 ring-gray-200 w-full shadow-md" value="<?= set_value('lastname'); ?>" id="lastname" type="text" name="lastname" placeholder="Ex: Lahchiouach">
-                                <span class="leading-none text-red-500 text-sm"><?= isset($validation) ? display_form_errors($validation, 'lastname') : ''; ?></span class="leading-none text-red-500">
+                                <span class="leading-none text-red-500 text-sm"><?= isset($validation) ? 'Le nom est requis' : ''; ?></span class="leading-none text-red-500">
                             </div>
                         </div>
 
@@ -48,7 +48,7 @@
                         <div>
 
                             <input class="bg-gray-100 p-1 rounded-lg ring-2 ring-gray-200 w-full shadow-md" value="<?= set_value('pseudo'); ?>" id="pseudo" type="text" name="pseudo" placeholder="Ex: titlah">
-                            <span class="leading-none text-red-500 text-sm"><?= isset($validation) ? display_form_errors($validation, 'pseudo') : ''; ?></span class="leading-none text-red-500">
+                            <span class="leading-none text-red-500 text-sm"><?= isset($validation) ? 'Le pseudo complet est requis' : ''; ?></span class="leading-none text-red-500">
                         </div>
 
                     </div>
@@ -58,14 +58,14 @@
 
 
                             <input class="bg-gray-100 p-1 rounded-lg ring-2 ring-gray-200 w-full shadow-md" value="<?= set_value('password'); ?>" id="password" type="password" name="password" placeholder="Ex: motdepasse1234">
-                            <span class="leading-none text-red-500 text-sm"><?= isset($validation) ? display_form_errors($validation, 'password') : ''; ?></span class="leading-none text-red-500">
+                            <span class="leading-none text-red-500 text-sm"><?= isset($validation) ? 'Le mot de passe est requis de + de 5 charactères' : ''; ?></span class="leading-none text-red-500">
                         </div>
                     </div>
                     <div class="mt-1">
                         <label for="passwordConf">Confirmer le mot de passe</label>
                         <div>
                             <input class="bg-gray-100 p-1 rounded-lg ring-2 ring-gray-200 w-full shadow-md" value="<?= set_value('passwordConf'); ?>" id="passwordConf" type="password" name="passwordConf" placeholder="Ex: motdepasse1234">
-                            <span class="leading-none text-red-500 text-sm"><?= isset($validation) ? display_form_errors($validation, 'passwordConf') : ''; ?></span class="leading-none text-red-500">
+                            <span class="leading-none text-red-500 text-sm"><?= isset($validation) ? 'Les mots de passe doivent être identiques' : ''; ?></span class="leading-none text-red-500">
                         </div>
                     </div>
                     <div class="self-center">

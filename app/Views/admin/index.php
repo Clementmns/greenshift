@@ -1,7 +1,7 @@
 <div class="landscape:flex justify-center gap-4">
    <div class="box w-full">
-      <h1 class="portrait:add-badges font-semibold text-center mb-4 text-lg text-primary-500 underline">Ajouter un badge dans la boutique</h1>
-      <div class="portrait:add-badges-container hidden landscape:block">
+      <h1 class="add-badges font-semibold text-center mb-4 text-lg text-primary-500 underline">Ajouter un badge dans la boutique</h1>
+      <div class="add-badges-container hidden landscape:block">
          <form id="add-badge-form" action="<?= site_url('BadgeController/addBadge') ?>" method="post" enctype="multipart/form-data">
             <?= csrf_field() ?>
             <div class="mb-10">
@@ -51,8 +51,8 @@
    </script>
    <?php if (!isset($goalsNextWeek[0])) : ?>
       <div class="box mt-4 w-full landscape:mt-0">
-         <h1 class="portrait:goals-week font-semibold text-center mb-4 text-lg text-primary-500 underline">Ajouter les objectifs de la semaine prochaine (semaine <?= date('W') + 1 ?>)</h1>
-         <div class="portrait:goals-week-container hidden landscape:block">
+         <h1 class="goals-week font-semibold text-center mb-4 text-lg text-primary-500 underline">Ajouter les objectifs de la semaine prochaine (semaine <?= date('W') + 1 ?>)</h1>
+         <div class="goals-week-container hidden landscape:block">
             <form id="add-goals-form" action="<?= site_url('GoalController/addGoals') ?>" method="post">
                <?= csrf_field() ?>
                <?php for ($i = 1; $i <= 5; $i++) : ?>

@@ -127,6 +127,6 @@ class BadgeModel extends Model
 
     public function addBadge($data)
     {
-        return $this->insert($data);
+        $this->insert($data);
     }
 }

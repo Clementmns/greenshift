@@ -10,11 +10,11 @@
 </head>
 
 <body class="bg-primary-500">
-    <div class="w-screen fixed z-[100] h-screen menuPopup transition-all" style="transform: translateX(-2000px);"><?php echo view('settings/index') ?></div>
+    <div class="w-screen fixed top-0 z-[100] h-screen menuPopup transition-all" style="transform: translateX(-2000px);"><?php echo view('settings/index') ?></div>
     <header class="fixed top-0 w-full bg-primary-500 h-28 flex justify-between items-center p-6 z-50 landscape:justify-start landscape:gap-10">
         <div class="flex items-center gap-4">
             <div class="menuOpenPopup cursor-pointer">
-                <img class=" inline-block h-8 !w-8 " src="<?= base_url() ?>assets/icons/menu.png" alt="">
+                <img class="inline-block h-8 !w-8 " src="<?= base_url() ?>assets/icons/menu.png" alt="">
             </div>
             <div class="menuOpenPopup flex gap-3 items-center justify-center cursor-pointer">
                 <img class="inline-block h-14 !w-14 rounded-xl ring-[2.5px] ring-primary-300 object-cover" src="<?= base_url() ?>assets/avatar/<?= $userInfo['avatar']; ?>" alt="">
