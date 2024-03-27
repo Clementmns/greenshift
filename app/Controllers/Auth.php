@@ -17,7 +17,7 @@ class Auth extends BaseController
 
    public function index()
    {
-      return view(base_url() . 'auth/login');
+      return view('auth/login');
    }
 
    public function register()
@@ -164,7 +164,7 @@ class Auth extends BaseController
             }
 
             // Vérifier si le fichier est une image et la taille est inférieure à 2 Mo
-            if (!in_array($img->getMimeType(), ['image/jpeg', 'image/png'])) {
+            if (!in_array($img->getMimeType(), ['image/jpeg', 'image/png', 'image/heic'])) {
                return redirect()->to('')->with('error', 'Fichier non image');
             }
 

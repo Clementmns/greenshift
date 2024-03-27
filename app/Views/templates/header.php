@@ -30,10 +30,10 @@
         </div>
     </header>
     <div class="flex justify-center">
-        <div class="fixed -z-50 bottom-0 bg-white h-[85vh] w-[180vw] rounded-t-full">
+        <div class="fixed -z-50 bg-white h-[85vh] w-[180vw] rounded-t-full" style="top: 200px;">
         </div>
     </div>
-    <main class="mt-28  px-6 mb-24 wrapper flex justify-center items-center">
+    <main class="mt-28  px-6 mb-24 wrapper flex justify-center items-center ">
 
         <script>
             $(document).ready(function() {

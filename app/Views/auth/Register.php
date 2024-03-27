@@ -6,12 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Greenshift - Inscription</title>
     <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>/css/output.css">
+    <script src="<?= base_url(); ?>js/jquery/dist/jquery.min.js"></script>
 </head>
 
 <body>
-    <?php
-    echo view("templates/notification");
-    ?>
+
     <section class="w-screen h-screen flex flex-col items-center justify-center landscape:flex-row">
 
         <div class="w-full h-1/4 bg-cover landscape:h-full bg-center flex items-center justify-center landscape:rounded-b-none landscape:rounded-r-3xl rounded-b-3xl shadow-3xl" style="background-image: url('<?= base_url() ?>/assets/img/auth-bg.jpeg');">
@@ -79,6 +78,10 @@
         </div>
 
     </section>
+
+    <?php
+    echo view("templates/notification");
+    ?>
 </body>
 
 </html>
