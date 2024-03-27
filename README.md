@@ -24,3 +24,17 @@ Pour une utilisation locale, merci d'utiliser la base de données sans la renomm
 Mettez l'archive à la racine de XAMPP, vous devriez y avoir alors accès via :
 
 https://localhost:8888/greenshift/public
+
+## Groupe
+
+#### Parcours Développement Web et Dispositif Intéractif
+
+-  Liam MAKÉ
+-  Titouan LAHCHIOUACH
+-  Clément OMNÈS
+
+#### Parcours Création Numérique
+
+-  Alexis CRESPEL
+-  Julie BREVET
+-  Théo RAVETTA
