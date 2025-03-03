@@ -2,7 +2,6 @@
 
 ## Lien TPWEB
 
-https://omnescle.tpweb.univ-rouen.fr/greenshift/public
 [![Github](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Clementmns/greenshift)
 
 ## Technologies utilisées
