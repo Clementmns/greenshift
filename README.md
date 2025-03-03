@@ -1,9 +1,5 @@
 # SAE 401-402 Greenshift
 
-## Lien TPWEB
-
-[![Github](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Clementmns/greenshift)
-
 ## Technologies utilisées
 
 ![Tailwind_CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
